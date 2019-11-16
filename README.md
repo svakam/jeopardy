@@ -1,5 +1,5 @@
 # Jeopardy
-A class project to recreate our take on the popular gameshow Jeapordy.
+A class project to recreate our take on the popular gameshow Jeopardy.
 
 # Team Members
 
