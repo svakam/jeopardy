@@ -1,4 +1,3 @@
-
 table {
   height:100%;
   width:100%;
@@ -25,11 +24,11 @@ table td {
   text-transform: uppercase;
 }
 
-/* select just the clue cards */
 .card a{
   font-family: 'Public Sans', sans-serif;
   color: rgb(215,165,110);
   text-decoration: none;
   font-size: 60pt;
 }
+
 
