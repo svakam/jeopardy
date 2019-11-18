@@ -2,7 +2,17 @@ table td {
   width: 80px;
   height: 60px;
   background-color: blue;
-  border: black solid 2px;
+  /* border: black solid 2px; */
   text-align: center;
   color: white;
+}
+
+table {
+  height:100%;
+  width:100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
