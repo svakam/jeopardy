@@ -21,3 +21,6 @@ Peter Sankiewicz
 ![Correct question, checkbox to assign points](img/correct_question_plus_checkbox.png)
 
 ![Game Over and final scores](img/game_over_plus_final_scores.png)
+
+## Problem Domain
+![Problem domain](img/problem_domain.jpg)
