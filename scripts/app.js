@@ -187,39 +187,40 @@ function clueClickManager(event) {
 renderHeader(table);
 renderBody(table);
 
+
+
 var jeopardyDOM = document.getElementById('jeopardy-board');
 
-function renderTopRow(domReference) {
-  var tr = document.createElement('tr');
-  for (var topRowIndex = 0; topRowIndex < jeopardyBoard.length; topRowIndex++)
+function renderBoard(domReference) {
+  var tr1 = document.createElement('tr');
+
+  for ( var columnIndexTopRow = 0; columnIndexTopRow < jeopardyBoard.length; columnIndexTopRow++ )
   {
     var td = document.createElement('td');
     td.setAttribute('class', 'card');
-    td.setAttribute('id', 'cat' + topRowIndex);
-    td.textContent = jeopardyBoard[topRowIndex].name;
-    tr.append(td);
+    td.setAttribute('id', 'category' + columnIndexTopRow);
+    td.textContent = jeopardyBoard[columnIndexTopRow].name;
+    tr1.append(td);
   }
-  domReference.append(tr);
-}
+  domReference.append(tr1);
 
-function renderTableBody(domReference) {
-  for (var i = 0; i < 5; i++) {
-    var tr = document.createElement('tr');
-    for (var j = 0; j < 6; j++) {
-      var td = document.createElement('td');
+  for ( var rowIndex = 0; rowIndex < 5; rowIndex++ ) {
+    var tr2 = document.createElement('tr');
+
+    for ( var columnIndexBody = 0; columnIndexBody < 6; columnIndexBody++ ) {
+      //TODO this needs to be changed into an a element, this code can be reused to make the small card
+      var currentValue = jeopardyBoard[columnIndexBody].questions[rowIndex][0];
+      td = document.createElement('td');
       td.setAttribute('class', 'card');
-      td.setAttribute('id', 'cat' + i + 'clue' + j);
-      td.textContent = jeopardyBoard[j].questions[i][0];
-      tr.append(td);
+      td.setAttribute('id', 'category' + rowIndex + 'clue' + columnIndexBody);
+
+      td.textContent = currentValue;
+      tr2.append(td);
     }
-    domReference.append(tr);
+    domReference.append(tr2);
   }
 }
 
-function renderBoard(domReference) {
-  renderTopRow(domReference);
-  renderTableBody(domReference);
-}
 renderBoard(jeopardyDOM);
 
 // Debugging shortcuts
