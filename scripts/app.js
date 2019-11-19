@@ -204,16 +204,19 @@ renderBody(table);
 function renderBoard(domReference) {
   var tr1 = document.createElement('tr');
 
+  //render top row
   for ( var columnIndexTopRow = 0; columnIndexTopRow < jeopardyBoard.length; columnIndexTopRow++ )
   {
     var td1 = document.createElement('td');
     td1.setAttribute('class', 'card');
     td1.setAttribute('id', 'category' + columnIndexTopRow);
+    td1.addEventListener('click', tdClickManager);
     td1.textContent = jeopardyBoard[columnIndexTopRow].name;
     tr1.append(td1);
   }
   domReference.append(tr1);
 
+  //render the other rows
   for ( var rowIndex = 0; rowIndex < 5; rowIndex++ ) {
     var tr2 = document.createElement('tr');
 
@@ -224,12 +227,14 @@ function renderBoard(domReference) {
       var td2 = document.createElement('td');
       var ahref = document.createElement('a');
 
-      td2.setAttribute('class', 'card');
-      td2.setAttribute('id', 'category' + columnIndexBody + 'clue' + rowIndex);
-      ahref.setAttribute('href', 'clue.html');
-      ahref.textContent = currentValue;
-
       if (isShownFlag === true) {
+        td2.setAttribute('class', 'card');
+        td2.setAttribute('id', 'category' + columnIndexBody + 'clue' + rowIndex);
+
+        ahref.setAttribute('href', 'clue.html');
+        ahref.textContent = currentValue;
+        ahref.addEventListener('click', tdClickManager);
+
         td2.append(ahref);
       } else {
         td2.append(ahref.textContent = '');
