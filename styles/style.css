@@ -1,3 +1,18 @@
+html, body {
+  height: 100%;
+}
+
+.bigClue {
+  height: 100%;
+  background-color: rgb(18,36,136);
+  font-family: 'Merriweather', serif;
+  font-size: 8vh;
+  color: gold;
+  text-transform: uppercase;
+  text-align: center;
+  vertical-align: middle;
+}
+
 table {
   height:100%;
   width:100%;
@@ -20,15 +35,14 @@ table td {
 .card {
   font-family: 'Merriweather', serif;
   font-size: 20pt;
-  color: rgb(215,165,110);
+  color: gold;
   text-transform: uppercase;
 }
 
 .card a{
-  font-family: 'Public Sans', sans-serif;
-  color: rgb(215,165,110);
+  /* font-family: 'Public Sans', sans-serif;*/
+  font-family: 'Special Elite', cursive;
+  color: gold;
   text-decoration: none;
   font-size: 60pt;
 }
-
-
