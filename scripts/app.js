@@ -1,4 +1,13 @@
-var category = ['a', 'b', 'c', 'd', 'e'];
+'use strict';
+
+var category = [
+  'Before & After',
+  'Science',
+  'Literature',
+  'American History',
+  'Potpourri',
+  'Word Origins'
+];
 
 function Cell(clue, pointValue, question, categoryIndex) {
   this.clue = clue;
@@ -7,7 +16,7 @@ function Cell(clue, pointValue, question, categoryIndex) {
   this.category = category[categoryIndex];
   this.makeBlank = false;
 
-  // trying to put cells into respective arrays according to their point values 
+  // trying to put cells into respective arrays according to their point values
   // function () {
   //   for (var i = 100; i < 500; i += 100) {
   //     if (Cell.pointValue === i) {
@@ -37,10 +46,13 @@ var table = document.getElementById('testtable');
 
 function renderHeader(domReference) {
   var tr = document.createElement('tr');
+
   for (var i = 0; i < category.length; i++) {
-    var th = document.createElement('th');
-    th.textContent = category[i];
-    tr.append(th);
+    var td = document.createElement('td');
+    td.setAttribute('class', 'card');
+    td.setAttribute('id', 'clue' + i);
+    td.textContent = category[i];
+    tr.append(td);
   }
   domReference.append(tr);
 }
