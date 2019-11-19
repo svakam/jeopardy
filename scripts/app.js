@@ -1,9 +1,9 @@
 var category = ['a', 'b', 'c', 'd', 'e'];
 
-function Cell(clue, pointValue, answer, categoryIndex) {
+function Cell(clue, pointValue, question, categoryIndex) {
   this.clue = clue;
   this.pointValue = pointValue;
-  this.answer = answer;
+  this.question = question;
   this.category = category[categoryIndex];
   this.makeBlank = false;
 
@@ -55,8 +55,10 @@ function renderBody(domReference) {
 
   for (var i = 0; i < array100.length; i++) {
     var td = document.createElement('td');
+    td.addEventListener('click', tdClickManager);
     var currentArray = array100[i];
     td.textContent = currentArray.pointValue;
+    td.setAttribute('id', `100-${i}`);
     tr.append(td);
   }
   domReference.append(tr);
@@ -65,14 +67,44 @@ function renderBody(domReference) {
 
   for (var i = 0; i < array200.length; i++) {
     var td = document.createElement('td');
+    td.addEventListener('click', tdClickManager);
     var currentArray = array200[i];
     td.textContent = currentArray.pointValue;
+    td.setAttribute('id', `200-${i}`)
     tr.append(td);
 
   }
   domReference.append(tr);
 }
 
+function idSplitter(str) {
+  // takes in id of tdClick and returns an array with two integers: the points and the category index
+  // get the point value array
+  var nums = str.split('-');
+  var pointValue = parseInt(nums[0]);
+  // get the category index
+  var catIndex = parseInt(nums[1]);
+  nums = [];
+  nums.push(pointValue, catIndex);
+  return nums;
+}
+
+function findObject(arr) {
+  // takes in the array from idsplitter function and determines which clue object to reference
+
+  // figure out which pointValue array
+  var arrayFinder = `array${arr[0]}`;
+  arrayFinder = window[arrayFinder];
+  console.log(arrayFinder);
+  // figure out which object in the array we want
+  var cellFinder = arrayFinder[arr[1]];
+  return cellFinder;
+}
+
+function tdClickManager(event) {
+  // 
+
+}
 
 renderHeader(table);
 renderBody(table);
