@@ -1,5 +1,12 @@
 'use strict';
 
+// Debugging shortcuts
+// To address data at specific locations do this:
+// console.log('the value at bottom right is: ' + jeopardyBoard[0].questions[4][0]);
+// console.log('clue at top left: ' + jeopardyBoard[0].questions[0][1]);
+// console.log('answer at bottom right: ' + jeopardyBoard[5].questions[4][2]);
+// console.log('logs out the entire array with all the objects: ' + jeopardyBoard);
+
 // this is an array that holds all category objects
 var jeopardyBoard = [];
 
@@ -8,10 +15,10 @@ function Category(name, questions) {
   this.name = name;
   this.questions = questions;
   jeopardyBoard.push(this);
+  //the above line takes this object and adds it to that, this is why i don't have list them out
 }
 
-// these are the question objects which end up getting pushed to the jeopardyBoard
-// [0: points value, clue, answer, isShownFalg]
+// structure [0: points value, clue, answer, isShownFalg]
 var cat0 = new Category('science', [
   [100, 'It\'s the largest blood vessel in the body', 'The Aorta?', true],
   [200, 'Earth is farthest from the sun during this month', 'July', true],
@@ -55,6 +62,8 @@ var cat5 = new Category('category 5', [
   [300, 'clue', 'question', true],
   [400, 'clue', 'question', true],
   [500, 'clue', 'question at bottom right', true]]);
+
+///////////////// Peter: I do not believe I changed any of yesterday's code between these comments
 
 var category = [
   'Before & After',
@@ -190,9 +199,7 @@ function clueClickManager(event) {
 renderHeader(table);
 renderBody(table);
 
-
-
-
+////////////////////// Peter above this line is yesterday's code
 
 function renderBoard(domReference) {
   var tr1 = document.createElement('tr');
@@ -234,15 +241,5 @@ function renderBoard(domReference) {
   }
 }
 
-
-
 var jeopardyDOM = document.getElementById('jeopardy-board');
-
 renderBoard(jeopardyDOM);
-
-// Debugging shortcuts
-// if i want to get to get data from a specific location do this:
-// console.log('the value at bottom right is: ' + jeopardyBoard[0].questions[4][0]);
-// console.log('clue at top left: ' + jeopardyBoard[0].questions[0][1]);
-// console.log('answer at bottom right: ' + jeopardyBoard[5].questions[4][2]);
-// console.log('logs out the entire array with all the objects: ' + jeopardyBoard);
