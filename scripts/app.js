@@ -53,16 +53,6 @@ var cat5 = new Category('category 5', [
   [400, 'clue', 'question'],
   [500, 'clue', 'question at bottom right']]);
 
-console.log(jeopardyBoard);
-
-// function Board(categories) {
-//   this.categories = categories;
-// }
-
-// var board = new Board(jeopardyBoard);
-
-// console.log(board);
-
 var category = [
   'Before & After',
   'Science',
@@ -209,30 +199,38 @@ function renderBoard(domReference) {
   //   td.textContent = category[i];
   //   tr.append(td);
   // }
-  console.log(jeopardyBoard[0].name);
-  console.log(jeopardyBoard[1].name);
-  console.log(jeopardyBoard[2].name);
-  console.log(jeopardyBoard[3].name);
-  console.log(jeopardyBoard[4].name);
-  console.log(jeopardyBoard[5].name);
-  console.log(jeopardyBoard[0].questions[0][0]);
-  console.log(jeopardyBoard[1].questions[0][0]);
-  console.log(jeopardyBoard[2].questions[0][0]);
-  console.log(jeopardyBoard[3].questions[0][0]);
-  console.log(jeopardyBoard[4].questions[0][0]);
-  console.log(jeopardyBoard[5].questions[0][0]);
-  console.log(jeopardyBoard[0].questions[1][0]);
-  console.log(jeopardyBoard[1].questions[1][0]);
-  console.log(jeopardyBoard[2].questions[1][0]);
-  console.log(jeopardyBoard[3].questions[1][0]);
-  console.log(jeopardyBoard[4].questions[1][0]);
-  console.log(jeopardyBoard[5].questions[1][0]);
+
+
+  for (var column = 0; column < jeopardyBoard.length; column++)
+  {
+    console.log(jeopardyBoard[column].name);
+  }
+
+  // console.log(jeopardyBoard[0].name);
+  // console.log(jeopardyBoard[1].name);
+  // console.log(jeopardyBoard[2].name);
+  // console.log(jeopardyBoard[3].name);
+  // console.log(jeopardyBoard[4].name);
+  // console.log(jeopardyBoard[5].name);
+  // console.log(jeopardyBoard[0].questions[0][0]);
+  // console.log(jeopardyBoard[1].questions[0][0]);
+  // console.log(jeopardyBoard[2].questions[0][0]);
+  // console.log(jeopardyBoard[3].questions[0][0]);
+  // console.log(jeopardyBoard[4].questions[0][0]);
+  // console.log(jeopardyBoard[5].questions[0][0]);
+  // console.log(jeopardyBoard[0].questions[1][0]);
+  // console.log(jeopardyBoard[1].questions[1][0]);
+  // console.log(jeopardyBoard[2].questions[1][0]);
+  // console.log(jeopardyBoard[3].questions[1][0]);
+  // console.log(jeopardyBoard[4].questions[1][0]);
+  // console.log(jeopardyBoard[5].questions[1][0]);
   domReference.append(tr);
 }
-
-// if i want to get to get data from a specific location do this:
-console.log('the value at bottom right is: ' + jeopardyBoard[0].questions[4][0]);
-console.log('clue at top left: ' + jeopardyBoard[0].questions[0][1]);
-console.log('answer at bottom right: ' + jeopardyBoard[5].questions[4][2]);
-
 renderBoard(jeopardyDOM);
+
+// Debugging shortcuts
+// if i want to get to get data from a specific location do this:
+// console.log('the value at bottom right is: ' + jeopardyBoard[0].questions[4][0]);
+// console.log('clue at top left: ' + jeopardyBoard[0].questions[0][1]);
+// console.log('answer at bottom right: ' + jeopardyBoard[5].questions[4][2]);
+// console.log('logs out the entire array with all the objects: ' + jeopardyBoard);
