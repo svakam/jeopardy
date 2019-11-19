@@ -1,13 +1,16 @@
 'use strict';
 
-var allCategories = [];
+// this is an array that holds all category objects
+var jeopardyBoard = [];
 
+// this function creates a Category object and pushes it to jeopardyBoard
 function Category(name, questions) {
   this.name = name;
   this.questions = questions;
-  allCategories.push(this);
+  jeopardyBoard.push(this);
 }
 
+// these are the question objects which end up getting pushed to the jeopardyBoard
 var cat0 = new Category('science', [
   [100, 'It\'s the largest blood vessel in the body', 'The Aorta?'],
   [200, 'Earth is farthest from the sun during this month', 'July'],
@@ -48,15 +51,17 @@ var cat5 = new Category('category 5', [
   [200, 'clue', 'question'],
   [300, 'clue', 'question'],
   [400, 'clue', 'question'],
-  [500, 'clue', 'question']]);
+  [500, 'clue', 'question at bottom right']]);
 
-function Board(categories) {
-  this.categories = categories;
-}
+console.log(jeopardyBoard);
 
-var board = new Board(allCategories);
+// function Board(categories) {
+//   this.categories = categories;
+// }
 
-console.log(board);
+// var board = new Board(jeopardyBoard);
+
+// console.log(board);
 
 var category = [
   'Before & After',
@@ -189,16 +194,45 @@ function clueClickManager(event) {
   // stopped here. next step is to display the question and buttons to indicate team correct/incorrect, which changes scores
 }
 
-// renderHeader(table);
-// renderBody(table);
+renderHeader(table);
+renderBody(table);
 
 
-var jeopardy = document.getElementById('jeopardy');
-
+var jeopardyDOM = document.getElementById('jeopardy-board');
 
 function renderBoard(domReference) {
   var tr = document.createElement('tr');
+  // for (var i = 0; i < category.length; i++) {
+  //   var td = document.createElement('td');
+  //   td.setAttribute('class', 'card');
+  //   td.setAttribute('id', 'cat' + i);
+  //   td.textContent = category[i];
+  //   tr.append(td);
+  // }
+  console.log(jeopardyBoard[0].name);
+  console.log(jeopardyBoard[1].name);
+  console.log(jeopardyBoard[2].name);
+  console.log(jeopardyBoard[3].name);
+  console.log(jeopardyBoard[4].name);
+  console.log(jeopardyBoard[5].name);
+  console.log(jeopardyBoard[0].questions[0][0]);
+  console.log(jeopardyBoard[1].questions[0][0]);
+  console.log(jeopardyBoard[2].questions[0][0]);
+  console.log(jeopardyBoard[3].questions[0][0]);
+  console.log(jeopardyBoard[4].questions[0][0]);
+  console.log(jeopardyBoard[5].questions[0][0]);
+  console.log(jeopardyBoard[0].questions[1][0]);
+  console.log(jeopardyBoard[1].questions[1][0]);
+  console.log(jeopardyBoard[2].questions[1][0]);
+  console.log(jeopardyBoard[3].questions[1][0]);
+  console.log(jeopardyBoard[4].questions[1][0]);
+  console.log(jeopardyBoard[5].questions[1][0]);
   domReference.append(tr);
 }
 
-renderBoard(jeopardy);
+// if i want to get to get data from a specific location do this:
+console.log('the value at bottom right is: ' + jeopardyBoard[0].questions[4][0]);
+console.log('clue at top left: ' + jeopardyBoard[0].questions[0][1]);
+console.log('answer at bottom right: ' + jeopardyBoard[5].questions[4][2]);
+
+renderBoard(jeopardyDOM);
