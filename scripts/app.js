@@ -51,30 +51,31 @@ var array200 = [C6, C7, C8, C9, C10];
 // need to add more categories after MVP
 
 function renderBody(domReference) {
-  var tr = document.createElement('tr');
+  var tr100 = document.createElement('tr');
 
+  // for an array, making a td and also giving it an event listener and an id
   for (var i = 0; i < array100.length; i++) {
-    var td = document.createElement('td');
-    td.addEventListener('click', tdClickManager);
-    var currentArray = array100[i];
-    td.textContent = currentArray.pointValue;
-    td.setAttribute('id', `100-${i}`);
-    tr.append(td);
+    var td100 = document.createElement('td');
+    var currentArray100 = array100[i];
+    td100.textContent = currentArray100.pointValue;
+    td100.setAttribute('id', `100-${i}`);
+    td100.addEventListener('click', tdClickManager);
+    tr100.append(td100);
   }
-  domReference.append(tr);
+  domReference.append(tr100);
 
-  var tr = document.createElement('tr');
+  var tr200 = document.createElement('tr');
 
-  for (var i = 0; i < array200.length; i++) {
-    var td = document.createElement('td');
-    td.addEventListener('click', tdClickManager);
-    var currentArray = array200[i];
-    td.textContent = currentArray.pointValue;
-    td.setAttribute('id', `200-${i}`)
-    tr.append(td);
+  for (var j = 0; j < array200.length; j++) {
+    var td200 = document.createElement('td');
+    var currentArray200 = array200[j];
+    td200.textContent = currentArray200.pointValue;
+    td200.setAttribute('id', `200-${j}`);
+    td200.addEventListener('click', tdClickManager);
+    tr200.append(td200);
 
   }
-  domReference.append(tr);
+  domReference.append(tr200);
 }
 
 function idSplitter(str) {
@@ -102,8 +103,20 @@ function findObject(arr) {
 }
 
 function tdClickManager(event) {
-  // 
+  // call id splitter and object finder functions when a cell is clicked on, to get the object
+  var idReference = idSplitter(event.target.id);
+  var objectReference = findObject(idReference);
+  console.log(objectReference.clue);
+  table.innerHTML = '';
+  var clueDisplayDiv = document.createElement('div');
+  clueDisplayDiv.textContent = objectReference.clue;
+  table.append(clueDisplayDiv); // accessed the clue and put it on the screen
+  clueDisplayDiv.addEventListener('click', clueClickManager);
+}
 
+function clueClickManager(event) {
+  table.innerHTML = '';
+  // stopped here. next step is to display the question and buttons to indicate team correct/incorrect, which changes scores
 }
 
 renderHeader(table);
