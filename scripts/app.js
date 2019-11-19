@@ -187,44 +187,38 @@ function clueClickManager(event) {
 renderHeader(table);
 renderBody(table);
 
-
 var jeopardyDOM = document.getElementById('jeopardy-board');
 
-function renderBoard(domReference) {
+function renderTopRow(domReference) {
   var tr = document.createElement('tr');
-  // for (var i = 0; i < category.length; i++) {
-  //   var td = document.createElement('td');
-  //   td.setAttribute('class', 'card');
-  //   td.setAttribute('id', 'cat' + i);
-  //   td.textContent = category[i];
-  //   tr.append(td);
-  // }
-
-
-  for (var column = 0; column < jeopardyBoard.length; column++)
+  for (var topRowIndex = 0; topRowIndex < jeopardyBoard.length; topRowIndex++)
   {
-    console.log(jeopardyBoard[column].name);
+    var td = document.createElement('td');
+    td.setAttribute('class', 'card');
+    td.setAttribute('id', 'cat' + topRowIndex);
+    td.textContent = jeopardyBoard[topRowIndex].name;
+    tr.append(td);
   }
-
-  // console.log(jeopardyBoard[0].name);
-  // console.log(jeopardyBoard[1].name);
-  // console.log(jeopardyBoard[2].name);
-  // console.log(jeopardyBoard[3].name);
-  // console.log(jeopardyBoard[4].name);
-  // console.log(jeopardyBoard[5].name);
-  // console.log(jeopardyBoard[0].questions[0][0]);
-  // console.log(jeopardyBoard[1].questions[0][0]);
-  // console.log(jeopardyBoard[2].questions[0][0]);
-  // console.log(jeopardyBoard[3].questions[0][0]);
-  // console.log(jeopardyBoard[4].questions[0][0]);
-  // console.log(jeopardyBoard[5].questions[0][0]);
-  // console.log(jeopardyBoard[0].questions[1][0]);
-  // console.log(jeopardyBoard[1].questions[1][0]);
-  // console.log(jeopardyBoard[2].questions[1][0]);
-  // console.log(jeopardyBoard[3].questions[1][0]);
-  // console.log(jeopardyBoard[4].questions[1][0]);
-  // console.log(jeopardyBoard[5].questions[1][0]);
   domReference.append(tr);
+}
+
+function renderTableBody(domReference) {
+  for (var i = 0; i < 5; i++) {
+    var tr = document.createElement('tr');
+    for (var j = 0; j < 6; j++) {
+      var td = document.createElement('td');
+      td.setAttribute('class', 'card');
+      td.setAttribute('id', 'cat' + i + 'clue' + j);
+      td.textContent = jeopardyBoard[j].questions[i][0];
+      tr.append(td);
+    }
+    domReference.append(tr);
+  }
+}
+
+function renderBoard(domReference) {
+  renderTopRow(domReference);
+  renderTableBody(domReference);
 }
 renderBoard(jeopardyDOM);
 
