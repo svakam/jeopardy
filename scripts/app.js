@@ -66,6 +66,36 @@ var Cat5 = new Category('category 5', [
   [500, 'This element\'s symbol W comes from wolfram its alternate name', 'Tungsten', true]
 ]);
 
+var teams = [];
+
+function Team(name, newScore) {
+  this.name = name;
+  this.currentScore = newScore;
+  teams.push(this);
+}
+
+var TeamA = new Team('Team A', 0);
+var TeamB = new Team('Team B', 0);
+
+function updateScore(team, newScore) {
+  return team.currentScore += newScore;
+}
+
+//////Example Code To Be Removed//////
+alert('Before Adding Scores:\n' +
+      TeamA.name + ' Score:' + TeamA.currentScore + '\n' +
+      teams[1].name + ' Score:' + teams[1].currentScore);
+
+updateScore(TeamA, -100);
+updateScore(TeamB, -500);
+updateScore(teams[0], 300);
+updateScore(teams[1], 1000);
+
+alert('After Adding Scores:\n' +
+      TeamA.name + ' Score:' + TeamA.currentScore + '\n' +
+      teams[1].name + ' Score:' + teams[1].currentScore);
+//////Example Code To Be Removed//////
+
 function renderBoard(domReference) {
   var tr1 = document.createElement('tr');
 
@@ -83,7 +113,7 @@ function renderBoard(domReference) {
     var tr2 = document.createElement('tr');
 
     for ( var clueIndex = 0; clueIndex < 6; clueIndex++ ) {
-      var currentValue = categories[clueIndex].clues[rowIndex][0]; //Peter: There is an Uncaught TypeError: Cannot read property '0' of undefined, the first time this line is run. It makes no difference if I declare the var first and set it to 0. The program runs ok with it <shrug>
+      var currentValue = categories[clueIndex].clues[rowIndex][0]; //PS: Uncaught TypeError: Cannot read property '0' of undefined
       var isShownFlag = categories[clueIndex].clues[rowIndex][3];
 
       var td2 = document.createElement('td');
@@ -144,7 +174,6 @@ function tdClickManager(event) {
   table.append(clueDisplayDiv);
   clueDisplayDiv.addEventListener('click', clueClickManager);
 }
-
 
 function clueClickManager(event) {
   var question = getQuestion(event.target.id);
