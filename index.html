@@ -1,70 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="styles/style.css">
-  <title>Jeopardy</title>
-</head>
-
-<body>
-  <table>
-    <tr>
-      <td>Before & After</td>
-      <td>Science</td>
-      <td>Literature</td>
-      <td>American History</td>
-      <td>Potpourri</td>
-      <td>Word Origins</td>
-    </tr>
-    <tr>
-      <td>$100</td>
-      <td>$100</td>
-      <td>$100</td>
-      <td>$100</td>
-      <td>$100</td>
-      <td>$100</td>
-    </tr>
-    <tr>
-      <td>$200</td>
-      <td>$200</td>
-      <td>$200</td>
-      <td>$200</td>
-      <td>$200</td>
-      <td>$200</td>
-    </tr>
-    <tr>
-      <td>$300</td>
-      <td>$300</td>
-      <td>$300</td>
-      <td>$300</td>
-      <td>$300</td>
-      <td>$300</td>
-    </tr>
-    <tr>
-      <td>$400</td>
-      <td>$400</td>
-      <td>$400</td>
-      <td>$400</td>
-      <td>$400</td>
-      <td>$400</td>
-    </tr>
-    <tr>
-      <td>$500</td>
-      <td>$500</td>
-      <td>$500</td>
-      <td>$500</td>
-      <td>$500</td>
-      <td>$500</td>
-    </tr>
-  </table>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <!--Category Font-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+    <!--Clue Font-->
+    <link href="https://fonts.googleapis.com/css?family=Public+Sans:800&display=swap" rel="stylesheet">
+    <!-- alternaive typewriter font for clues -->
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap" rel="stylesheet">
+    <title>Jeopardy</title>
+  </head>
+  <body>
   <table id="testtable">
-
   </table>
+    
   <script src="./scripts/app.js"></script>
-</body>
-
+<!--
+    <table>
+      <tr>
+        <td class="card" id="cat0">Before & After</td>
+        <td class="card" id="cat1">Science</td>
+        <td class="card" id="cat2">Literature</td>
+        <td class="card" id="cat3">American History</td>
+        <td class="card" id="cat4">Potpourri</td>
+        <td class="card" id="cat5">Word Origins</td>
+      </tr>
+      <tr>
+        <td class="card" id="cat0clue100">
+          <div>This is the first president</div>
+        <td class="card" id="cat1clue100">
+          <a href=clue.html hidden>100</a></td>
+        <td class="card" id="cat2clue100">
+          <a href=clue.html hidden>100</a></td>
+        <td class="card" id="cat3clue100">
+          <a href=clue.html>100</a></td>
+        <td class="card" id="cat4clue100">
+          <a href=clue.html>100</a></td>
+        <td class="card" id="cat5clue100">
+          <a href=clue.html>100</a></td>
+      </tr>
+      <tr>
+        <td class="card" id="cat0clue200">
+          <a href=clue.html>200</a></td>
+        <td class="card" id="cat1clue200">
+          <a href=clue.html>200</a></td>
+        <td class="card" id="cat2clue200">
+          <a href=clue.html>200</a></td>
+        <td class="card" id="cat3clue200">
+          <a href=clue.html>200</a></td>
+        <td class="card" id="cat4clue200">
+          <a href=clue.html>200</a></td>
+        <td class="card" id="cat5clue200">
+          <a href=clue.html>200</a></td>
+      </tr>
+      <tr>
+        <td class="card" id="cat0clue300">
+          <a href=clue.html>300</a></td>
+        <td class="card" id="cat1clue300">
+          <a href=clue.html>300</a></td>
+        <td class="card" id="cat2clue300">
+          <a href=clue.html>300</a></td>
+        <td class="card" id="cat3clue300">
+          <a href=clue.html hidden="true">300</a></td>
+        <td class="card" id="cat4clue300">
+          <a href=clue.html>300</a></td>
+        <td class="card" id="cat5clue300">
+          <a href=clue.html>300</a></td>
+      </tr>
+      <tr>
+        <td class="card" id="cat0clue400">
+          <a href=clue.html>400</a></td>
+        <td class="card" id="cat1clue400">
+          <a href=clue.html>400</a></td>
+        <td class="card" id="cat2clue400">
+          <a href=clue.html>400</a></td>
+        <td class="card" id="cat3clue400">
+          <a href=clue.html>400</a></td>
+        <td class="card" id="cat4clue400">
+          <a href=clue.html>400</a></td>
+        <td class="card" id="cat5clue400">
+          <a href=clue.html>400</a></td>
+      </tr>
+      <tr>
+        <td class="card" id="cat0clue500">
+          <a href=clue.html>500</a></td>
+        <td class="card" id="cat1clue500">
+          <a href=clue.html>500</a></td>
+        <td class="card" id="cat2clue500">
+          <a href=clue.html>500</a></td>
+        <td class="card" id="cat3clue500">
+          <a href=clue.html>500</a></td>
+        <td class="card" id="cat4clue500">
+          <a href=clue.html>500</a></td>
+        <td class="card" id="cat5clue500">
+          <a href=clue.html>500</a></td>
+      </tr>
+    </table>
+-->
+  </body>
 </html>

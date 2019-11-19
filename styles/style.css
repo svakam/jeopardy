@@ -1,8 +1,48 @@
-table td {
-  width: 80px;
-  height: 60px;
-  background-color: blue;
-  border: black solid 2px;
+html, body {
+  height: 100%;
+}
+
+.bigClue {
+  height: 100%;
+  background-color: rgb(18,36,136);
+  font-family: 'Merriweather', serif;
+  font-size: 8vh;
+  color: gold;
+  text-transform: uppercase;
   text-align: center;
-  color: white;
+  vertical-align: middle;
+}
+
+table {
+  height:100%;
+  width:100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: black;
+}
+
+table td {
+  width: 16.6%;
+  height: 16.6%;
+  background-color: rgb(18,36,136);
+  text-align: center;
+  border: medium solid black;
+}
+
+.card {
+  font-family: 'Merriweather', serif;
+  font-size: 20pt;
+  color: gold;
+  text-transform: uppercase;
+}
+
+.card a{
+  /* font-family: 'Public Sans', sans-serif;*/
+  font-family: 'Special Elite', cursive;
+  color: gold;
+  text-decoration: none;
+  font-size: 60pt;
 }
