@@ -56,16 +56,67 @@ var Cat5 = new Category('category 5', [
   [500, 'category 5 500 clue', 'category 5 500 question', 'shown']
 ]);
 
+
+// Laura - local storage:
+// info we want to retain in local storage is: team names, and their final scores
+// that is: this.name and this.currentScore
+var localStorageData = 'localStorageData';
+// note that the allTeamsEver array will contain every team ever to play the game
+var allTeamsEver = [];
+// the teams array can be just for the two current teams playing
 var teams = [];
 
 function Team(name, newScore) {
   this.name = name;
   this.currentScore = newScore;
+  // i think the following method can remain because we always want to push in each game's instances to the array.
   teams.push(this);
+
+  this.loadData = function (data) {
+    // data parameter will be a parsed object
+    this.name = data.name;
+    this.currentScore = data.currentScore;
+  };
 }
 
+// we'll always use these two instantiations to create the new/current players for each game
 var TeamA = new Team('Team A', 0);
 var TeamB = new Team('Team B', 0);
+
+//to determine whether to draw from local storage:
+if (localStorage.getItem(localStorageData) === null) {
+  // if localstorage is empty, just take in team names like normal? and therefore the two current teams would also be all the teams ever
+  allTeamsEver = teams;
+} else {
+  // if localstorage contains items, get them
+  var jsonData = localStorage.getItem(localStorageData);
+  // parse them
+  var data = JSON.parse(jsonData);
+  // load them PLUS the current teams into the array
+  for (var i = 0; i < data.length; i++) {
+    // load in the names and currentScore (which should be the final scores):
+    var newTeam = new Team('', '');
+    Team.loadData(data[i]);
+    allTeamsEver.push(newTeam);
+  }
+  // ... in order to calculate all time high scores at end
+}
+
+function saveTeamDataLocally() {
+  localStorageData = teams;
+  var jsonData = JSON.stringify(localStorageData);
+  localStorage.setItem(localStorageData, jsonData);
+}
+
+function gameOver() {
+  saveTeamDataLocally();
+  // display game-over screen/leaderboard
+}
+saveTeamDataLocally();
+// end local storage
+
+
+
 
 function renderBoard(domReference) {
   var tr1 = document.createElement('tr');
