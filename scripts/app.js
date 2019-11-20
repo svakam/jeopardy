@@ -93,7 +93,7 @@ function renderBoard(domReference) {
       if (isShownFlag === 'shown') {
         td2.setAttribute('class', 'clue');
         td2.setAttribute('id', `${clueIndex},${rowIndex}`);
-        console.log(`clueIndesx: ${clueIndex}, rowIndex: ${rowIndex}`);
+        // console.log(`clueIndex: ${clueIndex}, rowIndex: ${rowIndex}`);
 
         td2.textContent = `$${currentValue}`;
         td2.addEventListener('click', tdClickManager);
@@ -119,7 +119,7 @@ function getValue(clueId) {
   var categoryIndex = clueId.charAt(0);
   var clueIndex = clueId.charAt(2);
 
-  console.log(`getValue clueId: ${clueId}, value: ${categories[categoryIndex].clues[clueIndex][0]}`);
+  // console.log(`getValue clueId: ${clueId}, value: ${categories[categoryIndex].clues[clueIndex][0]}`);
 
   return categories[categoryIndex].clues[clueIndex][0];
 }
@@ -128,7 +128,7 @@ function getAClue(clueId) {
   var categoryIndex = clueId.charAt(0);
   var clueIndex = clueId.charAt(2);
 
-  console.log(`getAClue clueID: ${clueId}`, `clue: ${categories[categoryIndex].clues[clueIndex][1]}`);
+  // console.log(`getAClue clueID: ${clueId}`, `clue: ${categories[categoryIndex].clues[clueIndex][1]}`);
 
   return categories[categoryIndex].clues[clueIndex][1];
 }
@@ -137,7 +137,7 @@ function getQuestion(clueId) {
   var categoryIndex = clueId.charAt(0);
   var clueIndex = clueId.charAt(2);
 
-  console.log(`getQuestion clueId: ${clueId}`, `question: ${categories[categoryIndex].clues[clueIndex][0]}`);
+  // console.log(`getQuestion clueId: ${clueId}`, `question: ${categories[categoryIndex].clues[clueIndex][0]}`);
 
   return categories[categoryIndex].clues[clueIndex][2];
 }
@@ -146,7 +146,7 @@ function setHidden(clueId) {
   var categoryIndex = clueId.charAt(0);
   var clueIndex = clueId.charAt(2);
 
-  console.log(`setHidden clueId: ${clueId}`, `question: ${categories[categoryIndex].clues[clueIndex][3]}`);
+  // console.log(`setHidden clueId: ${clueId}`, `question: ${categories[categoryIndex].clues[clueIndex][3]}`);
 
   categories[categoryIndex].clues[clueIndex][3] = 'hidden';
 }
