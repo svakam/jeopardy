@@ -1,5 +1,6 @@
-/* html, body {
-  background-color: rgb(18,36,136);
+
+html, body {
+  background-color: black;
 }
 
 table {
@@ -8,6 +9,7 @@ table {
 }
 
 table td {
+  height: 12vh;
   width: 16vw;
   border: medium solid black;
   background-color: rgb(18,36,136);
@@ -21,7 +23,53 @@ table td {
   text-transform: uppercase;
 }
 
+.clue {
+  font-family: 'Public Sans', sans-serif;
+  color: gold;
+  text-decoration: none;
+  font-size: 5.5vw;
+}
+.bigScoreDiv {
+  background-color: rgb(18,36,136);
+  height: 50%;
+  display: flex;
+  width: 98.5vw;
+  justify-content: center;
+  align-items: center;
+  font-size: 15vh;
+  color: gold;
+  text-transform: uppercase;
+  text-align: center;
+  border: 0;
+}
+.scoreText {
+  background-color: rgb(18,36,136);
+  color: gold;
+  text-decoration: none;
+  font-size: 2.5vw;
+  font-family: 'Electrolize', sans-serif;
+}
+
+.scoreButton {
+  background-color: rgb(18,36,136);
+}
 .bigClue {
+  background-color: rgb(18,36,136);
+  height: 100%;
+  display: flex;
+  width: 98.5vw;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Merriweather', serif;
+  font-size: 15vh;
+  color: gold;
+  text-transform: uppercase;
+  text-align: center;
+  border: 0;
+}
+
+.bigQuestion {
+  background-color: rgb(18,36,136);
   height: 50%;
   display: flex;
   width: 98.5vw;
@@ -32,39 +80,12 @@ table td {
   color: gold;
   text-transform: uppercase;
   text-align: center;
-  border: medium gold solid;
-}
-
-.bigClue div {
-  width: 100%;
-
-}
-
-/*
-table {
-  height:100%;
-  width:100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-}
-
-table td {
-  width: 16.6%;
-  height: 16.6%;
-
-
-
+  border: 0;
 }
 
 table td:hover {
   color: rgb(218, 197, 196)
 }
-*/
-
 
 .clue {
   font-family: 'Public Sans', sans-serif;
@@ -72,8 +93,4 @@ table td:hover {
   text-decoration: none;
   font-size: 5.5vw;
 }
-/*
-.points {
-  font-family: 'Electrolize', sans-serif;
-  font: gold;
-} */ */
+
