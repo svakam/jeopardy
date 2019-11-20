@@ -1,5 +1,5 @@
 html, body {
-  background-color: rgb(18,36,136);
+  background-color: black;
 }
 
 table {
@@ -8,6 +8,7 @@ table {
 }
 
 table td {
+  height: 12vh;
   width: 16vw;
   border: medium solid black;
   background-color: rgb(18,36,136);
@@ -21,7 +22,37 @@ table td {
   text-transform: uppercase;
 }
 
+.clue {
+  font-family: 'Public Sans', sans-serif;
+  color: gold;
+  text-decoration: none;
+  font-size: 5.5vw;
+}
+
+.scoreText {
+  font-family: 'Public Sans', sans-serif;
+  color: gold;
+  text-decoration: none;
+  font-size: 2.5vw;
+}
+
 .bigClue {
+  background-color: rgb(18,36,136);
+  height: 100%;
+  display: flex;
+  width: 98.5vw;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Merriweather', serif;
+  font-size: 15vh;
+  color: gold;
+  text-transform: uppercase;
+  text-align: center;
+  border: 0;
+}
+
+.bigQuestion {
+  background-color: rgb(18,36,136);
   height: 50%;
   display: flex;
   width: 98.5vw;
@@ -32,12 +63,7 @@ table td {
   color: gold;
   text-transform: uppercase;
   text-align: center;
-  border: medium gold solid;
-}
-
-.bigClue div {
-  width: 100%;
-
+  border: 0;
 }
 
 /*
@@ -66,12 +92,7 @@ table td:hover {
 */
 
 
-.clue {
-  font-family: 'Public Sans', sans-serif;
-  color: gold;
-  text-decoration: none;
-  font-size: 5.5vw;
-}
+
 /*
 .points {
   font-family: 'Electrolize', sans-serif;

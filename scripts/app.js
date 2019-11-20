@@ -104,6 +104,11 @@ function renderBoard(domReference) {
   }
 }
 
+function getCurrentScores() {
+  var currentScores = `${TeamA.name}: ${TeamA.currentScore} | ${TeamB.name}: ${TeamB.currentScore}`;
+  return currentScores;
+}
+
 function updateScore(team, newScore) {
   return team.currentScore += newScore;
 }
@@ -151,43 +156,48 @@ function clueClickManager(event) {
 
   table.innerHTML = '';
 
-  // display question
   var questionDisplayDiv = document.createElement('div');
+  questionDisplayDiv.setAttribute('class', 'bigQuestion');
   questionDisplayDiv.setAttribute('id', event.target.id);
-  questionDisplayDiv.setAttribute('class', 'bigClue');
   questionDisplayDiv.textContent = question;
   table.append(questionDisplayDiv);
 
-  // display buttons
-  var buttonsDisplayDiv = document.createElement('div');
-  buttonsDisplayDiv.setAttribute('class', 'bigClue');
-  // put into separate function at some point?
-  // make 4 buttons
-  // put click event listeners on them which change team score
-  var team1Correct = document.createElement('button');
-  var team1Incorrect = document.createElement('button');
-  var team2Correct = document.createElement('button');
-  var team2Incorrect = document.createElement('button');
 
+  var buttonsDisplayDiv = document.createElement('div');
+  buttonsDisplayDiv.setAttribute('class', 'bigQuestion');
+
+  var currentScores = document.createElement('div');
+  currentScores.setAttribute('class', 'scoreText');
+  currentScores.textContent = getCurrentScores();
+  buttonsDisplayDiv.append(currentScores);
+
+  var team1Correct = document.createElement('button');
+  team1Correct.setAttribute('class', 'scoreButton');
   team1Correct.setAttribute('id', event.target.id);
   team1Correct.textContent = 'Team 1 Correct';
+  team1Correct.addEventListener('click', clickScoreManager);
+  buttonsDisplayDiv.append(team1Correct);
+
+  var team1Incorrect = document.createElement('button');
+  team1Incorrect.setAttribute('class', 'scoreButton');
   team1Incorrect.setAttribute('id', event.target.id);
   team1Incorrect.textContent = 'Team 1 Incorrect';
+  team1Incorrect.addEventListener('click', clickScoreManager);
+  buttonsDisplayDiv.append(team1Incorrect);
 
+  var team2Correct = document.createElement('button');
+  team2Correct.setAttribute('class', 'scoreButton');
   team2Correct.setAttribute('id', event.target.id);
   team2Correct.textContent = 'Team 2 Correct';
-  team2Incorrect.setAttribute('id', event.target.id);
-  team2Incorrect.textContent = 'Team 2 Incorrect'; // CSS needs to be modified for the buttons to make them show up
-
-  buttonsDisplayDiv.append(team1Correct);
-  buttonsDisplayDiv.append(team1Incorrect);
-  buttonsDisplayDiv.append(team2Correct);
-  buttonsDisplayDiv.append(team2Incorrect);
-
-  team1Correct.addEventListener('click', clickScoreManager);
-  team1Incorrect.addEventListener('click', clickScoreManager);
   team2Correct.addEventListener('click', clickScoreManager);
+  buttonsDisplayDiv.append(team2Correct);
+
+  var team2Incorrect = document.createElement('button');
+  team2Incorrect.setAttribute('class', 'scoreButton');
+  team2Incorrect.setAttribute('id', event.target.id);
+  team2Incorrect.textContent = 'Team 2 Incorrect';
   team2Incorrect.addEventListener('click', clickScoreManager);
+  buttonsDisplayDiv.append(team2Incorrect);
 
   table.append(buttonsDisplayDiv);
 }
