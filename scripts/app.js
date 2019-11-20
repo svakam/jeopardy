@@ -69,7 +69,7 @@ var Cat5 = new Category('Category 5', [
 
 function renderBoard(domReference) {
   var trCategories = document.createElement('tr');
-
+  console.log('renderBoard called')
   for (var categoryTitleIndex = 0; categoryTitleIndex < categories.length; categoryTitleIndex++) {
     var tdCategory = document.createElement('td');
 
@@ -92,10 +92,10 @@ function renderBoard(domReference) {
       tdClue.setAttribute('id', `${rowIndex},${categoryIndex}`);
       tdClue.setAttribute('id', `${rowIndex},${categoryIndex}`);
       tdClue.setAttribute('id', `${rowIndex},${categoryIndex}`);
-      tdClue.addEventListener('click', tdClickManager);
 
       if (categories[categoryIndex].clues[rowIndex][3] === true) {
         tdClue.textContent = `${categories[categoryIndex].clues[rowIndex][0]}`;
+        tdClue.addEventListener('click', tdClickManager);
       } else {
         tdClue.textContent = '';
       }
@@ -115,47 +115,53 @@ function getScore(team) {
 
 function getValue(clueId) {
 
+  // var categoryIndex = clueId.charAt(0);
+  // var clueIndex = clueId.charAt(2);
 
-  var categoryIndex = clueId.charAt(0);
-  var clueIndex = clueId.charAt(2);
+  var categoryIndex = clueId.charAt(2);
+  var clueIndex = clueId.charAt(0);
 
-
-  console.log(`getValue clueId: ${clueId}, value: ${categories[categoryIndex].clues[clueIndex][0]}`);
+  console.log(`getValue clueId: ${clueId})`);
+  // , value: ${categories[categoryIndex].clues[clueIndex][0]}`);
 
   return categories[categoryIndex].clues[clueIndex][0];
 }
 
 function getAClue(clueId) {
-  var categoryIndex = clueId.charAt(0);
-  var clueIndex = clueId.charAt(2);
+  var categoryIndex = clueId.charAt(2);
+  var clueIndex = clueId.charAt(0);
 
-  console.log(`getAClue clueID: ${clueId}`, `clue: ${categories[categoryIndex].clues[clueIndex][1]}`);
-
+  // console.log(`getAClue clueID: ${clueId}, clue: ${categories[categoryIndex].clues[clueIndex][1]}`);
+  console.log(`getAClue clueID: ${clueId}`)
   return categories[categoryIndex].clues[clueIndex][1];
 }
 
 function getQuestion(clueId) {
-  var categoryIndex = clueId.charAt(0);
-  var clueIndex = clueId.charAt(2);
+  var categoryIndex = clueId.charAt(2);
+  var clueIndex = clueId.charAt(0);
 
-  console.log(`getQuestion clueId: ${clueId}`, `question: ${categories[categoryIndex].clues[clueIndex][0]}`);
+  console.log(`getQuestion clueId: ${clueId}`);
+  // , `question: ${categories[categoryIndex].clues[clueIndex][0]}`);
 
   return categories[categoryIndex].clues[clueIndex][2];
 }
 
 function setHidden(clueId) {
-  var categoryIndex = clueId.charAt(0);
-  var clueIndex = clueId.charAt(2);
+  var categoryIndex = clueId.charAt(2);
+  var clueIndex = clueId.charAt(0);
 
-  console.log(`setHidden clueId: ${clueId}`, `question: ${categories[categoryIndex].clues[clueIndex][3]}`);
+  // console.log(`categoryIndex: ${categoryIndex}`);
 
-  categories[categoryIndex].clues[clueIndex][3] = 'hidden';
+  console.log(`setHidden clueId: ${clueId}`)
+  // , `current show status: ${categories[categoryIndex].clues[clueIndex][3]}`);
+  categories[categoryIndex].clues[clueIndex][3] = false;
+  // console.log(`setHidden clueId: ${clueId}`, `current show status: ${categories[categoryIndex].clues[clueIndex][3]}`);
 }
 
 function tdClickManager(event) {
   var clueToDisplay = getAClue(event.target.id);
 
-  console.log(event.target.id);
+  console.log(`tdClickManager got this event.target.id and sent it to setHidden: ${event.target.id}`);
 
   setHidden(event.target.id);
 
