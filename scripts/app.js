@@ -64,8 +64,8 @@ function Team(name, newScore) {
   teams.push(this);
 }
 
-var TeamA = new Team('Team A', 0);
-var TeamB = new Team('Team B', 0);
+var TeamA = new Team(name, 0);
+var TeamB = new Team(name, 0);
 
 function renderBoard(domReference) {
   var tr1 = document.createElement('tr');
@@ -258,6 +258,7 @@ var titleFormScreen = document.getElementById('title-form-screen'); // get to ht
 // render title screen and click on it to go to form
 function renderIntroScreen(domRefTitleForm) {
   var title = document.createElement('h1');
+  console.log(`Before: Team A ${TeamA.name}, Team B ${TeamB.name}`);
   title.textContent = 'JEOPARDY! (at Code Fellows)';
   domRefTitleForm.append(title);
   domRefTitleForm.addEventListener('click', welcomeClickManager);
@@ -273,6 +274,8 @@ function welcomeClickManager(event) {
 
 // form appended to table to input team names
 function renderForm(formInput, h1Content) {
+  formInput.removeEventListener('click', welcomeClickManager);
+  h1Content.removeEventListener('click', welcomeClickManager);
   h1Content.parentNode.removeChild(h1Content); // removes previous h1
   console.log(formInput);
   var inputStatement = document.createElement('h1');
@@ -281,11 +284,39 @@ function renderForm(formInput, h1Content) {
 
   var form = document.createElement('form');
   var team1Div = document.createElement('div');
+  form.append(team1Div);
   var team1Label = document.createElement('label');
+  team1Div.append(team1Label);
+  team1Label.textContent = 'Team 1: ';
   var team1Input = document.createElement('input');
+  team1Input.setAttribute('name', 'team1input');
+  team1Div.append(team1Input);
+  var team2Div = document.createElement('div');
+  form.append(team2Div);
+  var team2Label = document.createElement('label');
+  team2Label.textContent = 'Team 2: ';
+  team2Div.append(team2Label);
+  var team2Input = document.createElement('input');
+  team2Input.setAttribute('name', 'team2input');
+  team2Div.append(team2Input);
+  var submitNames = document.createElement('input');
+  submitNames.setAttribute('type', 'submit');
+  form.append(submitNames);
+  formInput.append(form);
+  submitNames.addEventListener('submit', function (event) {
+    // prevent page reload
+    event.preventDefault();
 
+    // input team names to objects
+    console.log(event.target.form[0].value);
+    console.log(event.target.form[1].value);
+    TeamA.name = event.target.form[0].value;
+    TeamB.name = event.target.form[1].value;
+    console.log(`After: Team A ${TeamA.name}, Team B ${TeamB.name}`);
+
+    // render board
+    renderBoard(table);
+  });
 }
 
 renderIntroScreen(titleFormScreen);
-// wait until intro clicked on, then go to form
-// wait until team names submitted, then go to board
