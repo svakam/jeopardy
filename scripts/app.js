@@ -2,32 +2,31 @@
 
 // Debugging shortcuts
 // To address data at specific locations do this:
-// console.log('the value at bottom right is: ' + jeopardyBoard[0].questions[4][0]);
-// console.log('clue at top left: ' + jeopardyBoard[0].questions[0][1]);
-// console.log('answer at bottom right: ' + jeopardyBoard[5].questions[4][2]);
-// console.log('logs out the entire array with all the objects: ' + jeopardyBoard);
+// console.log('the value at bottom right is: ' + categories[0].clues[4][0]);
+// console.log('clue at top left: ' + categories[0].clues[0][1]);
+// console.log('question at bottom right: ' + categories[5].clues[4][2]);
+// console.log('logs out the entire array with all the objects: ' + categories);
 
-// this is an array that holds all category objects
-var jeopardyBoard = [];
 
-// this function creates a Category object and pushes it to jeopardyBoard
-function Category(name, questions) {
+// categories[category_i].clues[clue_i][data_i]);
+
+var categories = [];
+
+function Category(name, clues) {
   this.name = name;
-  this.questions = questions;
-  jeopardyBoard.push(this);
-  //the above line takes this object and adds it to that, this is why i don't have list them out
+  this.clues = clues;
+  categories.push(this);
 }
 
-// structure [0: points value, clue, answer, isShownFalg]
-var cat0 = new Category('science', [
+var Cat0 = new Category('science', [
   [100, 'It\'s the largest blood vessel in the body', 'The Aorta?', true],
   [200, 'Earth is farthest from the sun during this month', 'July', true],
   [300, 'This hardest tissue in the body covers the crown of a tooth', 'Enamel', true],
-  [400, '18399 feet down the Molloy Deep is the deepest point in this ocean', 'The Arctic', false],
+  [400, '18399 feet down the Molloy Deep is the deepest point in this ocean', 'The Arctic', true],
   [500, 'This element\'s symbol W comes from wolfram its alternate name', 'Tungsten', true]
 ]);
 
-var cat1 = new Category('war stories', [
+var Cat1 = new Category('war stories', [
   [100, 'The African Queen by C.S. Forester', 'world war I', true],
   [200, 'Mister Roberts & The Naked and the Dead', 'world war II', true],
   [300, 'Gods and Generals by Jeff Shaara', 'the civil war', true],
@@ -35,216 +34,235 @@ var cat1 = new Category('war stories', [
   [500, 'The Last of the Mohicans', 'The French and Indian wars', true]
 ]);
 
-var cat2 = new Category('Before & After', [
-  [100, 'clue', 'question', true],
-  [200, 'clue', 'question', true],
-  [300, 'clue', 'question', true],
-  [400, 'clue', 'question', true],
-  [500, 'clue', 'question', true]]);
+var Cat2 = new Category('Before & After', [
+  [100, 'It\'s the largest blood vessel in the body', 'The Aorta?', true],
+  [200, 'Earth is farthest from the sun during this month', 'July', true],
+  [300, 'This hardest tissue in the body covers the crown of a tooth', 'Enamel', true],
+  [400, '18399 feet down the Molloy Deep is the deepest point in this ocean', 'The Arctic', false],
+  [500, 'This element\'s symbol W comes from wolfram its alternate name', 'Tungsten', true]
+]);
 
-var cat3 = new Category('American History', [
-  [100, 'clue', 'question', true],
-  [200, 'clue', 'question', true],
-  [300, 'clue', 'question', true],
-  [400, 'clue', 'question', true],
-  [500, 'clue', 'question', true]]);
+var Cat3 = new Category('American History', [
+  [100, 'It\'s the largest blood vessel in the body', 'The Aorta?', true],
+  [200, 'Earth is farthest from the sun during this month', 'July', true],
+  [300, 'This hardest tissue in the body covers the crown of a tooth', 'Enamel', true],
+  [400, '18399 feet down the Molloy Deep is the deepest point in this ocean', 'The Arctic', true],
+  [500, 'This element\'s symbol W comes from wolfram its alternate name', 'Tungsten', true]
+]);
 
-var cat4 = new Category('Word Origins', [
-  [100, 'clue', 'question', true],
-  [200, 'clue', 'question', true],
-  [300, 'clue', 'question', true],
-  [400, 'clue', 'question', true],
-  [500, 'clue', 'question', true]]);
+var Cat4 = new Category('Word Origins', [
+  [100, 'It\'s the largest blood vessel in the body', 'The Aorta?', true],
+  [200, 'Earth is farthest from the sun during this month', 'July', true],
+  [300, 'This hardest tissue in the body covers the crown of a tooth', 'Enamel', true],
+  [400, '18399 feet down the Molloy Deep is the deepest point in this ocean', 'The Arctic', true],
+  [500, 'This element\'s symbol W comes from wolfram its alternate name', 'Tungsten', true]
+]);
 
-var cat5 = new Category('category 5', [
-  [100, 'clue', 'question', true],
-  [200, 'clue', 'question', true],
-  [300, 'clue', 'question', true],
-  [400, 'clue', 'question', true],
-  [500, 'clue', 'question at bottom right', true]]);
+var Cat5 = new Category('category 5', [
+  [100, 'It\'s the largest blood vessel in the body', 'The Aorta?', true],
+  [200, 'Earth is farthest from the sun during this month', 'July', true],
+  [300, 'This hardest tissue in the body covers the crown of a tooth', 'Enamel', true],
+  [400, '18399 feet down the Molloy Deep is the deepest point in this ocean', 'The Arctic', true],
+  [500, 'This element\'s symbol W comes from wolfram its alternate name', 'Tungsten', true]
+]);
 
-///////////////// Peter: I do not believe I changed any of yesterday's code between these comments
+var teams = [];
 
-var category = [
-  'Before & After',
-  'Science',
-  'Literature',
-  'American History',
-  'Potpourri',
-  'Word Origins'
-];
-
-function Cell(clue, pointValue, question, categoryIndex) {
-  this.clue = clue;
-  this.pointValue = pointValue;
-  this.question = question;
-  this.category = category[categoryIndex];
-  this.makeBlank = false;
-
-  // trying to put cells into respective arrays according to their point values
-  // function () {
-  //   for (var i = 100; i < 500; i += 100) {
-  //     if (Cell.pointValue === i) {
-  //       array100.push(Cell);
-  //     }
-  //   }
-  // }
-}
-
-function Team(name, score) {
+function Team(name, newScore) {
   this.name = name;
-  this.score = score;
+  this.currentScore = newScore;
+  teams.push(this);
 }
 
-var C1 = new Cell('say hi', 100, 'hi', 0);
-var C2 = new Cell('say hello', 100, 'hello', 1);
-var C3 = new Cell('say whatsup', 100, 'whatsup', 2);
-var C4 = new Cell('say ay', 100, 'ay', 3);
-var C5 = new Cell('say ayo', 100, 'ayo', 4);
-var C6 = new Cell('say hi2', 200, 'hi2', 0);
-var C7 = new Cell('say hello2', 200, 'hello2', 1);
-var C8 = new Cell('say whatsup2', 200, 'whatsup2', 2);
-var C9 = new Cell('say ay2', 200, 'ay2', 3);
-var C10 = new Cell('say ayo2', 200, 'ayo2', 4);
+var TeamA = new Team('Team A', 0);
+var TeamB = new Team('Team B', 0);
 
-var table = document.getElementById('testtable');
-
-function renderHeader(domReference) {
-  var tr = document.createElement('tr');
-
-  for (var i = 0; i < category.length; i++) {
-    var td = document.createElement('td');
-    td.setAttribute('class', 'card');
-    td.setAttribute('id', 'cat' + i);
-    td.textContent = category[i];
-    tr.append(td);
-  }
-  domReference.append(tr);
+function updateScore(team, newScore) {
+  return team.currentScore += newScore;
 }
 
-var array100 = [C1, C2, C3, C4, C5];
-var array200 = [C6, C7, C8, C9, C10];
-// king of arrays to come back later
-// need to add more categories after MVP
-
-function renderBody(domReference) {
-  var tr100 = document.createElement('tr');
-
-  // for an array, making a td and also giving it an event listener and an id
-  for (var i = 0; i < array100.length; i++) {
-    var td100 = document.createElement('td');
-    var currentArray100 = array100[i];
-    td100.textContent = currentArray100.pointValue;
-    td100.setAttribute('id', `100-${i}`);
-    td100.addEventListener('click', tdClickManager);
-    tr100.append(td100);
-  }
-  domReference.append(tr100);
-
-  var tr200 = document.createElement('tr');
-
-  for (var j = 0; j < array200.length; j++) {
-    var td200 = document.createElement('td');
-    var currentArray200 = array200[j];
-    td200.textContent = currentArray200.pointValue;
-    td200.setAttribute('id', `200-${j}`);
-    td200.addEventListener('click', tdClickManager);
-    tr200.append(td200);
-
-  }
-  domReference.append(tr200);
+function getScore(team) {
+  return team.currentScore;
 }
 
-function idSplitter(str) {
-  // takes in id of tdClick and returns an array with two integers: the points and the category index
-  // get the point value array
-  var nums = str.split('-');
-  var pointValue = parseInt(nums[0]);
-  // get the category index
-  var catIndex = parseInt(nums[1]);
-  nums = [];
-  nums.push(pointValue, catIndex);
-  return nums;
-}
+//////Example Code To Be Removed//////
+// alert('Before Adding Scores:\n' +
+//       TeamA.name + ' Score:' + getScore(TeamA) + '\n' +
+//       teams[1].name + ' Score:' + getScore(teams[1]));
 
-function findObject(arr) {
-  // takes in the array from idsplitter function and determines which clue object to reference
+// updateScore(TeamA, -100);
+// updateScore(TeamB, -500);
+// updateScore(teams[0], 300);
+// updateScore(teams[1], 1000);
 
-  // figure out which pointValue array
-  var arrayFinder = `array${arr[0]}`;
-  arrayFinder = window[arrayFinder];
-  console.log(arrayFinder);
-  // figure out which object in the array we want
-  var cellFinder = arrayFinder[arr[1]];
-  return cellFinder;
-}
-
-function tdClickManager(event) {
-  // call id splitter and object finder functions when a cell is clicked on, to get the object
-  var idReference = idSplitter(event.target.id);
-  var objectReference = findObject(idReference);
-  console.log(objectReference.clue);
-  table.innerHTML = '';
-  var clueDisplayDiv = document.createElement('div');
-  clueDisplayDiv.textContent = objectReference.clue;
-  table.append(clueDisplayDiv); // accessed the clue and put it on the screen
-  clueDisplayDiv.addEventListener('click', clueClickManager);
-}
-
-function clueClickManager(event) {
-  table.innerHTML = '';
-  // stopped here. next step is to display the question and buttons to indicate team correct/incorrect, which changes scores
-}
-
-renderHeader(table);
-renderBody(table);
-
-////////////////////// Peter above this line is yesterday's code
+// alert('After Adding Scores:\n' +
+//       TeamA.name + ' Score:' + TeamA.currentScore + '\n' +
+//       teams[1].name + ' Score:' + teams[1].currentScore);
+//////Example Code To Be Removed//////
 
 function renderBoard(domReference) {
   var tr1 = document.createElement('tr');
 
-  //render top row
-  for ( var columnIndexTopRow = 0; columnIndexTopRow < jeopardyBoard.length; columnIndexTopRow++ )
-  {
+  for (var categoryTitleIndex = 0; categoryTitleIndex < categories.length; categoryTitleIndex++) {
     var td1 = document.createElement('td');
-    td1.setAttribute('class', 'card');
-    td1.setAttribute('id', 'category' + columnIndexTopRow);
-    td1.addEventListener('click', tdClickManager);
-    td1.textContent = jeopardyBoard[columnIndexTopRow].name;
+
+    td1.setAttribute('class', 'category');
+    td1.textContent = categories[categoryTitleIndex].name;
     tr1.append(td1);
   }
   domReference.append(tr1);
 
-  //render the other rows
-  for ( var rowIndex = 0; rowIndex < 5; rowIndex++ ) {
+  for (var rowIndex = 0; rowIndex < categories.length; rowIndex++) {
     var tr2 = document.createElement('tr');
 
-    for ( var columnIndexBody = 0; columnIndexBody < 6; columnIndexBody++ ) {
-      var currentValue = jeopardyBoard[columnIndexBody].questions[rowIndex][0];
-      var isShownFlag = jeopardyBoard[columnIndexBody].questions[rowIndex][3];
+
+    for (var clueIndex = 0; clueIndex < 6; clueIndex++) {
+      var currentValue = categories[clueIndex].clues[rowIndex][0]; //PS: Uncaught TypeError: Cannot read property '0' of undefined
+      var isShownFlag = categories[clueIndex].clues[rowIndex][3];
 
       var td2 = document.createElement('td');
-      var ahref = document.createElement('a');
 
       if (isShownFlag === true) {
-        td2.setAttribute('class', 'card');
-        td2.setAttribute('id', 'category' + columnIndexBody + 'clue' + rowIndex);
+        td2.setAttribute('class', 'clue');
+        td2.setAttribute('id', `${clueIndex},${rowIndex}`); //Peter: +1 because index starts at 0 a values with 1
+        td2.textContent = `$${currentValue}`;
+        td2.addEventListener('click', tdClickManager);
 
-        ahref.setAttribute('href', 'clue.html');
-        ahref.textContent = currentValue;
-        ahref.addEventListener('click', tdClickManager);
-
-        td2.append(ahref);
+        tr2.append(td2);
       } else {
-        td2.append(ahref.textContent = '');
+        tr2.append(td2.textContent = '');
       }
-
-      tr2.append(td2);
     }
     domReference.append(tr2);
   }
 }
 
-var jeopardyDOM = document.getElementById('jeopardy-board');
-renderBoard(jeopardyDOM);
+function getValue(clueId) {
+  var categoryIndex = clueId.charAt(0);
+  var clueIndex = clueId.charAt(2);
+
+  return categories[categoryIndex].clues[clueIndex][0];
+}
+
+function getAClue(clueId) {
+  var categoryIndex = clueId.charAt(0);
+  var clueIndex = clueId.charAt(2);
+
+  return categories[categoryIndex].clues[clueIndex][1];
+}
+
+function getQuestion(clueId) {
+  var categoryIndex = clueId.charAt(0);
+  var clueIndex = clueId.charAt(2);
+
+  return categories[categoryIndex].clues[clueIndex][2];
+}
+
+function getVisibility(clueId) {
+  var categoryIndex = clueId.charAt(0);
+  var clueIndex = clueId.charAt(3);
+
+  return categories[categoryIndex].clues[clueIndex][3];
+}
+
+function tdClickManager(event) {
+  var clueToDisplay = getAClue(event.target.id);
+
+  table.innerHTML = '';
+
+  var clueDisplayDiv = document.createElement('div');
+  clueDisplayDiv.textContent = clueToDisplay;
+  clueDisplayDiv.setAttribute('id', event.target.id);
+  clueDisplayDiv.setAttribute('class', 'bigClue');
+
+  table.append(clueDisplayDiv);
+  clueDisplayDiv.addEventListener('click', clueClickManager);
+}
+
+function clueClickManager(event) {
+  var question = getQuestion(event.target.id);
+
+  table.innerHTML = '';
+
+  // display question
+  var questionDisplayDiv = document.createElement('div');
+  questionDisplayDiv.setAttribute('id', event.target.id);
+  questionDisplayDiv.setAttribute('class', 'bigClue');
+  questionDisplayDiv.textContent = question;
+
+  table.append(questionDisplayDiv);
+
+  // display buttons
+  var buttonsDisplayDiv = document.createElement('div');
+
+  // put into separate function at some point?
+  // make 4 buttons
+  // put click event listeners on them which change team score
+  var team1Correct = document.createElement('button');
+  var team1Incorrect = document.createElement('button');
+  var team2Correct = document.createElement('button');
+  var team2Incorrect = document.createElement('button');
+
+  team1Correct.setAttribute('id', event.target.id);
+  team1Correct.textContent = 'Team 1 Correct';
+  team1Incorrect.setAttribute('id', event.target.id);
+  team1Incorrect.textContent = 'Team 1 Incorrect';
+
+  team2Correct.setAttribute('id', event.target.id);
+  team2Correct.textContent = 'Team 2 Correct';
+  team2Incorrect.setAttribute('id', event.target.id);
+  team2Incorrect.textContent = 'Team 2 Incorrect'; // CSS needs to be modified for the buttons to make them show up
+
+  buttonsDisplayDiv.append(team1Correct);
+  buttonsDisplayDiv.append(team1Incorrect);
+  buttonsDisplayDiv.append(team2Correct);
+  buttonsDisplayDiv.append(team2Incorrect);
+
+  team1Correct.addEventListener('click', clickScoreManager);
+  team1Incorrect.addEventListener('click', clickScoreManager);
+  team2Correct.addEventListener('click', clickScoreManager);
+  team2Incorrect.addEventListener('click', clickScoreManager);
+
+  table.append(buttonsDisplayDiv);
+}
+
+function clickScoreManager(event) {
+  var pointValue = getValue(event.target.id);
+  // if a button clicked id = team1/2 correct/incorrect, change score by accessing the team constructor
+  if (event.target.innerText === 'Team 1 Correct') {
+    // increment team 1 score by the cell's score
+    updateScore(TeamA, pointValue);
+    console.log(`team a current score is now ${TeamA.currentScore}`);
+  }
+
+  if (event.target.innerText === 'Team 1 Incorrect') {
+    // decrement team 1 score by the cell's score
+    updateScore(TeamA, -pointValue);
+    console.log(`team a current score is now ${TeamA.currentScore}`);
+  }
+
+  if (event.target.innerText === 'Team 2 Correct') {
+    // increment team 2 score by the cell's score
+    updateScore(TeamB, pointValue);
+    console.log(`team b current score is now ${TeamB.currentScore}`);
+  }
+
+  if (event.target.innerText === 'Team 2 Incorrect') {
+    // decrement team 2 score by the cell's score
+    updateScore(TeamB, -pointValue);
+    console.log(`team b current score is now ${TeamB.currentScore}`);
+
+  }
+
+
+  // toggle blank for that clue by accessing the clue constructor
+
+  // clear table of buttons
+  table.innerHTML = '';
+
+  // render board
+  renderBoard(table);
+}
+
+var table = document.getElementById('table');
+renderBoard(table);
