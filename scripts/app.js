@@ -194,7 +194,7 @@ function clueClickManager(event) {
 
   // display buttons
   var buttonsDisplayDiv = document.createElement('div');
-
+  buttonsDisplayDiv.setAttribute('class', 'bigClue');
   // put into separate function at some point?
   // make 4 buttons
   // put click event listeners on them which change team score
