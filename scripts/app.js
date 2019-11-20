@@ -86,18 +86,18 @@ function getScore(team) {
 }
 
 //////Example Code To Be Removed//////
-alert('Before Adding Scores:\n' +
-      TeamA.name + ' Score:' + getScore(TeamA) + '\n' +
-      teams[1].name + ' Score:' + getScore(teams[1]));
+// alert('Before Adding Scores:\n' +
+//       TeamA.name + ' Score:' + getScore(TeamA) + '\n' +
+//       teams[1].name + ' Score:' + getScore(teams[1]));
 
-updateScore(TeamA, -100);
-updateScore(TeamB, -500);
-updateScore(teams[0], 300);
-updateScore(teams[1], 1000);
+// updateScore(TeamA, -100);
+// updateScore(TeamB, -500);
+// updateScore(teams[0], 300);
+// updateScore(teams[1], 1000);
 
-alert('After Adding Scores:\n' +
-      TeamA.name + ' Score:' + TeamA.currentScore + '\n' +
-      teams[1].name + ' Score:' + teams[1].currentScore);
+// alert('After Adding Scores:\n' +
+//       TeamA.name + ' Score:' + TeamA.currentScore + '\n' +
+//       teams[1].name + ' Score:' + teams[1].currentScore);
 //////Example Code To Be Removed//////
 
 function renderBoard(domReference) {
@@ -116,7 +116,7 @@ function renderBoard(domReference) {
     var tr2 = document.createElement('tr');
 
 
-    for ( var clueIndex = 0; clueIndex < 6; clueIndex++ ) {
+    for (var clueIndex = 0; clueIndex < 6; clueIndex++) {
       var currentValue = categories[clueIndex].clues[rowIndex][0]; //PS: Uncaught TypeError: Cannot read property '0' of undefined
       var isShownFlag = categories[clueIndex].clues[rowIndex][3];
 
@@ -202,18 +202,22 @@ function clueClickManager(event) {
   var team1Incorrect = document.createElement('button');
   var team2Correct = document.createElement('button');
   var team2Incorrect = document.createElement('button');
-  team1Correct.setAttribute('id', 'team-1-correct');
+
+  team1Correct.setAttribute('id', event.target.id);
   team1Correct.textContent = 'Team 1 Correct';
-  team1Incorrect.setAttribute('id', 'team-1-incorrect');
+  team1Incorrect.setAttribute('id', event.target.id);
   team1Incorrect.textContent = 'Team 1 Incorrect';
-  team2Correct.setAttribute('id', 'team-2-correct');
+
+  team2Correct.setAttribute('id', event.target.id);
   team2Correct.textContent = 'Team 2 Correct';
-  team2Incorrect.setAttribute('id', 'team-2-incorrect');
+  team2Incorrect.setAttribute('id', event.target.id);
   team2Incorrect.textContent = 'Team 2 Incorrect'; // CSS needs to be modified for the buttons to make them show up
+
   buttonsDisplayDiv.append(team1Correct);
   buttonsDisplayDiv.append(team1Incorrect);
   buttonsDisplayDiv.append(team2Correct);
   buttonsDisplayDiv.append(team2Incorrect);
+
   team1Correct.addEventListener('click', clickScoreManager);
   team1Incorrect.addEventListener('click', clickScoreManager);
   team2Correct.addEventListener('click', clickScoreManager);
@@ -223,22 +227,31 @@ function clueClickManager(event) {
 }
 
 function clickScoreManager(event) {
-
+  var pointValue = getValue(event.target.id);
   // if a button clicked id = team1/2 correct/incorrect, change score by accessing the team constructor
-  if (event.target.id === 'team-1-correct') {
+  if (event.target.innerText === 'Team 1 Correct') {
     // increment team 1 score by the cell's score
+    updateScore(TeamA, pointValue);
+    console.log(`team a current score is now ${TeamA.currentScore}`);
   }
 
-  if (event.target.id === 'team-1-incorrect') {
+  if (event.target.innerText === 'Team 1 Incorrect') {
     // decrement team 1 score by the cell's score
+    updateScore(TeamA, -pointValue);
+    console.log(`team a current score is now ${TeamA.currentScore}`);
   }
 
-  if (event.target.id === 'team-2-correct') {
+  if (event.target.innerText === 'Team 2 Correct') {
     // increment team 2 score by the cell's score
+    updateScore(TeamB, pointValue);
+    console.log(`team b current score is now ${TeamB.currentScore}`);
   }
 
-  if (event.target.id === 'team-2-incorrect') {
+  if (event.target.innerText === 'Team 2 Incorrect') {
     // decrement team 2 score by the cell's score
+    updateScore(TeamB, -pointValue);
+    console.log(`team b current score is now ${TeamB.currentScore}`);
+
   }
 
 
