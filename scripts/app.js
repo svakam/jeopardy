@@ -202,18 +202,22 @@ function clueClickManager(event) {
   var team1Incorrect = document.createElement('button');
   var team2Correct = document.createElement('button');
   var team2Incorrect = document.createElement('button');
+
   team1Correct.setAttribute('id', 'team-1-correct');
   team1Correct.textContent = 'Team 1 Correct';
   team1Incorrect.setAttribute('id', 'team-1-incorrect');
   team1Incorrect.textContent = 'Team 1 Incorrect';
+
   team2Correct.setAttribute('id', 'team-2-correct');
   team2Correct.textContent = 'Team 2 Correct';
   team2Incorrect.setAttribute('id', 'team-2-incorrect');
   team2Incorrect.textContent = 'Team 2 Incorrect'; // CSS needs to be modified for the buttons to make them show up
+
   buttonsDisplayDiv.append(team1Correct);
   buttonsDisplayDiv.append(team1Incorrect);
   buttonsDisplayDiv.append(team2Correct);
   buttonsDisplayDiv.append(team2Incorrect);
+
   team1Correct.addEventListener('click', clickScoreManager);
   team1Incorrect.addEventListener('click', clickScoreManager);
   team2Correct.addEventListener('click', clickScoreManager);
