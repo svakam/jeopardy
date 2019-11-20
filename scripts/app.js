@@ -69,8 +69,7 @@ var Cat5 = new Category('category 5', [
 function renderBoard(domReference) {
   var tr1 = document.createElement('tr');
 
-  for ( var categoryTitleIndex = 0; categoryTitleIndex < categories.length; categoryTitleIndex++ )
-  {
+  for (var categoryTitleIndex = 0; categoryTitleIndex < categories.length; categoryTitleIndex++) {
     var td1 = document.createElement('td');
 
     td1.setAttribute('class', 'category');
@@ -79,10 +78,10 @@ function renderBoard(domReference) {
   }
   domReference.append(tr1);
 
-  for ( var rowIndex = 0; rowIndex < categories.length; rowIndex++ ) {
+  for (var rowIndex = 0; rowIndex < categories.length; rowIndex++) {
     var tr2 = document.createElement('tr');
 
-    for ( var clueIndex = 0; clueIndex < 6; clueIndex++ ) {
+    for (var clueIndex = 0; clueIndex < 6; clueIndex++) {
       var currentValue = categories[clueIndex].clues[rowIndex][0]; //Peter: There is an Uncaught TypeError: Cannot read property '0' of undefined, the first time this line is run. It makes no difference if I declare the var first and set it to 0. The program runs ok with it <shrug>
       var isShownFlag = categories[clueIndex].clues[rowIndex][3];
 
@@ -151,12 +150,71 @@ function clueClickManager(event) {
 
   table.innerHTML = '';
 
+  // display question
   var questionDisplayDiv = document.createElement('div');
   questionDisplayDiv.setAttribute('id', event.target.id);
   questionDisplayDiv.setAttribute('class', 'bigClue');
   questionDisplayDiv.textContent = question;
 
   table.append(questionDisplayDiv);
+
+  // display buttons
+  var buttonsDisplayDiv = document.createElement('div');
+
+  // put into separate function at some point?
+  // make 4 buttons
+  // put click event listeners on them which change team score
+  var team1Correct = document.createElement('button');
+  var team1Incorrect = document.createElement('button');
+  var team2Correct = document.createElement('button');
+  var team2Incorrect = document.createElement('button');
+  team1Correct.setAttribute('id', 'team-1-correct');
+  team1Correct.textContent = 'Team 1 Correct';
+  team1Incorrect.setAttribute('id', 'team-1-incorrect');
+  team1Incorrect.textContent = 'Team 1 Incorrect';
+  team2Correct.setAttribute('id', 'team-2-correct');
+  team2Correct.textContent = 'Team 2 Correct';
+  team2Incorrect.setAttribute('id', 'team-2-incorrect');
+  team2Incorrect.textContent = 'Team 2 Incorrect'; // CSS needs to be modified for the buttons to make them show up
+  buttonsDisplayDiv.append(team1Correct);
+  buttonsDisplayDiv.append(team1Incorrect);
+  buttonsDisplayDiv.append(team2Correct);
+  buttonsDisplayDiv.append(team2Incorrect);
+  team1Correct.addEventListener('click', clickScoreManager);
+  team1Incorrect.addEventListener('click', clickScoreManager);
+  team2Correct.addEventListener('click', clickScoreManager);
+  team2Incorrect.addEventListener('click', clickScoreManager);
+
+  table.append(buttonsDisplayDiv);
+}
+
+function clickScoreManager(event) {
+
+  // if a button clicked id = team1/2 correct/incorrect, change score by accessing the team constructor
+  if (event.target.id === 'team-1-correct') {
+    // increment team 1 score by the cell's score
+  }
+
+  if (event.target.id === 'team-1-incorrect') {
+    // decrement team 1 score by the cell's score
+  }
+
+  if (event.target.id === 'team-2-correct') {
+    // increment team 2 score by the cell's score
+  }
+
+  if (event.target.id === 'team-2-incorrect') {
+    // decrement team 2 score by the cell's score
+  }
+
+
+  // toggle blank for that clue by accessing the clue constructor
+
+  // clear table of buttons
+  table.innerHTML = '';
+
+  // render board
+  renderBoard(table);
 }
 
 var table = document.getElementById('table');
