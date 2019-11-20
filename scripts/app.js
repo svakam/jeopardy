@@ -253,5 +253,39 @@ function clickScoreManager(event) {
 }
 
 var table = document.getElementById('table');
+var titleFormScreen = document.getElementById('title-form-screen'); // get to html div for screen for intro/form
 
-renderBoard(table);
+// render title screen and click on it to go to form
+function renderIntroScreen(domRefTitleForm) {
+  var title = document.createElement('h1');
+  title.textContent = 'JEOPARDY! (at Code Fellows)';
+  domRefTitleForm.append(title);
+  domRefTitleForm.addEventListener('click', welcomeClickManager);
+}
+
+// transition from title to form
+function welcomeClickManager(event) {
+  event.target.innerHTML = ''; // set title to blank
+  console.log(event);
+  console.log(event.target);
+  renderForm(titleFormScreen, event.target);
+}
+
+// form appended to table to input team names
+function renderForm(formInput, h1Content) {
+  h1Content.parentNode.removeChild(h1Content); // removes previous h1
+  console.log(formInput);
+  var inputStatement = document.createElement('h1');
+  inputStatement.textContent = 'What are your team names?';
+  formInput.append(inputStatement);
+
+  var form = document.createElement('form');
+  var team1Div = document.createElement('div');
+  var team1Label = document.createElement('label');
+  var team1Input = document.createElement('input');
+
+}
+
+renderIntroScreen(titleFormScreen);
+// wait until intro clicked on, then go to form
+// wait until team names submitted, then go to board
