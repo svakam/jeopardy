@@ -81,9 +81,10 @@ function Team(name, newScore) {
   };
 }
 
-// we'll always use these two instantiations to create the new/current players for each game
-var TeamA = new Team('Team A', 0);
-var TeamB = new Team('Team B', 0);
+
+var TeamA = new Team(name, 0);
+var TeamB = new Team(name, 0);
+
 
 //to determine whether to draw from local storage:
 if (localStorage.getItem(localStorageData) === null) {
@@ -295,5 +296,70 @@ function clickScoreManager(event) {
 }
 
 var table = document.getElementById('table');
+var titleFormScreen = document.getElementById('title-form-screen'); // get to html div for screen for intro/form
 
-renderBoard(table);
+// render title screen and click on it to go to form
+function renderIntroScreen(domRefTitleForm) {
+  var title = document.createElement('h1');
+  console.log(`Before: Team A ${TeamA.name}, Team B ${TeamB.name}`);
+  title.textContent = 'JEOPARDY! (at Code Fellows)';
+  domRefTitleForm.append(title);
+  domRefTitleForm.addEventListener('click', welcomeClickManager);
+}
+
+// transition from title to form
+function welcomeClickManager(event) {
+  event.target.innerHTML = ''; // set title to blank
+  console.log(event);
+  console.log(event.target);
+  renderForm(titleFormScreen, event.target);
+}
+
+// form appended to table to input team names
+function renderForm(formInput, h1Content) {
+  formInput.removeEventListener('click', welcomeClickManager);
+  h1Content.removeEventListener('click', welcomeClickManager);
+  h1Content.parentNode.removeChild(h1Content); // removes previous h1
+  console.log(formInput);
+  var inputStatement = document.createElement('h1');
+  inputStatement.textContent = 'What are your team names?';
+  formInput.append(inputStatement);
+
+  var form = document.createElement('form');
+  var team1Div = document.createElement('div');
+  form.append(team1Div);
+  var team1Label = document.createElement('label');
+  team1Div.append(team1Label);
+  team1Label.textContent = 'Team 1: ';
+  var team1Input = document.createElement('input');
+  team1Input.setAttribute('name', 'team1input');
+  team1Div.append(team1Input);
+  var team2Div = document.createElement('div');
+  form.append(team2Div);
+  var team2Label = document.createElement('label');
+  team2Label.textContent = 'Team 2: ';
+  team2Div.append(team2Label);
+  var team2Input = document.createElement('input');
+  team2Input.setAttribute('name', 'team2input');
+  team2Div.append(team2Input);
+  var submitNames = document.createElement('input');
+  submitNames.setAttribute('type', 'submit');
+  form.append(submitNames);
+  formInput.append(form);
+  submitNames.addEventListener('submit', function (event) {
+    // prevent page reload
+    event.preventDefault();
+
+    // input team names to objects
+    console.log(event.target.form[0].value);
+    console.log(event.target.form[1].value);
+    TeamA.name = event.target.form[0].value;
+    TeamB.name = event.target.form[1].value;
+    console.log(`After: Team A ${TeamA.name}, Team B ${TeamB.name}`);
+
+    // render board
+    renderBoard(table);
+  });
+}
+
+renderIntroScreen(titleFormScreen);
