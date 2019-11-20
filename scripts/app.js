@@ -1,15 +1,5 @@
 'use strict';
 
-// Debugging shortcuts
-// To address data at specific locations do this:
-// console.log('the value at bottom right is: ' + categories[0].clues[4][0]);
-// console.log('clue at top left: ' + categories[0].clues[0][1]);
-// console.log('question at bottom right: ' + categories[5].clues[4][2]);
-// console.log('logs out the entire array with all the objects: ' + categories);
-
-
-// categories[category_i].clues[clue_i][data_i]);
-
 var categories = [];
 
 function Category(name, clues) {
@@ -19,51 +9,51 @@ function Category(name, clues) {
 }
 
 var Cat0 = new Category('science', [
-  [100, 'It\'s the largest blood vessel in the body', 'The Aorta?', true],
-  [200, 'Earth is farthest from the sun during this month', 'July', true],
-  [300, 'This hardest tissue in the body covers the crown of a tooth', 'Enamel', true],
-  [400, '18399 feet down the Molloy Deep is the deepest point in this ocean', 'The Arctic', true],
-  [500, 'This element\'s symbol W comes from wolfram its alternate name', 'Tungsten', true]
+  [100, 'It\'s the largest blood vessel in the body', 'The Aorta?', 'shown'],
+  [200, 'Earth is farthest from the sun during this month', 'July', 'shown'],
+  [300, 'This hardest tissue in the body covers the crown of a tooth', 'Enamel', 'shown'],
+  [400, '18399 feet down the Molloy Deep is the deepest point in this ocean', 'The Arctic', 'shown'],
+  [500, 'This element\'s symbol W comes from wolfram its alternate name', 'Tungsten', 'shown']
 ]);
 
 var Cat1 = new Category('war stories', [
-  [100, 'The African Queen by C.S. Forester', 'world war I', true],
-  [200, 'Mister Roberts & The Naked and the Dead', 'world war II', true],
-  [300, 'Gods and Generals by Jeff Shaara', 'the civil war', true],
-  [400, 'Rise to Rebellion by Jeff Shaara', 'the american revolution', true],
-  [500, 'The Last of the Mohicans', 'The French and Indian wars', true]
+  [100, 'The African Queen by C.S. Forester', 'world war I', 'shown'],
+  [200, 'Mister Roberts & The Naked and the Dead', 'world war II', 'shown'],
+  [300, 'Gods and Generals by Jeff Shaara', 'the civil war', 'shown'],
+  [400, 'Rise to Rebellion by Jeff Shaara', 'the american revolution', 'shown'],
+  [500, 'The Last of the Mohicans', 'The French and Indian wars', 'shown']
 ]);
 
 var Cat2 = new Category('Before & After', [
-  [100, 'It\'s the largest blood vessel in the body', 'The Aorta?', true],
-  [200, 'Earth is farthest from the sun during this month', 'July', true],
-  [300, 'This hardest tissue in the body covers the crown of a tooth', 'Enamel', true],
-  [400, '18399 feet down the Molloy Deep is the deepest point in this ocean', 'The Arctic', false],
-  [500, 'This element\'s symbol W comes from wolfram its alternate name', 'Tungsten', true]
+  [100, 'It\'s the largest blood vessel in the body', 'The Aorta?', 'shown'],
+  [200, 'Earth is farthest from the sun during this month', 'July', 'shown'],
+  [300, 'This hardest tissue in the body covers the crown of a tooth', 'Enamel', 'shown'],
+  [400, '18399 feet down the Molloy Deep is the deepest point in this ocean', 'The Arctic', 'hidden'],
+  [500, 'This element\'s symbol W comes from wolfram its alternate name', 'Tungsten', 'shown']
 ]);
 
-var Cat3 = new Category('American History', [
-  [100, 'It\'s the largest blood vessel in the body', 'The Aorta?', true],
-  [200, 'Earth is farthest from the sun during this month', 'July', true],
-  [300, 'This hardest tissue in the body covers the crown of a tooth', 'Enamel', true],
-  [400, '18399 feet down the Molloy Deep is the deepest point in this ocean', 'The Arctic', true],
-  [500, 'This element\'s symbol W comes from wolfram its alternate name', 'Tungsten', true]
+var Cat3 = new Category('category 3', [
+  [100, 'category 3 100 clue', 'category 3 100 question', 'shown'],
+  [200, 'category 3 200 clue', 'category 3 200 question', 'shown'],
+  [300, 'category 3 300 clue', 'category 3 300 question', 'shown'],
+  [400, 'category 3 400 clue', 'category 3 400 question', 'shown'],
+  [500, 'category 3 500 clue', 'category 3 500 question', 'shown']
 ]);
 
-var Cat4 = new Category('Word Origins', [
-  [100, 'It\'s the largest blood vessel in the body', 'The Aorta?', true],
-  [200, 'Earth is farthest from the sun during this month', 'July', true],
-  [300, 'This hardest tissue in the body covers the crown of a tooth', 'Enamel', true],
-  [400, '18399 feet down the Molloy Deep is the deepest point in this ocean', 'The Arctic', true],
-  [500, 'This element\'s symbol W comes from wolfram its alternate name', 'Tungsten', true]
+var Cat4 = new Category('category 4', [
+  [100, 'category 4 100 clue', 'category 4 100 question', 'shown'],
+  [200, 'category 4 200 clue', 'category 4 200 question', 'shown'],
+  [300, 'category 4 300 clue', 'category 4 300 question', 'shown'],
+  [400, 'category 4 400 clue', 'category 4 400 question', 'shown'],
+  [500, 'category 4 500 clue', 'category 4 500 question', 'shown']
 ]);
 
 var Cat5 = new Category('category 5', [
-  [100, 'It\'s the largest blood vessel in the body', 'The Aorta?', true],
-  [200, 'Earth is farthest from the sun during this month', 'July', true],
-  [300, 'This hardest tissue in the body covers the crown of a tooth', 'Enamel', true],
-  [400, '18399 feet down the Molloy Deep is the deepest point in this ocean', 'The Arctic', true],
-  [500, 'This element\'s symbol W comes from wolfram its alternate name', 'Tungsten', true]
+  [100, 'category 5 100 clue', 'category 5 100 question', 'shown'],
+  [200, 'category 5 200 clue', 'category 5 200 question', 'shown'],
+  [300, 'category 5 300 clue', 'category 5 300 question', 'shown'],
+  [400, 'category 5 400 clue', 'category 5 400 question', 'shown'],
+  [500, 'category 5 500 clue', 'category 5 500 question', 'shown']
 ]);
 
 var teams = [];
@@ -77,29 +67,6 @@ function Team(name, newScore) {
 var TeamA = new Team('Team A', 0);
 var TeamB = new Team('Team B', 0);
 
-function updateScore(team, newScore) {
-  return team.currentScore += newScore;
-}
-
-function getScore(team) {
-  return team.currentScore;
-}
-
-//////Example Code To Be Removed//////
-// alert('Before Adding Scores:\n' +
-//       TeamA.name + ' Score:' + getScore(TeamA) + '\n' +
-//       teams[1].name + ' Score:' + getScore(teams[1]));
-
-// updateScore(TeamA, -100);
-// updateScore(TeamB, -500);
-// updateScore(teams[0], 300);
-// updateScore(teams[1], 1000);
-
-// alert('After Adding Scores:\n' +
-//       TeamA.name + ' Score:' + TeamA.currentScore + '\n' +
-//       teams[1].name + ' Score:' + teams[1].currentScore);
-//////Example Code To Be Removed//////
-
 function renderBoard(domReference) {
   var tr1 = document.createElement('tr');
 
@@ -112,19 +79,22 @@ function renderBoard(domReference) {
   }
   domReference.append(tr1);
 
-  for (var rowIndex = 0; rowIndex < categories.length; rowIndex++) {
+
+  for (var rowIndex = 0; rowIndex < categories.length - 1; rowIndex++) {
+    // PS: categories.lenght - 1 because we've used the first one for the top row
     var tr2 = document.createElement('tr');
 
 
-    for (var clueIndex = 0; clueIndex < 6; clueIndex++) {
-      var currentValue = categories[clueIndex].clues[rowIndex][0]; //PS: Uncaught TypeError: Cannot read property '0' of undefined
+    for (var clueIndex = 0; clueIndex < categories.length; clueIndex++) {
+      var currentValue = categories[clueIndex].clues[rowIndex][0];
       var isShownFlag = categories[clueIndex].clues[rowIndex][3];
-
       var td2 = document.createElement('td');
 
-      if (isShownFlag === true) {
+      if (isShownFlag === 'shown') {
         td2.setAttribute('class', 'clue');
-        td2.setAttribute('id', `${clueIndex},${rowIndex}`); //Peter: +1 because index starts at 0 a values with 1
+        td2.setAttribute('id', `${clueIndex},${rowIndex}`);
+        // console.log(`clueIndex: ${clueIndex}, rowIndex: ${rowIndex}`);
+
         td2.textContent = `$${currentValue}`;
         td2.addEventListener('click', tdClickManager);
 
@@ -137,9 +107,19 @@ function renderBoard(domReference) {
   }
 }
 
+function updateScore(team, newScore) {
+  return team.currentScore += newScore;
+}
+
+function getScore(team) {
+  return team.currentScore;
+}
+
 function getValue(clueId) {
   var categoryIndex = clueId.charAt(0);
   var clueIndex = clueId.charAt(2);
+
+  // console.log(`getValue clueId: ${clueId}, value: ${categories[categoryIndex].clues[clueIndex][0]}`);
 
   return categories[categoryIndex].clues[clueIndex][0];
 }
@@ -148,6 +128,8 @@ function getAClue(clueId) {
   var categoryIndex = clueId.charAt(0);
   var clueIndex = clueId.charAt(2);
 
+  // console.log(`getAClue clueID: ${clueId}`, `clue: ${categories[categoryIndex].clues[clueIndex][1]}`);
+
   return categories[categoryIndex].clues[clueIndex][1];
 }
 
@@ -155,18 +137,26 @@ function getQuestion(clueId) {
   var categoryIndex = clueId.charAt(0);
   var clueIndex = clueId.charAt(2);
 
+  // console.log(`getQuestion clueId: ${clueId}`, `question: ${categories[categoryIndex].clues[clueIndex][0]}`);
+
   return categories[categoryIndex].clues[clueIndex][2];
 }
 
-function getVisibility(clueId) {
+function setHidden(clueId) {
   var categoryIndex = clueId.charAt(0);
-  var clueIndex = clueId.charAt(3);
+  var clueIndex = clueId.charAt(2);
 
-  return categories[categoryIndex].clues[clueIndex][3];
+  // console.log(`setHidden clueId: ${clueId}`, `question: ${categories[categoryIndex].clues[clueIndex][3]}`);
+
+  categories[categoryIndex].clues[clueIndex][3] = 'hidden';
 }
 
 function tdClickManager(event) {
   var clueToDisplay = getAClue(event.target.id);
+
+  console.log(event.target.id);
+
+  setHidden(event.target.id);
 
   table.innerHTML = '';
 
@@ -189,7 +179,6 @@ function clueClickManager(event) {
   questionDisplayDiv.setAttribute('id', event.target.id);
   questionDisplayDiv.setAttribute('class', 'bigClue');
   questionDisplayDiv.textContent = question;
-
   table.append(questionDisplayDiv);
 
   // display buttons
@@ -251,7 +240,6 @@ function clickScoreManager(event) {
     // decrement team 2 score by the cell's score
     updateScore(TeamB, -pointValue);
     console.log(`team b current score is now ${TeamB.currentScore}`);
-
   }
 
 
@@ -265,4 +253,5 @@ function clickScoreManager(event) {
 }
 
 var table = document.getElementById('table');
+
 renderBoard(table);
