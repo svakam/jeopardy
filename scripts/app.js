@@ -89,11 +89,9 @@ function renderBoard(domReference) {
 
       tdClue.setAttribute('class', 'clue');
       tdClue.setAttribute('id', `${rowIndex},${categoryIndex}`);
-      tdClue.setAttribute('id', `${rowIndex},${categoryIndex}`);
-      tdClue.setAttribute('id', `${rowIndex},${categoryIndex}`);
 
       if (categories[categoryIndex].clues[rowIndex][3] === true) {
-        tdClue.textContent = `${categories[categoryIndex].clues[rowIndex][0]}`;
+        tdClue.textContent = `$${categories[categoryIndex].clues[rowIndex][0]}`;
         tdClue.addEventListener('click', tdClickManager);
       } else {
         tdClue.textContent = '';
@@ -105,7 +103,7 @@ function renderBoard(domReference) {
 }
 
 function getCurrentScores() {
-  var currentScores = `${TeamA.name}: ${TeamA.currentScore} | ${TeamB.name}: ${TeamB.currentScore}`;
+  var currentScores = `${TeamA.name}: $${TeamA.currentScore} | ${TeamB.name}: $${TeamB.currentScore}`;
   return currentScores;
 }
 
@@ -153,7 +151,6 @@ function tdClickManager(event) {
 
 function clueClickManager(event) {
   var question = getQuestion(event.target.id);
-
   table.innerHTML = '';
 
   var questionDisplayDiv = document.createElement('div');
@@ -162,14 +159,15 @@ function clueClickManager(event) {
   questionDisplayDiv.textContent = question;
   table.append(questionDisplayDiv);
 
+  var bigScoreDiv = document.createElement('div');
+
+  var scoresDiv = document.createElement('div');
+  scoresDiv.setAttribute('class', 'scoreText');
+  scoresDiv.textContent = getCurrentScores();
+  bigScoreDiv.append(scoresDiv);
 
   var buttonsDisplayDiv = document.createElement('div');
-  buttonsDisplayDiv.setAttribute('class', 'bigQuestion');
-
-  var currentScores = document.createElement('div');
-  currentScores.setAttribute('class', 'scoreText');
-  currentScores.textContent = getCurrentScores();
-  buttonsDisplayDiv.append(currentScores);
+  buttonsDisplayDiv.setAttribute('class', 'scoreDiv');
 
   var team1Correct = document.createElement('button');
   team1Correct.setAttribute('class', 'scoreButton');
@@ -199,7 +197,8 @@ function clueClickManager(event) {
   team2Incorrect.addEventListener('click', clickScoreManager);
   buttonsDisplayDiv.append(team2Incorrect);
 
-  table.append(buttonsDisplayDiv);
+  bigScoreDiv.append(buttonsDisplayDiv);
+  table.append(bigScoreDiv);
 }
 
 function clickScoreManager(event) {
