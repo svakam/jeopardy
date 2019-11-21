@@ -260,6 +260,7 @@ function clueClickManager(event) {
   var question = getQuestion(event.target.id);
   table.innerHTML = '';
 
+  alert(question)
   var questionPage = document.createElement('div');
   questionPage.setAttribute('class', 'question-page');
 
@@ -271,6 +272,7 @@ function clueClickManager(event) {
 
   var bigScoreDiv = document.createElement('div');
   bigScoreDiv.setAttribute('id', 'bigScoreDiv');
+  
 
   var scoresDiv = document.createElement('div');
   scoresDiv.setAttribute('class', 'scoreText');

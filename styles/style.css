@@ -1,5 +1,5 @@
 
-html, body {
+html {
   background-color: black;
   color: gold;
 }
@@ -37,6 +37,14 @@ td {
 .game-over-page{
   height: 100vh;
   background-color: rgb(18,36,136);
+  text-align: center;
+  text-transform: uppercase;
+  /* height: 100%; */
+  display: flex;
+  width: 98.5vw;
+  justify-content: center;
+  align-items: center;
+  /* align-items: center; */
 }
 
 /* .intro-page {
