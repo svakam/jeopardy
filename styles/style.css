@@ -1,40 +1,25 @@
-html, body {
-  height: 100%;
-}
 
-.bigClue {
-  height: 100%;
-  background-color: rgb(18,36,136);
-  font-family: 'Merriweather', serif;
-  font-size: 8vh;
-  color: gold;
-  text-transform: uppercase;
-  text-align: center;
-  vertical-align: middle;
+html, body {
+  background-color: black;
+  color: white;
 }
 
 table {
-  height:100%;
-  width:100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  height: 100vh;
   background-color: black;
 }
 
 table td {
-  width: 16.6%;
-  height: 16.6%;
+  height: 12vh;
+  width: 16vw;
+  border: medium solid black;
   background-color: rgb(18,36,136);
   text-align: center;
-  border: medium solid black;
 }
 
 .category {
   font-family: 'Merriweather', serif;
-  font-size: 20pt;
+  font-size: 2.2vw;
   color: gold;
   text-transform: uppercase;
 }
@@ -43,21 +28,107 @@ table td {
   font-family: 'Public Sans', sans-serif;
   color: gold;
   text-decoration: none;
-  font-size: 60pt;
+  font-size: 5.5vw;
 }
 
-.bigClue {
-  height:100%;
-  width:100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  /*
-  the following doesn't work
-  vertical-align: middle;
-  text-align: center; */
+.bigScoreDiv {
   background-color: rgb(18,36,136);
-  font: gold;
+  height: 50%;
+  display: flex;
+  width: 98.5vw;
+  justify-content: center;
+  align-items: center;
+  font-size: 15vh;
+  color: gold;
+  text-transform: uppercase;
+  text-align: center;
+  border: 0;
 }
+
+/* vik addition to fix correct/incorrect cards */
+#bigScoreDiv {
+  background-color: rgb(18,36,136);
+  position: relative;
+  bottom: 200px;
+}
+/* vik addition to fix correct/incorrect cards */
+
+.scoreText {
+  background-color: rgb(18,36,136);
+  color: gold;
+  text-decoration: none;
+  font-size: 2.5vw;
+  font-family: 'Electrolize', sans-serif;
+  /* vik addition to fix correct/incorrect cards */
+  text-align: center;
+  position: relative;
+  margin-left: 30%;
+  margin-right: 30%;
+  /* vik addition to fix correct/incorrect cards */
+}
+
+.scoreButton {
+  background-color: rgb(18,36,136);
+  /* vik addition to fix correct/incorrect cards */
+  color: gold;
+  font-size: 20pt;
+  padding: 10px;
+  margin: 10px;
+
+  /* vik addition to fix correct/incorrect cards */
+}
+
+/* vik addition to fix correct/incorrect cards */
+.scoreButton:hover {
+  color: rgb(218, 197, 196)
+}
+/* vik addition to fix correct/incorrect cards */
+
+/* vik addition to fix correct/incorrect cards */
+.scoreDiv {
+  margin-left: 24.5%;
+  margin-right: 10%;
+}
+/* vik addition to fix correct/incorrect cards */ 
+
+.bigClue {
+  background-color: rgb(18,36,136);
+  height: 100%;
+  display: flex;
+  width: 98.5vw;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Merriweather', serif;
+  font-size: 15vh;
+  color: gold;
+  text-transform: uppercase;
+  text-align: center;
+  border: 0;
+}
+
+.bigQuestion {
+  background-color: rgb(18,36,136);
+  height: 100%; /* vik change */
+  display: flex;
+  width: 98.5vw;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Merriweather', serif;
+  font-size: 15vh;
+  color: gold;
+  text-transform: uppercase;
+  text-align: center;
+  border: 0;
+}
+
+table td:hover {
+  color: rgb(218, 197, 196)
+}
+
+.clue {
+  font-family: 'Public Sans', sans-serif;
+  color: gold;
+  text-decoration: none;
+  font-size: 5.5vw;
+}
+
