@@ -169,6 +169,7 @@ var clickCounter = 0;
 function renderBoard(domReference) {
   if (clickCounter < 2) {
     var tableJeopardy = document.createElement('table');
+    tableJeopardy.setAttribute('class', 'jeopardy-page');
     var trCategories = document.createElement('tr');
     for (var categoryTitleIndex = 0; categoryTitleIndex < categories.length; categoryTitleIndex++) {
       var tdCategory = document.createElement('td');
@@ -249,7 +250,7 @@ function tdClickManager(event) {
   var clueDisplayDiv = document.createElement('div');
   clueDisplayDiv.textContent = clueToDisplay;
   clueDisplayDiv.setAttribute('id', event.target.id);
-  clueDisplayDiv.setAttribute('class', 'bigClue');
+  clueDisplayDiv.setAttribute('class', 'clue-page');
 
   table.append(clueDisplayDiv);
   clueDisplayDiv.addEventListener('click', clueClickManager);
@@ -259,11 +260,14 @@ function clueClickManager(event) {
   var question = getQuestion(event.target.id);
   table.innerHTML = '';
 
+  var questionPage = document.createElement('div');
+  questionPage.setAttribute('class', 'question-page');
+
   var questionDisplayDiv = document.createElement('div');
-  questionDisplayDiv.setAttribute('class', 'bigQuestion');
+  questionDisplayDiv.setAttribute('class', 'question-page-upper-half');
   questionDisplayDiv.setAttribute('id', event.target.id);
   questionDisplayDiv.textContent = question;
-  table.append(questionDisplayDiv);
+  questionPage.append(questionDisplayDiv);
 
   var bigScoreDiv = document.createElement('div');
   bigScoreDiv.setAttribute('id', 'bigScoreDiv');
@@ -305,7 +309,9 @@ function clueClickManager(event) {
   buttonsDisplayDiv.append(team2Incorrect);
 
   bigScoreDiv.append(buttonsDisplayDiv);
-  table.append(bigScoreDiv);
+
+  questionPage.append(bigScoreDiv);
+  table.append(questionPage);
 }
 
 function clickScoreManager(event) {
