@@ -30,9 +30,26 @@ td {
   font-size: 5.5vw;
 }
 
-.game-over-page .question-page{
+.intro-page{
   background-color: rgb(18,36,136);
 }
+
+.form-page {
+  background-color: rgb(18,36,136);
+}
+
+.clue-page {
+  background-color: rgb(18,36,136);
+}
+.question-page{
+  background-color: rgb(18,36,136);
+}
+.game-over-page{
+  background-color: rgb(18,36,136);
+}
+
+
+
 .bigClue {
   background-color: rgb(18,36,136);
   height: 100%;
