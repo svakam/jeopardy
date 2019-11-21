@@ -72,7 +72,6 @@ function Team(name, newScore) {
   teams.push(this);
 
   this.loadData = function (data) {
-    // data parameter will be a parsed object
     this.name = data.name;
     this.currentScore = data.currentScore;
   };
@@ -81,14 +80,12 @@ function Team(name, newScore) {
 var teamA = new Team(name, 0);
 var teamB = new Team(name, 0);
 
-//to determine whether to draw from local storage:
+
 if (localStorage.getItem(localStorageData) === null) {
-  // if localstorage is empty, just take in team names like normal and therefore the two current teams would also be all the teams ever
-  // allTeamsEver = teams;
+  allTeamsEver.push(teams[0]);
+  allTeamsEver.push(teams[1]);
 } else {
-  // if localstorage contains items, get them
   var jsonData = localStorage.getItem(localStorageData);
-  // parse them
   var data = JSON.parse(jsonData);
   // load them into the array (load current teams at end of game)
   for (var i = 0; i < data.length; i++) {
@@ -105,16 +102,15 @@ function saveTeamDataLocally() {
 }
 
 function makeLeadersArray() {
-  // make temparray of ALL OBJECTS from allTeamsEver
+  // temparray of ALL OBJECTS from allTeamsEver
   var tempArray = [];
   for (var i = 0; i < allTeamsEver.length; i++) {
     tempArray.push(allTeamsEver[i]);
+    console.log(tempArray[i]);
   }
-
-  // make a leadersarray which will contain ordered top 10 of all time
+  console.log(tempArray);
   var leadersArray = [];
 
-  //loop this while leadersarray<10 long:
   while (leadersArray.length < 10) {
     var max = tempArray[0].currentScore;
     var maxIndex = 0;
@@ -147,9 +143,6 @@ function gameOver() {
   var leaderboard = document.createElement('ol');
   leaderboard.setAttribute('id', 'leader-board');
   leaderboard.textContent = 'Check out the all time high scores:';
-
-  allTeamsEver.push(teams[0]);
-  allTeamsEver.push(teams[1]);
 
   var leadArray = makeLeadersArray();
 
