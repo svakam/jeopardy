@@ -1,6 +1,7 @@
 
 html, body {
   background-color: black;
+  color: white;
 }
 
 table {
@@ -29,6 +30,7 @@ table td {
   text-decoration: none;
   font-size: 5.5vw;
 }
+
 .bigScoreDiv {
   background-color: rgb(18,36,136);
   height: 50%;
@@ -42,17 +44,53 @@ table td {
   text-align: center;
   border: 0;
 }
+
+/* vik addition to fix correct/incorrect cards */
+#bigScoreDiv {
+  background-color: rgb(18,36,136);
+  position: relative;
+  bottom: 200px;
+}
+/* vik addition to fix correct/incorrect cards */
+
 .scoreText {
   background-color: rgb(18,36,136);
   color: gold;
   text-decoration: none;
   font-size: 2.5vw;
   font-family: 'Electrolize', sans-serif;
+  /* vik addition to fix correct/incorrect cards */
+  text-align: center;
+  position: relative;
+  margin-left: 30%;
+  margin-right: 30%;
+  /* vik addition to fix correct/incorrect cards */
 }
 
 .scoreButton {
   background-color: rgb(18,36,136);
+  /* vik addition to fix correct/incorrect cards */
+  color: gold;
+  font-size: 20pt;
+  padding: 10px;
+  margin: 10px;
+
+  /* vik addition to fix correct/incorrect cards */
 }
+
+/* vik addition to fix correct/incorrect cards */
+.scoreButton:hover {
+  color: rgb(218, 197, 196)
+}
+/* vik addition to fix correct/incorrect cards */
+
+/* vik addition to fix correct/incorrect cards */
+.scoreDiv {
+  margin-left: 24.5%;
+  margin-right: 10%;
+}
+/* vik addition to fix correct/incorrect cards */ 
+
 .bigClue {
   background-color: rgb(18,36,136);
   height: 100%;
@@ -70,7 +108,7 @@ table td {
 
 .bigQuestion {
   background-color: rgb(18,36,136);
-  height: 50%;
+  height: 100%; /* vik change */
   display: flex;
   width: 98.5vw;
   justify-content: center;
