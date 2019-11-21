@@ -371,15 +371,18 @@ function renderForm(formInput, introContent) {
   introContent.removeEventListener('click', welcomeClickManager);
   introContent.parentNode.removeChild(introContent); // removes previous content
 
-  var inputStatement = document.createElement('div');
-  inputStatement.setAttribute('class', 'form-page');
+  var formPage = document.createElement('div');
+  formPage.setAttribute('class', 'form-page');
 
+  var inputStatement = document.createElement('p');
   inputStatement.textContent = 'What are your team names?';
 
-  formInput.append(inputStatement);
+  formPage.append(inputStatement)
+  formInput.append(formPage);
+
+
 
   var form = document.createElement('form');
-  form.setAttribute('class', 'form-page');
 
   // team 1 elements
   var team1Div = document.createElement('div');
@@ -406,7 +409,10 @@ function renderForm(formInput, introContent) {
   submitNames.setAttribute('type', 'submit');
   submitNames.textContent = 'Let\'s go!';
   form.append(submitNames);
-  formInput.append(form);
+
+  formPage.append(form);
+  formInput.append(formPage);
+
   form.addEventListener('submit', submitNamesAndPlayManager);
 }
 

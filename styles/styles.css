@@ -46,6 +46,20 @@
   /* vik addition to fix correct/incorrect cards */
 }
 
+.bigClue {
+  background-color: rgb(18,36,136);
+  height: 100%;
+  display: flex;
+  width: 98.5vw;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Merriweather', serif;
+  font-size: 15vh;
+  color: gold;
+  text-transform: uppercase;
+  text-align: center;
+  border: 0;
+}
 /* vik addition to fix correct/incorrect cards */
 .scoreButton:hover {
   color: rgb(218, 197, 196)
