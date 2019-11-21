@@ -60,14 +60,10 @@ var cat5 = new Category('Category 5', [
   [500, 'category 5 500 clue', 'category 5 500 question', true]
 ]);
 
-
-
-// Laura - local storage:
-
 var localStorageData = 'localStorageData';
-// note that the allTeamsEver array will contain every team ever to play the game
+
 var allTeamsEver = [];
-// the teams array can be just for the two current teams playing
+
 var teams = [];
 
 function Team(name, newScore) {
@@ -108,53 +104,95 @@ function saveTeamDataLocally() {
   localStorage.setItem(localStorageData, jsonData);
 }
 
+function makeLeadersArray(arr) {
+  // make temparray of ALL OBJECTS from allTeamsEver
+  var tempArray = [];
+  for (var i = 0; i < allTeamsEver.length; i++) {
+    tempArray.push(allTeamsEver[i]);
+  }
+
+  // make a leadersarray which will contain ordered top 10 of all time
+  var leadersArray = [];
+
+  //loop this while leadersarray<10 long:
+  while (leadersArray.length < 10) {
+    var max = tempArray[0].currentScore;
+    var maxIndex = 0;
+    // find the max/indexOfMax of temparray
+    for (var j = 1; j < tempArray.length; j++) {
+      if (tempArray[j].currentScore > max) {
+        maxIndex = j;
+        max = tempArray[j].currentScore;
+      }
+    }
+    // take that index and push the corresponding object into a leaders array
+    leadersArray.push(tempArray[maxIndex]);
+    // remove that index from the temparray
+    tempArray.splice(maxIndex, 1);
+  }
+  return leadersArray;
+}
+
 function gameOver() {
-  var table = document.getElementById('table');
   table.innerHTML = '';
 
+  var gameOverPage = document.createElement('div');
+  gameOverPage.setAttribute('class', 'game-over-page');
+
   var gameOverDisplay = document.createElement('p');
+  gameOverDisplay.setAttribute('id', 'final-scores');
   gameOverDisplay.textContent = `Game Over! Final Scores: ${teams[0].name}: ${teams[0].currentScore}, ${teams[1].name}: ${teams[1].currentScore} `;
-  table.append(gameOverDisplay);
+  gameOverPage.append(gameOverDisplay);
 
-  // var leaderboard = document.createElement('ul');
-  // leaderboard.textContent = 'Here are the all time winners:';
-  // var leaderboard1 = document.createElement('li');
-  // leaderboard1.textContent =
+  var leaderboard = document.createElement('ol');
+  leaderboard.setAttribute('id', 'leader-board');
+  leaderboard.textContent = 'Check out the all time high scores:';
 
-  //   table.append(leaderboard);
-  allTeamsEver.push(teams);
+  allTeamsEver.push(teams[0]);
+  allTeamsEver.push(teams[1]);
+
+  var leadArray = makeLeadersArray();
+
+  for (var i = 0; i < leadArray.length; i++) {
+    var score = document.createElement('li');
+    score.textContent = `${leadArray[i].name}: $${leadArray[i].currentScore}`;
+    score.setAttribute('id', `score-${i}`);
+    leaderboard.append(score);
+  }
+
+  gameOverPage.append(leaderboard);
+  table.append(gameOverPage);
+
   saveTeamDataLocally();
   teams = [];
 }
 
-// detect end of game:
 var clickCounter = 0;
-
-// end local storage
 
 
 function renderBoard(domReference) {
   if (clickCounter < 2) {
+    var tableJeopardy = document.createElement('table');
+    tableJeopardy.setAttribute('class', 'jeopardy-page');
     var trCategories = document.createElement('tr');
     for (var categoryTitleIndex = 0; categoryTitleIndex < categories.length; categoryTitleIndex++) {
       var tdCategory = document.createElement('td');
 
       tdCategory.textContent = categories[categoryTitleIndex].name;
 
-      tdCategory.setAttribute('class', 'category');
+      tdCategory.setAttribute('class', 'categoryTd');
       trCategories.append(tdCategory);
     }
-    domReference.append(trCategories);
+    tableJeopardy.append(trCategories);
 
 
     for (var rowIndex = 0; rowIndex < categories.length - 1; rowIndex++) {
-      // PS: categories.lenght - 1 because we've used the first one for the top row
       var trClueRow = document.createElement('tr');
 
       for (var categoryIndex = 0; categoryIndex < categories.length; categoryIndex++) {
         var tdClue = document.createElement('td');
 
-        tdClue.setAttribute('class', 'clue');
+        tdClue.setAttribute('class', 'clueTd');
         tdClue.setAttribute('id', `${rowIndex},${categoryIndex}`);
 
         if (categories[categoryIndex].clues[rowIndex][3] === true) {
@@ -165,11 +203,13 @@ function renderBoard(domReference) {
         }
         trClueRow.append(tdClue);
       }
-      domReference.append(trClueRow);
+      tableJeopardy.append(trClueRow);
     }
+    domReference.append(tableJeopardy);
   } else {
     gameOver();
   }
+  domReference.append(tableJeopardy);
 }
 
 function getCurrentScores() {
@@ -214,7 +254,7 @@ function tdClickManager(event) {
   var clueDisplayDiv = document.createElement('div');
   clueDisplayDiv.textContent = clueToDisplay;
   clueDisplayDiv.setAttribute('id', event.target.id);
-  clueDisplayDiv.setAttribute('class', 'bigClue');
+  clueDisplayDiv.setAttribute('class', 'clue-page');
 
   table.append(clueDisplayDiv);
   clueDisplayDiv.addEventListener('click', clueClickManager);
@@ -224,12 +264,14 @@ function clueClickManager(event) {
   var question = getQuestion(event.target.id);
   table.innerHTML = '';
 
-  // question display
+  var questionPage = document.createElement('div');
+  questionPage.setAttribute('class', 'question-page');
+
   var questionDisplayDiv = document.createElement('div');
-  questionDisplayDiv.setAttribute('class', 'bigQuestion');
+  questionDisplayDiv.setAttribute('class', 'question-page-upper-half');
   questionDisplayDiv.setAttribute('id', event.target.id);
   questionDisplayDiv.textContent = question;
-  table.append(questionDisplayDiv);
+  questionPage.append(questionDisplayDiv);
 
   // div for both score display and buttons
   var bigScoreDiv = document.createElement('div');
@@ -307,7 +349,9 @@ function clueClickManager(event) {
   buttonsDisplayDiv.append(passArticle);
   buttonsDisplayDiv.append(team2Article);
   bigScoreDiv.append(buttonsDisplayDiv);
-  table.append(bigScoreDiv);
+
+  questionPage.append(bigScoreDiv);
+  table.append(questionPage);
 }
 
 function clickScoreManager(event) {
@@ -353,35 +397,39 @@ function clickScoreManager(event) {
   renderBoard(table);
 }
 
-var table = document.getElementById('table');
-var titleFormScreen = document.getElementById('title-form-screen'); // get to html div for screen for intro/form
-
 // render title screen and click on it to go to form
-function renderIntroScreen(domRefTitleForm) {
-  var title = document.createElement('h1');
-  console.log(`Before: Team A ${teamA.name}, Team B ${teamB.name}`);
-  title.textContent = 'JEOPARDY! (at Code Fellows)';
-  domRefTitleForm.append(title);
-  domRefTitleForm.addEventListener('click', welcomeClickManager);
+function renderIntroScreen(table) {
+  var title = document.createElement('div');
+  title.setAttribute('class', 'intro-page');
+  title.textContent = 'JEOPARDY</>';
+  table.append(title);
+  table.addEventListener('click', welcomeClickManager);
 }
 
 // transition from title to form
 function welcomeClickManager(event) {
   event.target.innerHTML = ''; // set title to blank
-  console.log(event);
-  console.log(event.target);
-  renderForm(titleFormScreen, event.target);
+
+  renderForm(table, event.target);
 }
 
 // form appended to table to input team names
-function renderForm(formInput, h1Content) {
+function renderForm(formInput, introContent) {
+
   formInput.removeEventListener('click', welcomeClickManager);
-  h1Content.removeEventListener('click', welcomeClickManager);
-  h1Content.parentNode.removeChild(h1Content); // removes previous h1
-  console.log(formInput);
-  var inputStatement = document.createElement('h1');
+  introContent.removeEventListener('click', welcomeClickManager);
+  introContent.parentNode.removeChild(introContent); // removes previous content
+
+  var formPage = document.createElement('div');
+  formPage.setAttribute('class', 'form-page');
+
+  var inputStatement = document.createElement('p');
   inputStatement.textContent = 'What are your team names?';
-  formInput.append(inputStatement);
+
+  formPage.append(inputStatement)
+  formInput.append(formPage);
+
+
 
   var form = document.createElement('form');
 
@@ -410,13 +458,16 @@ function renderForm(formInput, h1Content) {
   submitNames.setAttribute('type', 'submit');
   submitNames.textContent = 'Let\'s go!';
   form.append(submitNames);
-  formInput.append(form);
+
+  formPage.append(form);
+  formInput.append(formPage);
+
   form.addEventListener('submit', submitNamesAndPlayManager);
 }
 
 function submitNamesAndPlayManager(event) {
   // prevent page reload
-  event.preventDefault();
+  // event.preventDefault();
 
   // input team names to objects
   var teamAinput = event.target[0];
@@ -426,8 +477,9 @@ function submitNamesAndPlayManager(event) {
   console.log(`After: Team A ${teamA.name}, Team B ${teamB.name}`);
 
   // render board
-  titleFormScreen.innerHTML = '';
+  table.innerHTML = '';
   renderBoard(table);
 }
 
-renderIntroScreen(titleFormScreen);
+var table = document.getElementById('Jeopardy!');
+renderIntroScreen(table);
