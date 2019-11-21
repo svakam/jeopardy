@@ -100,7 +100,7 @@ function saveTeamDataLocally() {
   localStorage.setItem(localStorageData, jsonData);
 }
 
-function makeLeaderboard(arr) {
+function makeLeadersArray(arr) {
   // make temparray of ALL OBJECTS from allTeamsEver
   var tempArray = [];
   for (var i = 0; i < allTeamsEver.length; i++) {
@@ -115,10 +115,10 @@ function makeLeaderboard(arr) {
     var max = tempArray[0].currentScore;
     var maxIndex = 0;
     // find the max/indexOfMax of temparray
-    for (var i = 1; i < tempArray.length; i++) {
-      if (tempArray[i].currentScore > max) {
-        maxIndex = i;
-        max = tempArray[i].currentScore;
+    for (var j = 1; j < tempArray.length; j++) {
+      if (tempArray[j].currentScore > max) {
+        maxIndex = j;
+        max = tempArray[j].currentScore;
       }
     }
     // take that index and push the corresponding object into a leaders array
@@ -126,8 +126,7 @@ function makeLeaderboard(arr) {
     // remove that index from the temparray
     tempArray.splice(maxIndex, 1);
   }
-  // render the leaderboard (ol with lis)
-  return leadersArray
+  return leadersArray;
 }
 
 function gameOver() {
@@ -140,25 +139,28 @@ function gameOver() {
 
   var leaderboard = document.createElement('ol');
   leaderboard.textContent = 'Check out the all time high scores:';
-  var score1 = document.createElement('li');
-  leaderboard1.textContent =
 
-    table.append(leaderboard);
+  var leadArray = makeLeadersArray();
 
+  for (var i = 0; i < leadArray.length; i++) {
+    var score = document.createElement('li');
+    score.textContent = `${leadArray[i].name}: $${leadArray[i].currentScore}`;
+    score.setAttribute('id', `score-${i}`);
+    leaderboard.append(score);
+  }
+
+  table.append(leaderboard);
 
   allTeamsEver.push(teams);
   saveTeamDataLocally();
   teams = [];
 }
 
-// detect end of game:
 var clickCounter = 0;
-
-// end local storage
 
 
 function renderBoard(domReference) {
-  if (clickCounter < 2) {
+  if (clickCounter < 30) {
     var trCategories = document.createElement('tr');
     for (var categoryTitleIndex = 0; categoryTitleIndex < categories.length; categoryTitleIndex++) {
       var tdCategory = document.createElement('td');
