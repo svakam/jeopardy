@@ -82,8 +82,8 @@ var teamB = new Team(name, 0);
 
 
 if (localStorage.getItem(localStorageData) === null) {
-  allTeamsEver.push(teams[0]);
-  allTeamsEver.push(teams[1]);
+  allTeamsEver.push(teamA);
+  allTeamsEver.push(teamB);
 } else {
   var jsonData = localStorage.getItem(localStorageData);
   var data = JSON.parse(jsonData);
@@ -102,28 +102,32 @@ function saveTeamDataLocally() {
 }
 
 function makeLeadersArray() {
-  // temparray of ALL OBJECTS from allTeamsEver
+
   var tempArray = [];
+
   for (var i = 0; i < allTeamsEver.length; i++) {
     tempArray.push(allTeamsEver[i]);
-    console.log(tempArray[i]);
   }
-  console.log(tempArray);
+
+  if (allTeamsEver.length >= 10) {
+    var num = 10;
+  } else {
+    num = allTeamsEver.length;
+  }
+
   var leadersArray = [];
 
-  while (leadersArray.length < 10) {
+  while (leadersArray.length < num) {
     var max = tempArray[0].currentScore;
     var maxIndex = 0;
-    // find the max/indexOfMax of temparray
+
     for (var j = 1; j < tempArray.length; j++) {
       if (tempArray[j].currentScore > max) {
         maxIndex = j;
         max = tempArray[j].currentScore;
       }
     }
-    // take that index and push the corresponding object into a leaders array
     leadersArray.push(tempArray[maxIndex]);
-    // remove that index from the temparray
     tempArray.splice(maxIndex, 1);
   }
   return leadersArray;
@@ -164,7 +168,7 @@ var clickCounter = 0;
 
 
 function renderBoard(domReference) {
-  if (clickCounter < 2) {
+  if (clickCounter < 10) {
     var tableJeopardy = document.createElement('table');
     tableJeopardy.setAttribute('class', 'jeopardy-page');
     var trCategories = document.createElement('tr');
