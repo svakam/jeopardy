@@ -264,6 +264,7 @@ function clueClickManager(event) {
   var question = getQuestion(event.target.id);
   table.innerHTML = '';
 
+  alert(question)
   var questionPage = document.createElement('div');
   questionPage.setAttribute('class', 'question-page');
 
@@ -276,6 +277,7 @@ function clueClickManager(event) {
   // div for both score display and buttons
   var bigScoreDiv = document.createElement('div');
   bigScoreDiv.setAttribute('id', 'bigScoreDiv');
+  
 
   // div for scores
   var scoresDiv = document.createElement('div');
