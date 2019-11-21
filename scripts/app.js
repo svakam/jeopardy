@@ -140,6 +140,9 @@ function gameOver() {
   var leaderboard = document.createElement('ol');
   leaderboard.textContent = 'Check out the all time high scores:';
 
+  allTeamsEver.push(teams[0]);
+  allTeamsEver.push(teams[1]);
+
   var leadArray = makeLeadersArray();
 
   for (var i = 0; i < leadArray.length; i++) {
@@ -151,7 +154,6 @@ function gameOver() {
 
   table.append(leaderboard);
 
-  allTeamsEver.push(teams);
   saveTeamDataLocally();
   teams = [];
 }
