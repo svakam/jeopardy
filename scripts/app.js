@@ -82,8 +82,8 @@ function Team(name, newScore) {
 }
 
 
-var TeamA = new Team(name, 0);
-var TeamB = new Team(name, 0);
+var teamA = new Team(name, 0);
+var teamB = new Team(name, 0);
 
 
 //to determine whether to draw from local storage:
@@ -159,7 +159,7 @@ function renderBoard(domReference) {
 }
 
 function getCurrentScores() {
-  var currentScores = `${TeamA.name}: $${TeamA.currentScore} | ${TeamB.name}: $${TeamB.currentScore}`;
+  var currentScores = `${teamA.name}: $${teamA.currentScore} | ${teamB.name}: $${teamB.currentScore}`;
   return currentScores;
 }
 
@@ -216,6 +216,7 @@ function clueClickManager(event) {
   table.append(questionDisplayDiv);
 
   var bigScoreDiv = document.createElement('div');
+  bigScoreDiv.setAttribute('id', 'bigScoreDiv');
 
   var scoresDiv = document.createElement('div');
   scoresDiv.setAttribute('class', 'scoreText');
@@ -228,28 +229,28 @@ function clueClickManager(event) {
   var team1Correct = document.createElement('button');
   team1Correct.setAttribute('class', 'scoreButton');
   team1Correct.setAttribute('id', event.target.id);
-  team1Correct.textContent = 'Team 1 Correct';
+  team1Correct.textContent = `${teamA.name} correct`;
   team1Correct.addEventListener('click', clickScoreManager);
   buttonsDisplayDiv.append(team1Correct);
 
   var team1Incorrect = document.createElement('button');
   team1Incorrect.setAttribute('class', 'scoreButton');
   team1Incorrect.setAttribute('id', event.target.id);
-  team1Incorrect.textContent = 'Team 1 Incorrect';
+  team1Incorrect.textContent = `${teamA.name} incorrect`;
   team1Incorrect.addEventListener('click', clickScoreManager);
   buttonsDisplayDiv.append(team1Incorrect);
 
   var team2Correct = document.createElement('button');
   team2Correct.setAttribute('class', 'scoreButton');
   team2Correct.setAttribute('id', event.target.id);
-  team2Correct.textContent = 'Team 2 Correct';
+  team2Correct.textContent = `${teamB.name} correct`;
   team2Correct.addEventListener('click', clickScoreManager);
   buttonsDisplayDiv.append(team2Correct);
 
   var team2Incorrect = document.createElement('button');
   team2Incorrect.setAttribute('class', 'scoreButton');
   team2Incorrect.setAttribute('id', event.target.id);
-  team2Incorrect.textContent = 'Team 2 Incorrect';
+  team2Incorrect.textContent = `${teamB.name} incorrect`;
   team2Incorrect.addEventListener('click', clickScoreManager);
   buttonsDisplayDiv.append(team2Incorrect);
 
@@ -260,28 +261,28 @@ function clueClickManager(event) {
 function clickScoreManager(event) {
   var pointValue = getValue(event.target.id);
   // if a button clicked id = team1/2 correct/incorrect, change score by accessing the team constructor
-  if (event.target.innerText === 'Team 1 Correct') {
+  if (event.target.innerText === `${teamA.name} correct`) {
     // increment team 1 score by the cell's score
-    updateScore(TeamA, pointValue);
-    console.log(`team a current score is now ${TeamA.currentScore}`);
+    updateScore(teamA, pointValue);
+    console.log(`team a current score is now ${teamA.currentScore}`);
   }
 
-  if (event.target.innerText === 'Team 1 Incorrect') {
+  if (event.target.innerText === `${teamA.name} incorrect`) {
     // decrement team 1 score by the cell's score
-    updateScore(TeamA, -pointValue);
-    console.log(`team a current score is now ${TeamA.currentScore}`);
+    updateScore(teamA, -pointValue);
+    console.log(`team a current score is now ${teamA.currentScore}`);
   }
 
-  if (event.target.innerText === 'Team 2 Correct') {
+  if (event.target.innerText === `${teamB.name} correct`) {
     // increment team 2 score by the cell's score
-    updateScore(TeamB, pointValue);
-    console.log(`team b current score is now ${TeamB.currentScore}`);
+    updateScore(teamB, pointValue);
+    console.log(`team b current score is now ${teamB.currentScore}`);
   }
 
-  if (event.target.innerText === 'Team 2 Incorrect') {
+  if (event.target.innerText === `${teamB.name} incorrect`) {
     // decrement team 2 score by the cell's score
-    updateScore(TeamB, -pointValue);
-    console.log(`team b current score is now ${TeamB.currentScore}`);
+    updateScore(teamB, -pointValue);
+    console.log(`team b current score is now ${teamB.currentScore}`);
 
   }
 
@@ -301,7 +302,7 @@ var titleFormScreen = document.getElementById('title-form-screen'); // get to ht
 // render title screen and click on it to go to form
 function renderIntroScreen(domRefTitleForm) {
   var title = document.createElement('h1');
-  console.log(`Before: Team A ${TeamA.name}, Team B ${TeamB.name}`);
+  console.log(`Before: Team A ${teamA.name}, Team B ${teamB.name}`);
   title.textContent = 'JEOPARDY! (at Code Fellows)';
   domRefTitleForm.append(title);
   domRefTitleForm.addEventListener('click', welcomeClickManager);
@@ -326,6 +327,8 @@ function renderForm(formInput, h1Content) {
   formInput.append(inputStatement);
 
   var form = document.createElement('form');
+
+  // team 1 elements
   var team1Div = document.createElement('div');
   form.append(team1Div);
   var team1Label = document.createElement('label');
@@ -334,6 +337,8 @@ function renderForm(formInput, h1Content) {
   var team1Input = document.createElement('input');
   team1Input.setAttribute('name', 'team1input');
   team1Div.append(team1Input);
+
+  // team 2 elements
   var team2Div = document.createElement('div');
   form.append(team2Div);
   var team2Label = document.createElement('label');
@@ -342,24 +347,30 @@ function renderForm(formInput, h1Content) {
   var team2Input = document.createElement('input');
   team2Input.setAttribute('name', 'team2input');
   team2Div.append(team2Input);
-  var submitNames = document.createElement('input');
+
+  // submit element
+  var submitNames = document.createElement('button');
   submitNames.setAttribute('type', 'submit');
+  submitNames.textContent = 'Let\'s go!';
   form.append(submitNames);
   formInput.append(form);
-  submitNames.addEventListener('submit', function (event) {
-    // prevent page reload
-    event.preventDefault();
+  form.addEventListener('submit', submitNamesAndPlayManager);
+}
 
-    // input team names to objects
-    console.log(event.target.form[0].value);
-    console.log(event.target.form[1].value);
-    TeamA.name = event.target.form[0].value;
-    TeamB.name = event.target.form[1].value;
-    console.log(`After: Team A ${TeamA.name}, Team B ${TeamB.name}`);
+function submitNamesAndPlayManager(event) {
+  // prevent page reload
+  event.preventDefault();
 
-    // render board
-    renderBoard(table);
-  });
+  // input team names to objects
+  var teamAinput = event.target[0];
+  var teamBinput = event.target[1];
+  teamA.name = teamAinput.value;
+  teamB.name = teamBinput.value;
+  console.log(`After: Team A ${teamA.name}, Team B ${teamB.name}`);
+
+  // render board
+  titleFormScreen.innerHTML = '';
+  renderBoard(table);
 }
 
 renderIntroScreen(titleFormScreen);
