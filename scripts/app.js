@@ -60,8 +60,6 @@ var Cat5 = new Category('Category 5', [
 
 // Laura - local storage:
 
-// info we want to retain in local storage is: team names and their final scores
-// that is: this.name and this.currentScore
 var localStorageData = 'localStorageData';
 // note that the allTeamsEver array will contain every team ever to play the game
 var allTeamsEver = [];
@@ -71,7 +69,6 @@ var teams = [];
 function Team(name, newScore) {
   this.name = name;
   this.currentScore = newScore;
-  // the following method can remain because we always want to push in each game's instances to the array.
   teams.push(this);
 
   this.loadData = function (data) {
@@ -81,28 +78,29 @@ function Team(name, newScore) {
   };
 }
 
+var TeamA = new Team('raptors', 0);
+var TeamB = new Team('panthers', 0);
 
-var TeamA = new Team(name, 0);
-var TeamB = new Team(name, 0);
+// var TeamA = new Team(name, 0);
+// var TeamB = new Team(name, 0);
 
 
 //to determine whether to draw from local storage:
 if (localStorage.getItem(localStorageData) === null) {
   // if localstorage is empty, just take in team names like normal and therefore the two current teams would also be all the teams ever
-  allTeamsEver = teams;
+  // allTeamsEver = teams;
 } else {
   // if localstorage contains items, get them
   var jsonData = localStorage.getItem(localStorageData);
   // parse them
   var data = JSON.parse(jsonData);
-  // load them PLUS the current teams into the array
+  // load them into the array (load current teams at end of game)
   for (var i = 0; i < data.length; i++) {
     // load in the names and currentScores (which should be the final scores):
     var newTeam = new Team('', '');
     newTeam.loadData(data[i]);
     allTeamsEver.push(newTeam);
   }
-  // ... in order to calculate all time high scores at end
 }
 
 function saveTeamDataLocally() {
@@ -111,50 +109,66 @@ function saveTeamDataLocally() {
 }
 
 function gameOver() {
-  // this is where we can render all time high scores based on local storage, ie, reference the allTeamsEver array
-  saveTeamDataLocally(); // because we only want this fx to be called at the end of the game, when team.currentScore is the *final* score
+  var table = document.getElementById('table');
+  table.innerHTML = '';
+
+  var gameOverDisplay = document.createElement('p');
+  gameOverDisplay.textContent = `Game Over! Final Scores: ${teams[0].name}: ${teams[0].currentScore}, ${teams[1].name}: ${teams[1].currentScore} `;
+  table.append(gameOverDisplay);
+
+  // var leaderboard = document.createElement('ul');
+  // leaderboard.textContent = 'Here are the all time winners:';
+  // var leaderboard1 = document.createElement('li');
+  // leaderboard1.textContent =
+
+  //   table.append(leaderboard);
+  allTeamsEver.push(teams);
+  saveTeamDataLocally();
+  teams = [];
 }
 
-// we will want to remove this fx call and only have it in the gameOVer fx:
-saveTeamDataLocally();
-// we will also want to clear the teams array within the gameOver fx
-teams = [];
+// detect end of game:
+var clickCounter = 0;
 
 // end local storage
 
 
 function renderBoard(domReference) {
-  var trCategories = document.createElement('tr');
-  for (var categoryTitleIndex = 0; categoryTitleIndex < categories.length; categoryTitleIndex++) {
-    var tdCategory = document.createElement('td');
+  if (clickCounter < 2) {
+    var trCategories = document.createElement('tr');
+    for (var categoryTitleIndex = 0; categoryTitleIndex < categories.length; categoryTitleIndex++) {
+      var tdCategory = document.createElement('td');
 
-    tdCategory.textContent = categories[categoryTitleIndex].name;
+      tdCategory.textContent = categories[categoryTitleIndex].name;
 
-    tdCategory.setAttribute('class', 'category');
-    trCategories.append(tdCategory);
-  }
-  domReference.append(trCategories);
-
-
-  for (var rowIndex = 0; rowIndex < categories.length - 1; rowIndex++) {
-    // PS: categories.lenght - 1 because we've used the first one for the top row
-    var trClueRow = document.createElement('tr');
-
-    for (var categoryIndex = 0; categoryIndex < categories.length; categoryIndex++) {
-      var tdClue = document.createElement('td');
-
-      tdClue.setAttribute('class', 'clue');
-      tdClue.setAttribute('id', `${rowIndex},${categoryIndex}`);
-
-      if (categories[categoryIndex].clues[rowIndex][3] === true) {
-        tdClue.textContent = `$${categories[categoryIndex].clues[rowIndex][0]}`;
-        tdClue.addEventListener('click', tdClickManager);
-      } else {
-        tdClue.textContent = '';
-      }
-      trClueRow.append(tdClue);
+      tdCategory.setAttribute('class', 'category');
+      trCategories.append(tdCategory);
     }
-    domReference.append(trClueRow);
+    domReference.append(trCategories);
+
+
+    for (var rowIndex = 0; rowIndex < categories.length - 1; rowIndex++) {
+      // PS: categories.lenght - 1 because we've used the first one for the top row
+      var trClueRow = document.createElement('tr');
+
+      for (var categoryIndex = 0; categoryIndex < categories.length; categoryIndex++) {
+        var tdClue = document.createElement('td');
+
+        tdClue.setAttribute('class', 'clue');
+        tdClue.setAttribute('id', `${rowIndex},${categoryIndex}`);
+
+        if (categories[categoryIndex].clues[rowIndex][3] === true) {
+          tdClue.textContent = `$${categories[categoryIndex].clues[rowIndex][0]}`;
+          tdClue.addEventListener('click', tdClickManager);
+        } else {
+          tdClue.textContent = '';
+        }
+        trClueRow.append(tdClue);
+      }
+      domReference.append(trClueRow);
+    }
+  } else {
+    gameOver();
   }
 }
 
@@ -192,6 +206,7 @@ function setHidden(clueId) {
 }
 
 function tdClickManager(event) {
+  clickCounter++;
   var clueToDisplay = getAClue(event.target.id);
   setHidden(event.target.id);
   table.innerHTML = '';
@@ -285,81 +300,80 @@ function clickScoreManager(event) {
 
   }
 
-
-  // toggle blank for that clue by accessing the clue constructor
-
   // clear table of buttons
   table.innerHTML = '';
 
-  // render board
   renderBoard(table);
 }
-
 var table = document.getElementById('table');
-var titleFormScreen = document.getElementById('title-form-screen'); // get to html div for screen for intro/form
+renderBoard(table);
 
-// render title screen and click on it to go to form
-function renderIntroScreen(domRefTitleForm) {
-  var title = document.createElement('h1');
-  console.log(`Before: Team A ${TeamA.name}, Team B ${TeamB.name}`);
-  title.textContent = 'JEOPARDY! (at Code Fellows)';
-  domRefTitleForm.append(title);
-  domRefTitleForm.addEventListener('click', welcomeClickManager);
-}
+// ----------------commented out Vik's form below:------------------------------
 
-// transition from title to form
-function welcomeClickManager(event) {
-  event.target.innerHTML = ''; // set title to blank
-  console.log(event);
-  console.log(event.target);
-  renderForm(titleFormScreen, event.target);
-}
+// var titleFormScreen = document.getElementById('title-form-screen'); // get to html div for screen for intro/form
 
-// form appended to table to input team names
-function renderForm(formInput, h1Content) {
-  formInput.removeEventListener('click', welcomeClickManager);
-  h1Content.removeEventListener('click', welcomeClickManager);
-  h1Content.parentNode.removeChild(h1Content); // removes previous h1
-  console.log(formInput);
-  var inputStatement = document.createElement('h1');
-  inputStatement.textContent = 'What are your team names?';
-  formInput.append(inputStatement);
+// // render title screen and click on it to go to form
+// function renderIntroScreen(domRefTitleForm) {
+//   var title = document.createElement('h1');
+//   console.log(`Before: Team A ${TeamA.name}, Team B ${TeamB.name}`);
+//   title.textContent = 'JEOPARDY! (at Code Fellows)';
+//   domRefTitleForm.append(title);
+//   domRefTitleForm.addEventListener('click', welcomeClickManager);
+// }
 
-  var form = document.createElement('form');
-  var team1Div = document.createElement('div');
-  form.append(team1Div);
-  var team1Label = document.createElement('label');
-  team1Div.append(team1Label);
-  team1Label.textContent = 'Team 1: ';
-  var team1Input = document.createElement('input');
-  team1Input.setAttribute('name', 'team1input');
-  team1Div.append(team1Input);
-  var team2Div = document.createElement('div');
-  form.append(team2Div);
-  var team2Label = document.createElement('label');
-  team2Label.textContent = 'Team 2: ';
-  team2Div.append(team2Label);
-  var team2Input = document.createElement('input');
-  team2Input.setAttribute('name', 'team2input');
-  team2Div.append(team2Input);
-  var submitNames = document.createElement('input');
-  submitNames.setAttribute('type', 'submit');
-  form.append(submitNames);
-  formInput.append(form);
-  submitNames.addEventListener('submit', function (event) {
-    // prevent page reload
-    event.preventDefault();
+// // transition from title to form
+// function welcomeClickManager(event) {
+//   event.target.innerHTML = ''; // set title to blank
+//   console.log(event);
+//   console.log(event.target);
+//   renderForm(titleFormScreen, event.target);
+// }
 
-    // input team names to objects
-    console.log(event.target.form[0].value);
-    console.log(event.target.form[1].value);
-    TeamA.name = event.target.form[0].value;
-    TeamB.name = event.target.form[1].value;
-    console.log(`After: Team A ${TeamA.name}, Team B ${TeamB.name}`);
+// // form appended to table to input team names
+// function renderForm(formInput, h1Content) {
+//   formInput.removeEventListener('click', welcomeClickManager);
+//   h1Content.removeEventListener('click', welcomeClickManager);
+//   h1Content.parentNode.removeChild(h1Content); // removes previous h1
+//   console.log(formInput);
+//   var inputStatement = document.createElement('h1');
+//   inputStatement.textContent = 'What are your team names?';
+//   formInput.append(inputStatement);
 
-    // render board
-    renderBoard(table);
-  });
-}
+//   var form = document.createElement('form');
+//   var team1Div = document.createElement('div');
+//   form.append(team1Div);
+//   var team1Label = document.createElement('label');
+//   team1Div.append(team1Label);
+//   team1Label.textContent = 'Team 1: ';
+//   var team1Input = document.createElement('input');
+//   team1Input.setAttribute('name', 'team1input');
+//   team1Div.append(team1Input);
+//   var team2Div = document.createElement('div');
+//   form.append(team2Div);
+//   var team2Label = document.createElement('label');
+//   team2Label.textContent = 'Team 2: ';
+//   team2Div.append(team2Label);
+//   var team2Input = document.createElement('input');
+//   team2Input.setAttribute('name', 'team2input');
+//   team2Div.append(team2Input);
+//   var submitNames = document.createElement('input');
+//   submitNames.setAttribute('type', 'submit');
+//   form.append(submitNames);
+//   formInput.append(form);
+//   submitNames.addEventListener('submit', function (event) {
+//     // prevent page reload
+//     event.preventDefault();
 
-renderIntroScreen(titleFormScreen);
+//     // input team names to objects
+//     console.log(event.target.form[0].value);
+//     console.log(event.target.form[1].value);
+//     TeamA.name = event.target.form[0].value;
+//     TeamB.name = event.target.form[1].value;
+//     console.log(`After: Team A ${TeamA.name}, Team B ${TeamB.name}`);
+
+//     // render board
+//     renderBoard(table);
+//   });
+// }
+
+// renderIntroScreen(titleFormScreen);
