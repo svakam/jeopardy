@@ -1,7 +1,7 @@
 
-html, body {
+html {
   background-color: black;
-  color: white;
+  color: gold;
 }
 
 table {
@@ -9,126 +9,122 @@ table {
   background-color: black;
 }
 
-table td {
-  height: 12vh;
-  width: 16vw;
-  border: medium solid black;
-  background-color: rgb(18,36,136);
-  text-align: center;
-}
-
-.category {
-  font-family: 'Merriweather', serif;
-  font-size: 2.2vw;
-  color: gold;
-  text-transform: uppercase;
-}
-
-.clue {
-  font-family: 'Public Sans', sans-serif;
-  color: gold;
-  text-decoration: none;
-  font-size: 5.5vw;
-}
-
-.bigScoreDiv {
-  background-color: rgb(18,36,136);
-  height: 50%;
-  display: flex;
-  width: 98.5vw;
-  justify-content: center;
-  align-items: center;
-  font-size: 15vh;
-  color: gold;
-  text-transform: uppercase;
-  text-align: center;
-  border: 0;
-}
-
-/* vik addition to fix correct/incorrect cards */
-#bigScoreDiv {
-  background-color: rgb(18,36,136);
-  position: relative;
-  bottom: 200px;
-}
-/* vik addition to fix correct/incorrect cards */
-
-.scoreText {
-  background-color: rgb(18,36,136);
-  color: gold;
-  text-decoration: none;
-  font-size: 2.5vw;
-  font-family: 'Electrolize', sans-serif;
-  /* vik addition to fix correct/incorrect cards */
-  text-align: center;
-  position: relative;
-  margin-left: 30%;
-  margin-right: 30%;
-  /* vik addition to fix correct/incorrect cards */
-}
-
-.scoreButton {
-  background-color: rgb(18,36,136);
-  /* vik addition to fix correct/incorrect cards */
-  color: gold;
-  font-size: 20pt;
-  padding: 10px;
-  margin: 10px;
-
-  /* vik addition to fix correct/incorrect cards */
-}
-
-/* vik addition to fix correct/incorrect cards */
-.scoreButton:hover {
-  color: rgb(218, 197, 196)
-}
-/* vik addition to fix correct/incorrect cards */
-
-/* vik addition to fix correct/incorrect cards */
-.scoreDiv {
-  margin-left: 24.5%;
-  margin-right: 10%;
-}
-/* vik addition to fix correct/incorrect cards */ 
-
-.bigClue {
-  background-color: rgb(18,36,136);
-  height: 100%;
-  display: flex;
-  width: 98.5vw;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Merriweather', serif;
-  font-size: 15vh;
-  color: gold;
-  text-transform: uppercase;
-  text-align: center;
-  border: 0;
-}
-
-.bigQuestion {
-  background-color: rgb(18,36,136);
-  height: 100%; /* vik change */
-  display: flex;
-  width: 98.5vw;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Merriweather', serif;
-  font-size: 15vh;
-  color: gold;
-  text-transform: uppercase;
-  text-align: center;
-  border: 0;
-}
-
 table td:hover {
   color: rgb(218, 197, 196)
 }
 
-.clue {
-  font-family: 'Public Sans', sans-serif;
+td {
+  height: 12vh;
+  width: 16vw;
+  border: medium solid black;
+  background-color: rgb(18,36,136);
   color: gold;
+  text-align: center;
+}
+
+.categoryTd {
+  font-family: 'Merriweather', serif;
+  font-size: 2.2vw;
+  text-transform: uppercase;
+}
+
+.clueTd {
+  font-family: 'Public Sans', sans-serif;
   text-decoration: none;
   font-size: 5.5vw;
 }
 
+.intro-page,
+.form-page,
+.clue-page,
+.question-page,
+.game-over-page{
+  height: 100vh;
+  background-color: rgb(18,36,136);
+  text-align: center;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Merriweather', serif;
+  font-size: 10vh;
+}
+
+.intro-page {
+  height: 100vh;
+}
+.form-page {
+  height: 100vh;
+}
+.clue-page {
+  height: 100vh;
+  font-size: 9vh;
+}
+.question-page{
+  font-size: 10vh;
+}
+.game-over-page{
+  height: 100vh;
+  font-size: 5vh;
+}
+
+/* #leader-board {
+  text-align: left;
+} */
+
+button {
+  display: block;
+}
+
+article {
+  display: inline-block;
+}
+
+.scoreButton:hover {
+  color: rgb(218, 197, 196);
+  background-color: gray;
+}
+
+.scoreDiv {
+  margin-left: 0%;
+}
+
+#team1Article {
+  position: relative;
+  margin-right: 100px;
+}
+
+#team2Article {
+  position: relative;
+  margin-left: 100px;
+}
+
+button:nth-child(1) {
+  position: relative;
+  left: 0.25em;
+  bottom: 0.25em;
+}
+
+#passArticle {
+  position: relative;
+  bottom: 0.5em;
+}
+
+.green:hover {
+  background-color: green;
+}
+
+.red:hover {
+  background-color: red;
+}
+
+.scoreButton {
+  background-color: rgb(18,36,136);
+  color: gold;
+  font-size: 20pt;
+  padding: 12px;
+  margin: 10px;
+  border-radius: 40px;
+  outline: none;
+}

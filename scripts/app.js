@@ -1,5 +1,3 @@
-'use strict';
-
 var categories = [];
 
 function Category(name, clues) {
@@ -8,62 +6,64 @@ function Category(name, clues) {
   categories.push(this);
 }
 
-var Cat0 = new Category('Category 0', [
-  [100, 'category 0 100 clue', 'category 0 100 question', true],
-  [200, 'category 0 200 clue', 'category 0 200 question', true],
-  [300, 'category 0 300 clue', 'category 0 300 question', true],
-  [400, 'category 0 400 clue', 'category 0 400 question', true],
-  [500, 'category 0 500 clue', 'category 0 500 question', true]
+// eslint-disable-next-line no-unused-vars
+var cat0 = new Category('Computer Science', [
+  [100, 'This javascript statement terminates the current loop or statement', 'What is \'break?\'', true],
+  [200, 'This word is reserved in JS for removing a property from an object', 'What is \'delete\'?', true],
+  [300, 'This compiled language used for data processing has been in use for 60 years', 'What is COBOL?', true],
+  [400, 'This famous actress and inventor created an encryption system based on the principles behind player pianos', 'Who is Hedy Lamarr?', true],
+  [500, 'This type of callback function is executed immediately when its outer function is invoked', 'What is a \'synchronous callback\'?', true],
 ]);
 
-var Cat1 = new Category('Category 1', [
-  [100, 'category 1 100 clue', 'category 1 100 question', true],
-  [200, 'category 1 200 clue', 'category 1 200 question', true],
-  [300, 'category 1 300 clue', 'category 1 300 question', true],
-  [400, 'category 1 400 clue', 'category 1 400 question', true],
-  [500, 'category 1 500 clue', 'category 1 500 question', true]
+// eslint-disable-next-line no-unused-vars
+var cat1 = new Category('Pop Culture', [
+  [100, 'This former NBA player is perhaps best known for a brief marriage to Kim Kardashian', 'Who is Kris Humphries?', true],
+  [200, 'January Jones is a former model married to a Manhattan advertising executive in this AMC original show', 'What is Mad Men?', true],
+  [300, 'This actress got her big break in the Harry Potter film series and later became known for her work as a women’s rights activist.', 'Who is Emma Watson?', true],
+  [400, 'This fictional character also goes by the name Art Vandelay', 'Who is George Costanza?', true],
+  [500, 'This pop singer\'s given name is Ashley Nicolette Frangipane', 'Who is Halsey?', true]
 ]);
 
-var Cat2 = new Category('Category 2', [
-  [100, 'category 2 100 clue', 'category 2 100 question', true],
-  [200, 'category 2 200 clue', 'category 2 200 question', true],
-  [300, 'category 2 300 clue', 'category 2 300 question', true],
-  [400, 'category 2 400 clue', 'category 2 400 question', true],
-  [500, 'category 2 500 clue', 'category 2 500 question', true]
+// eslint-disable-next-line no-unused-vars
+var cat2 = new Category('Seattle', [
+  [100, 'This Seattle icon was built in 1962 as part of the World\'s Fair', 'What is the Space Needle?', true],
+  [200, 'One of the members of this band from Aberdeen is part of the ‘27 Club’; other members of that club include Janis Joplin, Jimi Hendrix, and Jim Morrison', 'What is Nirvana?', true],
+  [300, 'You get a great view at the top of this 76-story building, the highest in the state of Washington', 'What is the Columbia Center?', true],
+  [400, 'These large glass domes are home to over 40,000 plants, as well as workspace for Amazon employees and retail stores', 'What are the Amazon spheres?', true],
+  [500, 'At the time of European settlers arriving, the area that is now Seattle was largely populated by these Native Americans', 'Who are the Duwamish tribe?', true]
 ]);
 
-var Cat3 = new Category('Category 3', [
-  [100, 'category 3 100 clue', 'category 3 100 question', true],
-  [200, 'category 3 200 clue', 'category 3 200 question', true],
-  [300, 'category 3 300 clue', 'category 3 300 question', true],
-  [400, 'category 3 400 clue', 'category 3 400 question', true],
-  [500, 'category 3 500 clue', 'category 3 500 question', true]
+// eslint-disable-next-line no-unused-vars
+var cat3 = new Category('US Presidents', [
+  [100, 'He has owned several beauty pageants, sleeps only  3-4 hours per night, and has called golf his \'primary form of exercise\'', 'Who is Donald Trump?', true],
+  [200, 'He initially tried to refuse a salary, but Congress insisted and he ended up receiving $25,000 per year during his term', 'Who is George Washington?', true],
+  [300, 'This former president now spends his time painting, poetry, fly-fishing, and volunteering with Habitat for Humanity', 'Who is Jimmy Carter?', true],
+  [400, 'This president served only 30 days in office', 'Who is William Harrison?', true],
+  [500, 'The only person to serve two non-consecutive terms as president', 'Who is Grover Cleveland?', true]
 ]);
 
-var Cat4 = new Category('Category 4', [
-  [100, 'category 4 100 clue', 'category 4 100 question', true],
-  [200, 'category 4 200 clue', 'category 4 200 question', true],
-  [300, 'category 4 300 clue', 'category 4 300 question', true],
-  [400, 'category 4 400 clue', 'category 4 400 question', true],
-  [500, 'category 4 500 clue', 'category 4 500 question', true]
+// eslint-disable-next-line no-unused-vars
+var cat4 = new Category('Potpourri', [
+  [100, 'This heavyweight champion is the only one to finish his career undefeated', 'Who is Rocky Marciano?', true],
+  [200, 'This sport involves a bat, a ball, and a wicket at each end of the pitch', 'What is cricket?', true],
+  [300, 'This monk with a recognizable name is credited with inventing champagne', 'Who is Dom Perignon?', true],
+  [400, 'This type of craftsman takes care of horse hooves, including trimming hooves and placing horseshoes.', 'What is a farrier?', true],
+  [500, 'This state, known for its libertarian leanings, has a motto of \'Live Free or Die\'', 'What is New Hampshire?', true]
 ]);
 
-var Cat5 = new Category('Category 5', [
-  [100, 'category 5 100 clue', 'category 5 100 question', true],
-  [200, 'category 5 200 clue', 'category 5 200 question', true],
-  [300, 'category 5 300 clue', 'category 5 300 question', true],
-  [400, 'category 5 400 clue', 'category 5 400 question', true],
-  [500, 'category 5 500 clue', 'category 5 500 question', true]
+// eslint-disable-next-line no-unused-vars
+var cat5 = new Category('Word Origins', [
+  [100, '\'Vaccination\' comes from the Latin word vacca, the word for this animal', 'What is \'cow\'?', true],
+  [200, 'The word \'buckaroo\' is a play on this Spanish word meaning cowboy', 'What is \'vaquero\'?', true],
+  [300, 'This medical term comes from a combination of Greek words meaning \'against\' and \'life\'', 'What is \'antibiotic\'?', true],
+  [400, 'This word describing confusion and uproar comes from the name \'Hospital of St Mary of Bethlehem\', a mental hospital in the 1300s', 'What is \'bedlam\'?', true],
+  [500, 'This clothing item was named for a coral reef in the Marshall Islands which was a site of nuclear testing', 'What is a bikini?', true]
 ]);
-
-
-
-// Laura - local storage:
 
 var localStorageData = 'localStorageData';
-// note that the allTeamsEver array will contain every team ever to play the game
+
 var allTeamsEver = [];
-// the teams array can be just for the two current teams playing
+
 var teams = [];
 
 function Team(name, newScore) {
@@ -72,7 +72,6 @@ function Team(name, newScore) {
   teams.push(this);
 
   this.loadData = function (data) {
-    // data parameter will be a parsed object
     this.name = data.name;
     this.currentScore = data.currentScore;
   };
@@ -81,14 +80,12 @@ function Team(name, newScore) {
 var teamA = new Team(name, 0);
 var teamB = new Team(name, 0);
 
-//to determine whether to draw from local storage:
+
 if (localStorage.getItem(localStorageData) === null) {
-  // if localstorage is empty, just take in team names like normal and therefore the two current teams would also be all the teams ever
-  // allTeamsEver = teams;
+  allTeamsEver.push(teamA);
+  allTeamsEver.push(teamB);
 } else {
-  // if localstorage contains items, get them
   var jsonData = localStorage.getItem(localStorageData);
-  // parse them
   var data = JSON.parse(jsonData);
   // load them into the array (load current teams at end of game)
   for (var i = 0; i < data.length; i++) {
@@ -104,53 +101,103 @@ function saveTeamDataLocally() {
   localStorage.setItem(localStorageData, jsonData);
 }
 
-function gameOver() {
-  var table = document.getElementById('table');
-  table.innerHTML = '';
+function makeLeadersArray() {
 
-  var gameOverDisplay = document.createElement('p');
-  gameOverDisplay.textContent = `Game Over! Final Scores: ${teams[0].name}: ${teams[0].currentScore}, ${teams[1].name}: ${teams[1].currentScore} `;
-  table.append(gameOverDisplay);
+  var tempArray = [];
 
-  // var leaderboard = document.createElement('ul');
-  // leaderboard.textContent = 'Here are the all time winners:';
-  // var leaderboard1 = document.createElement('li');
-  // leaderboard1.textContent =
+  for (var i = 0; i < allTeamsEver.length; i++) {
+    tempArray.push(allTeamsEver[i]);
+  }
 
-  //   table.append(leaderboard);
-  allTeamsEver.push(teams);
-  saveTeamDataLocally();
-  teams = [];
+  if (allTeamsEver.length >= 10) {
+    var num = 10;
+  } else {
+    num = allTeamsEver.length;
+  }
+
+  var leadersArray = [];
+
+  while (leadersArray.length < num) {
+    var max = tempArray[0].currentScore;
+    var maxIndex = 0;
+
+    for (var j = 1; j < tempArray.length; j++) {
+      if (tempArray[j].currentScore > max) {
+        maxIndex = j;
+        max = tempArray[j].currentScore;
+      }
+    }
+    leadersArray.push(tempArray[maxIndex]);
+    tempArray.splice(maxIndex, 1);
+  }
+  return leadersArray;
 }
 
-// detect end of game:
-var clickCounter = 0;
+function gameOver() {
+  table.innerHTML = '';
 
-// end local storage
+  var gameOverPage = document.createElement('div');
+  gameOverPage.setAttribute('class', 'game-over-page');
+
+  var gameOverDisplay = document.createElement('p');
+  gameOverDisplay.setAttribute('id', 'final-scores');
+  gameOverDisplay.textContent = `Game Over! Final Scores: ${teams[0].name}: ${teams[0].currentScore}, ${teams[1].name}: ${teams[1].currentScore} `;
+  gameOverPage.append(gameOverDisplay);
+
+  var leaderboard = document.createElement('ol');
+  leaderboard.setAttribute('id', 'leader-board');
+  leaderboard.textContent = 'Check out the all time high scores:';
+
+  var leadArray = makeLeadersArray();
+
+  for (var i = 0; i < leadArray.length; i++) {
+    var score = document.createElement('li');
+    score.textContent = `${leadArray[i].name}: $${leadArray[i].currentScore}`;
+    score.setAttribute('id', `score-${i}`);
+    leaderboard.append(score);
+  }
+
+  gameOverPage.append(leaderboard);
+  table.append(gameOverPage);
+
+  saveTeamDataLocally();
+  teams = [];
+
+  // vik - added refresh button. still need to test once local storage back up and running
+  var refresh = document.createElement('button');
+  refresh.setAttribute('type', 'submit');
+  refresh.setAttribute('class', 'scoreButton');
+  refresh.setAttribute('onClick', 'window.location.reload();');
+  refresh.textContent = 'Play Again!';
+  gameOverPage.append(refresh);
+}
+
+var clickCounter = 0;
 
 
 function renderBoard(domReference) {
-  if (clickCounter < 2) {
+  if (clickCounter < 10) {
+    var tableJeopardy = document.createElement('table');
+    tableJeopardy.setAttribute('class', 'jeopardy-page');
     var trCategories = document.createElement('tr');
     for (var categoryTitleIndex = 0; categoryTitleIndex < categories.length; categoryTitleIndex++) {
       var tdCategory = document.createElement('td');
 
       tdCategory.textContent = categories[categoryTitleIndex].name;
 
-      tdCategory.setAttribute('class', 'category');
+      tdCategory.setAttribute('class', 'categoryTd');
       trCategories.append(tdCategory);
     }
-    domReference.append(trCategories);
+    tableJeopardy.append(trCategories);
 
 
     for (var rowIndex = 0; rowIndex < categories.length - 1; rowIndex++) {
-      // PS: categories.lenght - 1 because we've used the first one for the top row
       var trClueRow = document.createElement('tr');
 
       for (var categoryIndex = 0; categoryIndex < categories.length; categoryIndex++) {
         var tdClue = document.createElement('td');
 
-        tdClue.setAttribute('class', 'clue');
+        tdClue.setAttribute('class', 'clueTd');
         tdClue.setAttribute('id', `${rowIndex},${categoryIndex}`);
 
         if (categories[categoryIndex].clues[rowIndex][3] === true) {
@@ -161,11 +208,13 @@ function renderBoard(domReference) {
         }
         trClueRow.append(tdClue);
       }
-      domReference.append(trClueRow);
+      tableJeopardy.append(trClueRow);
     }
+    domReference.append(tableJeopardy);
   } else {
     gameOver();
   }
+  domReference.append(tableJeopardy);
 }
 
 function getCurrentScores() {
@@ -210,7 +259,7 @@ function tdClickManager(event) {
   var clueDisplayDiv = document.createElement('div');
   clueDisplayDiv.textContent = clueToDisplay;
   clueDisplayDiv.setAttribute('id', event.target.id);
-  clueDisplayDiv.setAttribute('class', 'bigClue');
+  clueDisplayDiv.setAttribute('class', 'clue-page');
 
   table.append(clueDisplayDiv);
   clueDisplayDiv.addEventListener('click', clueClickManager);
@@ -220,81 +269,132 @@ function clueClickManager(event) {
   var question = getQuestion(event.target.id);
   table.innerHTML = '';
 
+  var questionPage = document.createElement('div');
+  questionPage.setAttribute('class', 'question-page');
+
   var questionDisplayDiv = document.createElement('div');
-  questionDisplayDiv.setAttribute('class', 'bigQuestion');
+  questionDisplayDiv.setAttribute('class', 'question-page-upper-half');
   questionDisplayDiv.setAttribute('id', event.target.id);
   questionDisplayDiv.textContent = question;
-  table.append(questionDisplayDiv);
+  questionPage.append(questionDisplayDiv);
 
+  // div for both score display and buttons
   var bigScoreDiv = document.createElement('div');
   bigScoreDiv.setAttribute('id', 'bigScoreDiv');
 
+
+  // div for scores
   var scoresDiv = document.createElement('div');
   scoresDiv.setAttribute('class', 'scoreText');
   scoresDiv.textContent = getCurrentScores();
   bigScoreDiv.append(scoresDiv);
 
+  // div for buttons
   var buttonsDisplayDiv = document.createElement('div');
   buttonsDisplayDiv.setAttribute('class', 'scoreDiv');
 
+  // container for team 1
+  var team1Article = document.createElement('article');
+  team1Article.setAttribute('id', 'team1Article');
+
   var team1Correct = document.createElement('button');
-  team1Correct.setAttribute('class', 'scoreButton');
-  team1Correct.setAttribute('id', event.target.id);
-  team1Correct.textContent = `${teamA.name} correct`;
+  team1Correct.setAttribute('class', 'scoreButton green');
+  team1Correct.setAttribute('id', `${event.target.id} team1correct`);
+  console.log(`team 1 correct ${team1Correct.getAttribute('id')}`);
+  team1Correct.textContent = 'Correct';
   team1Correct.addEventListener('click', clickScoreManager);
-  buttonsDisplayDiv.append(team1Correct);
+  team1Article.append(team1Correct);
 
   var team1Incorrect = document.createElement('button');
-  team1Incorrect.setAttribute('class', 'scoreButton');
-  team1Incorrect.setAttribute('id', event.target.id);
-  team1Incorrect.textContent = `${teamA.name} incorrect`;
+  team1Incorrect.setAttribute('class', 'scoreButton red');
+  team1Incorrect.setAttribute('id', `${event.target.id} team1incorrect`);
+
+  console.log(`team 1 incorrect ${team1Incorrect.getAttribute('id')}`);
+
+  team1Incorrect.textContent = 'Incorrect';
   team1Incorrect.addEventListener('click', clickScoreManager);
-  buttonsDisplayDiv.append(team1Incorrect);
+  team1Article.append(team1Incorrect);
+
+  // container for pass
+  var passArticle = document.createElement('article');
+  passArticle.setAttribute('id', 'passArticle');
+
+  var pass = document.createElement('button');
+  pass.setAttribute('class', 'scoreButton');
+  pass.setAttribute('id', event.target.id);
+  pass.textContent = 'PASS';
+  pass.addEventListener('click', clickScoreManager);
+  passArticle.append(pass);
+
+  // container for team 2
+  var team2Article = document.createElement('article');
+  team2Article.setAttribute('id', 'team2Article');
 
   var team2Correct = document.createElement('button');
-  team2Correct.setAttribute('class', 'scoreButton');
-  team2Correct.setAttribute('id', event.target.id);
-  team2Correct.textContent = `${teamB.name} correct`;
+  team2Correct.setAttribute('class', 'scoreButton green');
+  team2Correct.setAttribute('id', `${event.target.id} team2correct`);
+
+  console.log(`team 2 correct ${team2Correct.getAttribute('id')}`);
+
+  team2Correct.textContent = 'Correct';
   team2Correct.addEventListener('click', clickScoreManager);
-  buttonsDisplayDiv.append(team2Correct);
+  team2Article.append(team2Correct);
 
   var team2Incorrect = document.createElement('button');
-  team2Incorrect.setAttribute('class', 'scoreButton');
-  team2Incorrect.setAttribute('id', event.target.id);
-  team2Incorrect.textContent = `${teamB.name} incorrect`;
-  team2Incorrect.addEventListener('click', clickScoreManager);
-  buttonsDisplayDiv.append(team2Incorrect);
+  team2Incorrect.setAttribute('class', 'scoreButton red'); // assigning multiple classes through JS like this! took me a long time to figure this out - va
+  team2Incorrect.setAttribute('id', `${event.target.id} team2incorrect`);
 
+  console.log(`team 2 incorrect ${team2Incorrect.getAttribute('id')}`);
+
+  team2Incorrect.textContent = 'Incorrect';
+  team2Incorrect.addEventListener('click', clickScoreManager);
+  team2Article.append(team2Incorrect);
+
+  // append question and button containers to table
+  buttonsDisplayDiv.append(team1Article);
+  buttonsDisplayDiv.append(passArticle);
+  buttonsDisplayDiv.append(team2Article);
   bigScoreDiv.append(buttonsDisplayDiv);
-  table.append(bigScoreDiv);
+
+  questionPage.append(bigScoreDiv);
+  table.append(questionPage);
 }
 
 function clickScoreManager(event) {
   var pointValue = getValue(event.target.id);
+  console.log(pointValue);
+  console.log(event.target.id);
+  console.log(event.target.id.includes('team1correct'));
   // if a button clicked id = team1/2 correct/incorrect, change score by accessing the team constructor
-  if (event.target.innerText === `${teamA.name} correct`) {
+  if (event.target.id.includes('team1correct')) {
     // increment team 1 score by the cell's score
     updateScore(teamA, pointValue);
     console.log(`team a current score is now ${teamA.currentScore}`);
   }
 
-  if (event.target.innerText === `${teamA.name} incorrect`) {
+  if (event.target.id.includes('team1incorrect')) {
     // decrement team 1 score by the cell's score
     updateScore(teamA, -pointValue);
     console.log(`team a current score is now ${teamA.currentScore}`);
   }
 
-  if (event.target.innerText === `${teamB.name} correct`) {
+  if (event.target.innerText === 'PASS') {
+    // do nothing
+    console.log('pass');
+  }
+
+  if (event.target.id.includes('team2correct')) {
     // increment team 2 score by the cell's score
     updateScore(teamB, pointValue);
     console.log(`team b current score is now ${teamB.currentScore}`);
   }
 
-  if (event.target.innerText === `${teamB.name} incorrect`) {
+  if (event.target.id.includes('team2incorrect')) {
     // decrement team 2 score by the cell's score
     updateScore(teamB, -pointValue);
+    console.log(event.target.id.includes('team1correct'));
+    console.log(event.target.id.includes('team2incorrect'));
     console.log(`team b current score is now ${teamB.currentScore}`);
-
   }
 
   // clear table of buttons
@@ -303,35 +403,39 @@ function clickScoreManager(event) {
   renderBoard(table);
 }
 
-var table = document.getElementById('table');
-var titleFormScreen = document.getElementById('title-form-screen'); // get to html div for screen for intro/form
-
 // render title screen and click on it to go to form
-function renderIntroScreen(domRefTitleForm) {
-  var title = document.createElement('h1');
-  console.log(`Before: Team A ${teamA.name}, Team B ${teamB.name}`);
-  title.textContent = 'JEOPARDY! (at Code Fellows)';
-  domRefTitleForm.append(title);
-  domRefTitleForm.addEventListener('click', welcomeClickManager);
+function renderIntroScreen(table) {
+  var title = document.createElement('div');
+  title.setAttribute('class', 'intro-page');
+  title.textContent = 'JEOPARDY</>';
+  table.append(title);
+  table.addEventListener('click', welcomeClickManager);
 }
 
 // transition from title to form
 function welcomeClickManager(event) {
   event.target.innerHTML = ''; // set title to blank
-  console.log(event);
-  console.log(event.target);
-  renderForm(titleFormScreen, event.target);
+
+  renderForm(table, event.target);
 }
 
 // form appended to table to input team names
-function renderForm(formInput, h1Content) {
+function renderForm(formInput, introContent) {
+
   formInput.removeEventListener('click', welcomeClickManager);
-  h1Content.removeEventListener('click', welcomeClickManager);
-  h1Content.parentNode.removeChild(h1Content); // removes previous h1
-  console.log(formInput);
-  var inputStatement = document.createElement('h1');
+  introContent.removeEventListener('click', welcomeClickManager);
+  introContent.parentNode.removeChild(introContent); // removes previous content
+
+  var formPage = document.createElement('div');
+  formPage.setAttribute('class', 'form-page');
+
+  var inputStatement = document.createElement('p');
   inputStatement.textContent = 'What are your team names?';
-  formInput.append(inputStatement);
+
+  formPage.append(inputStatement);
+  formInput.append(formPage);
+
+
 
   var form = document.createElement('form');
 
@@ -360,7 +464,10 @@ function renderForm(formInput, h1Content) {
   submitNames.setAttribute('type', 'submit');
   submitNames.textContent = 'Let\'s go!';
   form.append(submitNames);
-  formInput.append(form);
+
+  formPage.append(form);
+  formInput.append(formPage);
+
   form.addEventListener('submit', submitNamesAndPlayManager);
 }
 
@@ -376,8 +483,9 @@ function submitNamesAndPlayManager(event) {
   console.log(`After: Team A ${teamA.name}, Team B ${teamB.name}`);
 
   // render board
-  titleFormScreen.innerHTML = '';
+  table.innerHTML = '';
   renderBoard(table);
 }
 
-renderIntroScreen(titleFormScreen);
+var table = document.getElementById('Jeopardy!');
+renderIntroScreen(table);
