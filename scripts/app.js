@@ -351,7 +351,7 @@ function clickScoreManager(event) {
 // render title screen and click on it to go to form
 function renderIntroScreen(table) {
   var title = document.createElement('div');
-  title.setAttribute('class', 'displayBig');
+  title.setAttribute('class', 'intro-page');
   title.textContent = 'JEOPARDY</>';
   table.append(title);
   table.addEventListener('click', welcomeClickManager);
@@ -365,18 +365,21 @@ function welcomeClickManager(event) {
 }
 
 // form appended to table to input team names
-function renderForm(formInput, h1Content) {
+function renderForm(formInput, introContent) {
 
   formInput.removeEventListener('click', welcomeClickManager);
-  h1Content.removeEventListener('click', welcomeClickManager);
-  h1Content.parentNode.removeChild(h1Content); // removes previous h1
+  introContent.removeEventListener('click', welcomeClickManager);
+  introContent.parentNode.removeChild(introContent); // removes previous content
 
-  var inputStatement = document.createElement('h1');
+  var inputStatement = document.createElement('div');
+  inputStatement.setAttribute('class', 'form-page');
+
   inputStatement.textContent = 'What are your team names?';
 
   formInput.append(inputStatement);
 
   var form = document.createElement('form');
+  form.setAttribute('class', 'form-page');
 
   // team 1 elements
   var team1Div = document.createElement('div');
