@@ -56,14 +56,10 @@ var Cat5 = new Category('Category 5', [
   [500, 'category 5 500 clue', 'category 5 500 question', true]
 ]);
 
-
-
-// Laura - local storage:
-
 var localStorageData = 'localStorageData';
-// note that the allTeamsEver array will contain every team ever to play the game
+
 var allTeamsEver = [];
-// the teams array can be just for the two current teams playing
+
 var teams = [];
 
 function Team(name, newScore) {
@@ -104,6 +100,35 @@ function saveTeamDataLocally() {
   localStorage.setItem(localStorageData, jsonData);
 }
 
+function makeLeadersArray(arr) {
+  // make temparray of ALL OBJECTS from allTeamsEver
+  var tempArray = [];
+  for (var i = 0; i < allTeamsEver.length; i++) {
+    tempArray.push(allTeamsEver[i]);
+  }
+
+  // make a leadersarray which will contain ordered top 10 of all time
+  var leadersArray = [];
+
+  //loop this while leadersarray<10 long:
+  while (leadersArray.length < 10) {
+    var max = tempArray[0].currentScore;
+    var maxIndex = 0;
+    // find the max/indexOfMax of temparray
+    for (var j = 1; j < tempArray.length; j++) {
+      if (tempArray[j].currentScore > max) {
+        maxIndex = j;
+        max = tempArray[j].currentScore;
+      }
+    }
+    // take that index and push the corresponding object into a leaders array
+    leadersArray.push(tempArray[maxIndex]);
+    // remove that index from the temparray
+    tempArray.splice(maxIndex, 1);
+  }
+  return leadersArray;
+}
+
 function gameOver() {
   var table = document.getElementById('table');
   table.innerHTML = '';
@@ -112,25 +137,32 @@ function gameOver() {
   gameOverDisplay.textContent = `Game Over! Final Scores: ${teams[0].name}: ${teams[0].currentScore}, ${teams[1].name}: ${teams[1].currentScore} `;
   table.append(gameOverDisplay);
 
-  // var leaderboard = document.createElement('ul');
-  // leaderboard.textContent = 'Here are the all time winners:';
-  // var leaderboard1 = document.createElement('li');
-  // leaderboard1.textContent =
+  var leaderboard = document.createElement('ol');
+  leaderboard.textContent = 'Check out the all time high scores:';
 
-  //   table.append(leaderboard);
-  allTeamsEver.push(teams);
+  allTeamsEver.push(teams[0]);
+  allTeamsEver.push(teams[1]);
+
+  var leadArray = makeLeadersArray();
+
+  for (var i = 0; i < leadArray.length; i++) {
+    var score = document.createElement('li');
+    score.textContent = `${leadArray[i].name}: $${leadArray[i].currentScore}`;
+    score.setAttribute('id', `score-${i}`);
+    leaderboard.append(score);
+  }
+
+  table.append(leaderboard);
+
   saveTeamDataLocally();
   teams = [];
 }
 
-// detect end of game:
 var clickCounter = 0;
-
-// end local storage
 
 
 function renderBoard(domReference) {
-  if (clickCounter < 2) {
+  if (clickCounter < 30) {
     var trCategories = document.createElement('tr');
     for (var categoryTitleIndex = 0; categoryTitleIndex < categories.length; categoryTitleIndex++) {
       var tdCategory = document.createElement('td');
