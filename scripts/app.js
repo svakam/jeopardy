@@ -56,14 +56,10 @@ var Cat5 = new Category('Category 5', [
   [500, 'category 5 500 clue', 'category 5 500 question', true]
 ]);
 
-
-
-// Laura - local storage:
-
 var localStorageData = 'localStorageData';
-// note that the allTeamsEver array will contain every team ever to play the game
+
 var allTeamsEver = [];
-// the teams array can be just for the two current teams playing
+
 var teams = [];
 
 function Team(name, newScore) {
@@ -104,6 +100,36 @@ function saveTeamDataLocally() {
   localStorage.setItem(localStorageData, jsonData);
 }
 
+function makeLeaderboard(arr) {
+  // make temparray of ALL OBJECTS from allTeamsEver
+  var tempArray = [];
+  for (var i = 0; i < allTeamsEver.length; i++) {
+    tempArray.push(allTeamsEver[i]);
+  }
+
+  // make a leadersarray which will contain ordered top 10 of all time
+  var leadersArray = [];
+
+  //loop this while leadersarray<10 long:
+  while (leadersArray.length < 10) {
+    var max = tempArray[0].currentScore;
+    var maxIndex = 0;
+    // find the max/indexOfMax of temparray
+    for (var i = 1; i < tempArray.length; i++) {
+      if (tempArray[i].currentScore > max) {
+        maxIndex = i;
+        max = tempArray[i].currentScore;
+      }
+    }
+    // take that index and push the corresponding object into a leaders array
+    leadersArray.push(tempArray[maxIndex]);
+    // remove that index from the temparray
+    tempArray.splice(maxIndex, 1);
+  }
+  // render the leaderboard (ol with lis)
+  return leadersArray
+}
+
 function gameOver() {
   var table = document.getElementById('table');
   table.innerHTML = '';
@@ -112,12 +138,14 @@ function gameOver() {
   gameOverDisplay.textContent = `Game Over! Final Scores: ${teams[0].name}: ${teams[0].currentScore}, ${teams[1].name}: ${teams[1].currentScore} `;
   table.append(gameOverDisplay);
 
-  // var leaderboard = document.createElement('ul');
-  // leaderboard.textContent = 'Here are the all time winners:';
-  // var leaderboard1 = document.createElement('li');
-  // leaderboard1.textContent =
+  var leaderboard = document.createElement('ol');
+  leaderboard.textContent = 'Check out the all time high scores:';
+  var score1 = document.createElement('li');
+  leaderboard1.textContent =
 
-  //   table.append(leaderboard);
+    table.append(leaderboard);
+
+
   allTeamsEver.push(teams);
   saveTeamDataLocally();
   teams = [];
