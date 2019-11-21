@@ -165,6 +165,14 @@ function gameOver() {
 
   saveTeamDataLocally();
   teams = [];
+
+  // vik - added refresh button. still need to test once local storage back up and running
+  var refresh = document.createElement('button');
+  refresh.setAttribute('type', 'submit');
+  refresh.setAttribute('class', 'scoreButton');
+  refresh.setAttribute('onClick', 'window.location.reload();');
+  refresh.textContent = 'Play Again!';
+  gameOverPage.append(refresh);
 }
 
 var clickCounter = 0;
@@ -468,7 +476,7 @@ function renderForm(formInput, introContent) {
 
 function submitNamesAndPlayManager(event) {
   // prevent page reload
-  // event.preventDefault();
+  event.preventDefault();
 
   // input team names to objects
   var teamAinput = event.target[0];

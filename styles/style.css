@@ -59,6 +59,7 @@ td {
 }
 .clue-page {
   height: 100vh;
+  font-size: 9vh;
 }
 .question-page{
   font-size: 10vh;
@@ -68,9 +69,9 @@ td {
   font-size: 5vh;
 }
 
-#leader-board {
-  /* text-align: left; */
-}
+/* #leader-board {
+  text-align: left;
+} */
 
 button {
   display: block;
@@ -86,7 +87,7 @@ article {
 }
 
 .scoreDiv {
-  margin-left: 5%;
+  margin-left: 0%;
 }
 
 #team1Article {
