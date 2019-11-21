@@ -104,7 +104,7 @@ function saveTeamDataLocally() {
   localStorage.setItem(localStorageData, jsonData);
 }
 
-function makeLeadersArray(arr) {
+function makeLeadersArray() {
   // make temparray of ALL OBJECTS from allTeamsEver
   var tempArray = [];
   for (var i = 0; i < allTeamsEver.length; i++) {
@@ -264,7 +264,6 @@ function clueClickManager(event) {
   var question = getQuestion(event.target.id);
   table.innerHTML = '';
 
-  alert(question)
   var questionPage = document.createElement('div');
   questionPage.setAttribute('class', 'question-page');
 
@@ -277,7 +276,7 @@ function clueClickManager(event) {
   // div for both score display and buttons
   var bigScoreDiv = document.createElement('div');
   bigScoreDiv.setAttribute('id', 'bigScoreDiv');
-  
+
 
   // div for scores
   var scoresDiv = document.createElement('div');
@@ -428,7 +427,7 @@ function renderForm(formInput, introContent) {
   var inputStatement = document.createElement('p');
   inputStatement.textContent = 'What are your team names?';
 
-  formPage.append(inputStatement)
+  formPage.append(inputStatement);
   formInput.append(formPage);
 
 
