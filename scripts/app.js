@@ -129,7 +129,7 @@ function makeLeadersArray(arr) {
   return leadersArray;
 }
 
-function gameOver(table) {
+function gameOver() {
 
   // var table = document.getElementById('Jeopardy');
   table.innerHTML = '';
@@ -198,7 +198,7 @@ function renderBoard(domReference) {
       tableJeopardy.append(trClueRow);
     }
   } else {
-    gameOver(tableJeopardy);
+    gameOver();
   }
   domReference.append(tableJeopardy);
 }
@@ -337,9 +337,6 @@ function clickScoreManager(event) {
 
   renderBoard(table);
 }
-
-
-// var table = document.getElementById('title-form-screen'); // get to html div for screen for intro/form
 
 // render title screen and click on it to go to form
 function renderIntroScreen(table) {
