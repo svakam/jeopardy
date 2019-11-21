@@ -130,15 +130,18 @@ function makeLeadersArray(arr) {
 }
 
 function gameOver() {
-
-  // var table = document.getElementById('Jeopardy');
   table.innerHTML = '';
 
+  var gameOverPage = document.createElement('div');
+  gameOverPage.setAttribute('class', 'game-over-page');
+
   var gameOverDisplay = document.createElement('p');
+  gameOverDisplay.setAttribute('id', 'final-scores');
   gameOverDisplay.textContent = `Game Over! Final Scores: ${teams[0].name}: ${teams[0].currentScore}, ${teams[1].name}: ${teams[1].currentScore} `;
-  table.append(gameOverDisplay);
+  gameOverPage.append(gameOverDisplay);
 
   var leaderboard = document.createElement('ol');
+  leaderboard.setAttribute('id', 'leader-board');
   leaderboard.textContent = 'Check out the all time high scores:';
 
   allTeamsEver.push(teams[0]);
@@ -153,7 +156,8 @@ function gameOver() {
     leaderboard.append(score);
   }
 
-  table.append(leaderboard);
+  gameOverPage.append(leaderboard);
+  table.append(gameOverPage);
 
   saveTeamDataLocally();
   teams = [];
@@ -171,20 +175,19 @@ function renderBoard(domReference) {
 
       tdCategory.textContent = categories[categoryTitleIndex].name;
 
-      tdCategory.setAttribute('class', 'category');
+      tdCategory.setAttribute('class', 'categoryTd');
       trCategories.append(tdCategory);
     }
     tableJeopardy.append(trCategories);
 
 
     for (var rowIndex = 0; rowIndex < categories.length - 1; rowIndex++) {
-      // PS: categories.lenght - 1 because we've used the first one for the top row
       var trClueRow = document.createElement('tr');
 
       for (var categoryIndex = 0; categoryIndex < categories.length; categoryIndex++) {
         var tdClue = document.createElement('td');
 
-        tdClue.setAttribute('class', 'clue');
+        tdClue.setAttribute('class', 'clueTd');
         tdClue.setAttribute('id', `${rowIndex},${categoryIndex}`);
 
         if (categories[categoryIndex].clues[rowIndex][3] === true) {
@@ -341,7 +344,7 @@ function clickScoreManager(event) {
 // render title screen and click on it to go to form
 function renderIntroScreen(table) {
   var title = document.createElement('div');
-
+  title.setAttribute('class', 'displayBig');
   title.textContent = 'JEOPARDY</>';
   table.append(title);
   table.addEventListener('click', welcomeClickManager);
@@ -395,8 +398,6 @@ function renderForm(formInput, h1Content) {
   form.append(submitNames);
   formInput.append(form);
   form.addEventListener('submit', submitNamesAndPlayManager);
-
-
 }
 
 function submitNamesAndPlayManager(event) {
