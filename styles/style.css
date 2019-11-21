@@ -9,6 +9,10 @@ table {
   background-color: black;
 }
 
+table td:hover {
+  color: rgb(218, 197, 196)
+}
+
 td {
   height: 12vh;
   width: 16vw;
@@ -39,30 +43,34 @@ td {
   background-color: rgb(18,36,136);
   text-align: center;
   text-transform: uppercase;
-  /* height: 100%; */
   display: flex;
-  width: 98.5vw;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* align-items: center; */
+  font-family: 'Merriweather', serif;
+  font-size: 10vh;
 }
 
-#bigScoreDiv {
-  background-color: rgb(18,36,136);
-  position: relative;
-  bottom: 200px;
+.intro-page {
+  height: 100vh;
 }
-
-.scoreText {
-  background-color: rgb(18,36,136);
-  color: gold;
-  text-decoration: none;
-  font-size: 2.5vw;
+.form-page {
+  height: 100vh;
+}
+.clue-page {
+  height: 100vh;
+}
+.question-page{
   font-family: 'Electrolize', sans-serif;
-  text-align: center;
-  position: relative;
-  margin-left: 30%;
-  margin-right: 30%;
+  font-size: 1vh;
+}
+.game-over-page{
+  height: 100vh;
+  font-size: 5vh;
+}
+
+#leader-board {
+  text-align: left;
 }
 
 button {
@@ -120,6 +128,26 @@ button:nth-child(1) {
   border-radius: 40px;
   outline: none;
 }
+/*
+#bigScoreDiv {
+  background-color: rgb(18,36,136);
+  position: relative;
+  bottom: 200px;
+}
+
+.scoreText {
+  background-color: rgb(18,36,136);
+  color: gold;
+  text-decoration: none;
+  font-size: 2.5vw;
+
+  text-align: center;
+  position: relative;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+
 
 .bigClue {
   background-color: rgb(18,36,136);
@@ -138,9 +166,9 @@ button:nth-child(1) {
 
 .bigQuestion {
   background-color: rgb(18,36,136);
-  height: 100%; /* modify? */
+  height: 100%;
   display: flex;
-  width: 100%; /* vh was making the whole viewport scrollable? it still kind of is */
+  width: 100%;
   justify-content: center;
   align-items: center;
   font-family: 'Merriweather', serif;
@@ -151,25 +179,11 @@ button:nth-child(1) {
   border: 0;
 }
 
-table td:hover {
-  color: rgb(218, 197, 196)
-}
-
+/*
 .clue {
   font-family: 'Public Sans', sans-serif;
   color: gold;
   text-decoration: none;
   font-size: 5.5vw;
-}
-
-/* .intro-page {
-}
-.form-page {
-}
-.clue-page {
-}
-.question-page{
-}
-.game-over-page{
-}
+} */
 
