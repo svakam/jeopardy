@@ -78,12 +78,8 @@ function Team(name, newScore) {
   };
 }
 
-var TeamA = new Team('raptors', 0);
-var TeamB = new Team('panthers', 0);
-
-// var TeamA = new Team(name, 0);
-// var TeamB = new Team(name, 0);
-
+var TeamA = new Team(name, 0);
+var TeamB = new Team(name, 0);
 
 //to determine whether to draw from local storage:
 if (localStorage.getItem(localStorageData) === null) {
