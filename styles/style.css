@@ -61,8 +61,7 @@ td {
   height: 100vh;
 }
 .question-page{
-  font-family: 'Electrolize', sans-serif;
-  font-size: 1vh;
+  font-size: 10vh;
 }
 .game-over-page{
   height: 100vh;
@@ -70,7 +69,7 @@ td {
 }
 
 #leader-board {
-  text-align: left;
+  /* text-align: left; */
 }
 
 button {
@@ -87,7 +86,7 @@ article {
 }
 
 .scoreDiv {
-  margin-left: 28%;
+  margin-left: 5%;
 }
 
 #team1Article {
@@ -108,7 +107,7 @@ button:nth-child(1) {
 
 #passArticle {
   position: relative;
-  bottom: 2em;
+  bottom: 0.5em;
 }
 
 .green:hover {
