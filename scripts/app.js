@@ -1,5 +1,3 @@
-'use strict';
-
 var categories = [];
 
 function Category(name, clues) {
@@ -8,7 +6,8 @@ function Category(name, clues) {
   categories.push(this);
 }
 
-var Cat0 = new Category('Category 0', [
+// eslint-disable-next-line no-unused-vars
+var cat0 = new Category('Category 0', [
   [100, 'category 0 100 clue', 'category 0 100 question', true],
   [200, 'category 0 200 clue', 'category 0 200 question', true],
   [300, 'category 0 300 clue', 'category 0 300 question', true],
@@ -16,7 +15,8 @@ var Cat0 = new Category('Category 0', [
   [500, 'category 0 500 clue', 'category 0 500 question', true]
 ]);
 
-var Cat1 = new Category('Category 1', [
+// eslint-disable-next-line no-unused-vars
+var cat1 = new Category('Category 1', [
   [100, 'category 1 100 clue', 'category 1 100 question', true],
   [200, 'category 1 200 clue', 'category 1 200 question', true],
   [300, 'category 1 300 clue', 'category 1 300 question', true],
@@ -24,7 +24,8 @@ var Cat1 = new Category('Category 1', [
   [500, 'category 1 500 clue', 'category 1 500 question', true]
 ]);
 
-var Cat2 = new Category('Category 2', [
+// eslint-disable-next-line no-unused-vars
+var cat2 = new Category('Category 2', [
   [100, 'category 2 100 clue', 'category 2 100 question', true],
   [200, 'category 2 200 clue', 'category 2 200 question', true],
   [300, 'category 2 300 clue', 'category 2 300 question', true],
@@ -32,7 +33,8 @@ var Cat2 = new Category('Category 2', [
   [500, 'category 2 500 clue', 'category 2 500 question', true]
 ]);
 
-var Cat3 = new Category('Category 3', [
+// eslint-disable-next-line no-unused-vars
+var cat3 = new Category('Category 3', [
   [100, 'category 3 100 clue', 'category 3 100 question', true],
   [200, 'category 3 200 clue', 'category 3 200 question', true],
   [300, 'category 3 300 clue', 'category 3 300 question', true],
@@ -40,7 +42,8 @@ var Cat3 = new Category('Category 3', [
   [500, 'category 3 500 clue', 'category 3 500 question', true]
 ]);
 
-var Cat4 = new Category('Category 4', [
+// eslint-disable-next-line no-unused-vars
+var cat4 = new Category('Category 4', [
   [100, 'category 4 100 clue', 'category 4 100 question', true],
   [200, 'category 4 200 clue', 'category 4 200 question', true],
   [300, 'category 4 300 clue', 'category 4 300 question', true],
@@ -48,7 +51,8 @@ var Cat4 = new Category('Category 4', [
   [500, 'category 4 500 clue', 'category 4 500 question', true]
 ]);
 
-var Cat5 = new Category('Category 5', [
+// eslint-disable-next-line no-unused-vars
+var cat5 = new Category('Category 5', [
   [100, 'category 5 100 clue', 'category 5 100 question', true],
   [200, 'category 5 200 clue', 'category 5 200 question', true],
   [300, 'category 5 300 clue', 'category 5 300 question', true],
@@ -269,45 +273,81 @@ function clueClickManager(event) {
   questionDisplayDiv.textContent = question;
   questionPage.append(questionDisplayDiv);
 
+  // div for both score display and buttons
   var bigScoreDiv = document.createElement('div');
   bigScoreDiv.setAttribute('id', 'bigScoreDiv');
 
+  // div for scores
   var scoresDiv = document.createElement('div');
   scoresDiv.setAttribute('class', 'scoreText');
   scoresDiv.textContent = getCurrentScores();
   bigScoreDiv.append(scoresDiv);
 
+  // div for buttons
   var buttonsDisplayDiv = document.createElement('div');
   buttonsDisplayDiv.setAttribute('class', 'scoreDiv');
 
+  // container for team 1
+  var team1Article = document.createElement('article');
+  team1Article.setAttribute('id', 'team1Article');
+
   var team1Correct = document.createElement('button');
-  team1Correct.setAttribute('class', 'scoreButton');
-  team1Correct.setAttribute('id', event.target.id);
-  team1Correct.textContent = `${teamA.name} correct`;
+  team1Correct.setAttribute('class', 'scoreButton green');
+  team1Correct.setAttribute('id', `${event.target.id} team1correct`);
+  console.log(`team 1 correct ${team1Correct.getAttribute('id')}`);
+  team1Correct.textContent = 'Correct';
   team1Correct.addEventListener('click', clickScoreManager);
-  buttonsDisplayDiv.append(team1Correct);
+  team1Article.append(team1Correct);
 
   var team1Incorrect = document.createElement('button');
-  team1Incorrect.setAttribute('class', 'scoreButton');
-  team1Incorrect.setAttribute('id', event.target.id);
-  team1Incorrect.textContent = `${teamA.name} incorrect`;
+  team1Incorrect.setAttribute('class', 'scoreButton red');
+  team1Incorrect.setAttribute('id', `${event.target.id} team1incorrect`);
+
+  console.log(`team 1 incorrect ${team1Incorrect.getAttribute('id')}`);
+
+  team1Incorrect.textContent = 'Incorrect';
   team1Incorrect.addEventListener('click', clickScoreManager);
-  buttonsDisplayDiv.append(team1Incorrect);
+  team1Article.append(team1Incorrect);
+
+  // container for pass
+  var passArticle = document.createElement('article');
+  passArticle.setAttribute('id', 'passArticle');
+
+  var pass = document.createElement('button');
+  pass.setAttribute('class', 'scoreButton');
+  pass.setAttribute('id', event.target.id);
+  pass.textContent = 'PASS';
+  pass.addEventListener('click', clickScoreManager);
+  passArticle.append(pass);
+
+  // container for team 2
+  var team2Article = document.createElement('article');
+  team2Article.setAttribute('id', 'team2Article');
 
   var team2Correct = document.createElement('button');
-  team2Correct.setAttribute('class', 'scoreButton');
-  team2Correct.setAttribute('id', event.target.id);
-  team2Correct.textContent = `${teamB.name} correct`;
+  team2Correct.setAttribute('class', 'scoreButton green');
+  team2Correct.setAttribute('id', `${event.target.id} team2correct`);
+
+  console.log(`team 2 correct ${team2Correct.getAttribute('id')}`);
+
+  team2Correct.textContent = 'Correct';
   team2Correct.addEventListener('click', clickScoreManager);
-  buttonsDisplayDiv.append(team2Correct);
+  team2Article.append(team2Correct);
 
   var team2Incorrect = document.createElement('button');
-  team2Incorrect.setAttribute('class', 'scoreButton');
-  team2Incorrect.setAttribute('id', event.target.id);
-  team2Incorrect.textContent = `${teamB.name} incorrect`;
-  team2Incorrect.addEventListener('click', clickScoreManager);
-  buttonsDisplayDiv.append(team2Incorrect);
+  team2Incorrect.setAttribute('class', 'scoreButton red'); // assigning multiple classes through JS like this! took me a long time to figure this out - va
+  team2Incorrect.setAttribute('id', `${event.target.id} team2incorrect`);
 
+  console.log(`team 2 incorrect ${team2Incorrect.getAttribute('id')}`);
+
+  team2Incorrect.textContent = 'Incorrect';
+  team2Incorrect.addEventListener('click', clickScoreManager);
+  team2Article.append(team2Incorrect);
+
+  // append question and button containers to table
+  buttonsDisplayDiv.append(team1Article);
+  buttonsDisplayDiv.append(passArticle);
+  buttonsDisplayDiv.append(team2Article);
   bigScoreDiv.append(buttonsDisplayDiv);
 
   questionPage.append(bigScoreDiv);
@@ -316,30 +356,39 @@ function clueClickManager(event) {
 
 function clickScoreManager(event) {
   var pointValue = getValue(event.target.id);
+  console.log(pointValue);
+  console.log(event.target.id);
+  console.log(event.target.id.includes('team1correct'));
   // if a button clicked id = team1/2 correct/incorrect, change score by accessing the team constructor
-  if (event.target.innerText === `${teamA.name} correct`) {
+  if (event.target.id.includes('team1correct')) {
     // increment team 1 score by the cell's score
     updateScore(teamA, pointValue);
     console.log(`team a current score is now ${teamA.currentScore}`);
   }
 
-  if (event.target.innerText === `${teamA.name} incorrect`) {
+  if (event.target.id.includes('team1incorrect')) {
     // decrement team 1 score by the cell's score
     updateScore(teamA, -pointValue);
     console.log(`team a current score is now ${teamA.currentScore}`);
   }
 
-  if (event.target.innerText === `${teamB.name} correct`) {
+  if (event.target.innerText === 'PASS') {
+    // do nothing
+    console.log('pass');
+  }
+
+  if (event.target.id.includes('team2correct')) {
     // increment team 2 score by the cell's score
     updateScore(teamB, pointValue);
     console.log(`team b current score is now ${teamB.currentScore}`);
   }
 
-  if (event.target.innerText === `${teamB.name} incorrect`) {
+  if (event.target.id.includes('team2incorrect')) {
     // decrement team 2 score by the cell's score
     updateScore(teamB, -pointValue);
+    console.log(event.target.id.includes('team1correct'));
+    console.log(event.target.id.includes('team2incorrect'));
     console.log(`team b current score is now ${teamB.currentScore}`);
-
   }
 
   // clear table of buttons
