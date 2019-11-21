@@ -30,6 +30,9 @@ td {
   font-size: 5.5vw;
 }
 
+.game-over-page .question-page{
+  background-color: gold;
+}
 .bigClue {
   background-color: rgb(18,36,136);
   height: 100%;
