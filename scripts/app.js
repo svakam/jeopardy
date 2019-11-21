@@ -216,6 +216,7 @@ function clueClickManager(event) {
   table.append(questionDisplayDiv);
 
   var bigScoreDiv = document.createElement('div');
+  bigScoreDiv.setAttribute('id', 'bigScoreDiv');
 
   var scoresDiv = document.createElement('div');
   scoresDiv.setAttribute('class', 'scoreText');
