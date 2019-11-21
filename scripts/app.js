@@ -60,8 +60,6 @@ var Cat5 = new Category('Category 5', [
 
 // Laura - local storage:
 
-// info we want to retain in local storage is: team names and their final scores
-// that is: this.name and this.currentScore
 var localStorageData = 'localStorageData';
 // note that the allTeamsEver array will contain every team ever to play the game
 var allTeamsEver = [];
@@ -71,7 +69,6 @@ var teams = [];
 function Team(name, newScore) {
   this.name = name;
   this.currentScore = newScore;
-  // the following method can remain because we always want to push in each game's instances to the array.
   teams.push(this);
 
   this.loadData = function (data) {
@@ -81,28 +78,25 @@ function Team(name, newScore) {
   };
 }
 
-
 var teamA = new Team(name, 0);
 var teamB = new Team(name, 0);
-
 
 //to determine whether to draw from local storage:
 if (localStorage.getItem(localStorageData) === null) {
   // if localstorage is empty, just take in team names like normal and therefore the two current teams would also be all the teams ever
-  allTeamsEver = teams;
+  // allTeamsEver = teams;
 } else {
   // if localstorage contains items, get them
   var jsonData = localStorage.getItem(localStorageData);
   // parse them
   var data = JSON.parse(jsonData);
-  // load them PLUS the current teams into the array
+  // load them into the array (load current teams at end of game)
   for (var i = 0; i < data.length; i++) {
     // load in the names and currentScores (which should be the final scores):
     var newTeam = new Team('', '');
     newTeam.loadData(data[i]);
     allTeamsEver.push(newTeam);
   }
-  // ... in order to calculate all time high scores at end
 }
 
 function saveTeamDataLocally() {
@@ -111,50 +105,66 @@ function saveTeamDataLocally() {
 }
 
 function gameOver() {
-  // this is where we can render all time high scores based on local storage, ie, reference the allTeamsEver array
-  saveTeamDataLocally(); // because we only want this fx to be called at the end of the game, when team.currentScore is the *final* score
+  var table = document.getElementById('table');
+  table.innerHTML = '';
+
+  var gameOverDisplay = document.createElement('p');
+  gameOverDisplay.textContent = `Game Over! Final Scores: ${teams[0].name}: ${teams[0].currentScore}, ${teams[1].name}: ${teams[1].currentScore} `;
+  table.append(gameOverDisplay);
+
+  // var leaderboard = document.createElement('ul');
+  // leaderboard.textContent = 'Here are the all time winners:';
+  // var leaderboard1 = document.createElement('li');
+  // leaderboard1.textContent =
+
+  //   table.append(leaderboard);
+  allTeamsEver.push(teams);
+  saveTeamDataLocally();
+  teams = [];
 }
 
-// we will want to remove this fx call and only have it in the gameOVer fx:
-saveTeamDataLocally();
-// we will also want to clear the teams array within the gameOver fx
-teams = [];
+// detect end of game:
+var clickCounter = 0;
 
 // end local storage
 
 
 function renderBoard(domReference) {
-  var trCategories = document.createElement('tr');
-  for (var categoryTitleIndex = 0; categoryTitleIndex < categories.length; categoryTitleIndex++) {
-    var tdCategory = document.createElement('td');
+  if (clickCounter < 2) {
+    var trCategories = document.createElement('tr');
+    for (var categoryTitleIndex = 0; categoryTitleIndex < categories.length; categoryTitleIndex++) {
+      var tdCategory = document.createElement('td');
 
-    tdCategory.textContent = categories[categoryTitleIndex].name;
+      tdCategory.textContent = categories[categoryTitleIndex].name;
 
-    tdCategory.setAttribute('class', 'category');
-    trCategories.append(tdCategory);
-  }
-  domReference.append(trCategories);
-
-
-  for (var rowIndex = 0; rowIndex < categories.length - 1; rowIndex++) {
-    // PS: categories.lenght - 1 because we've used the first one for the top row
-    var trClueRow = document.createElement('tr');
-
-    for (var categoryIndex = 0; categoryIndex < categories.length; categoryIndex++) {
-      var tdClue = document.createElement('td');
-
-      tdClue.setAttribute('class', 'clue');
-      tdClue.setAttribute('id', `${rowIndex},${categoryIndex}`);
-
-      if (categories[categoryIndex].clues[rowIndex][3] === true) {
-        tdClue.textContent = `$${categories[categoryIndex].clues[rowIndex][0]}`;
-        tdClue.addEventListener('click', tdClickManager);
-      } else {
-        tdClue.textContent = '';
-      }
-      trClueRow.append(tdClue);
+      tdCategory.setAttribute('class', 'category');
+      trCategories.append(tdCategory);
     }
-    domReference.append(trClueRow);
+    domReference.append(trCategories);
+
+
+    for (var rowIndex = 0; rowIndex < categories.length - 1; rowIndex++) {
+      // PS: categories.lenght - 1 because we've used the first one for the top row
+      var trClueRow = document.createElement('tr');
+
+      for (var categoryIndex = 0; categoryIndex < categories.length; categoryIndex++) {
+        var tdClue = document.createElement('td');
+
+        tdClue.setAttribute('class', 'clue');
+        tdClue.setAttribute('id', `${rowIndex},${categoryIndex}`);
+
+        if (categories[categoryIndex].clues[rowIndex][3] === true) {
+          tdClue.textContent = `$${categories[categoryIndex].clues[rowIndex][0]}`;
+          tdClue.addEventListener('click', tdClickManager);
+        } else {
+          tdClue.textContent = '';
+        }
+        trClueRow.append(tdClue);
+      }
+      domReference.append(trClueRow);
+    }
+  } else {
+    gameOver();
   }
 }
 
@@ -192,6 +202,7 @@ function setHidden(clueId) {
 }
 
 function tdClickManager(event) {
+  clickCounter++;
   var clueToDisplay = getAClue(event.target.id);
   setHidden(event.target.id);
   table.innerHTML = '';
@@ -286,13 +297,9 @@ function clickScoreManager(event) {
 
   }
 
-
-  // toggle blank for that clue by accessing the clue constructor
-
   // clear table of buttons
   table.innerHTML = '';
 
-  // render board
   renderBoard(table);
 }
 
