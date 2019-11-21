@@ -47,6 +47,121 @@ td {
   /* align-items: center; */
 }
 
+#bigScoreDiv {
+  background-color: rgb(18,36,136);
+  position: relative;
+  bottom: 200px;
+}
+
+.scoreText {
+  background-color: rgb(18,36,136);
+  color: gold;
+  text-decoration: none;
+  font-size: 2.5vw;
+  font-family: 'Electrolize', sans-serif;
+  text-align: center;
+  position: relative;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+button {
+  display: block;
+}
+
+article {
+  display: inline-block;
+}
+
+.scoreButton:hover {
+  color: rgb(218, 197, 196);
+  background-color: gray;
+}
+
+.scoreDiv {
+  margin-left: 28%;
+}
+
+#team1Article {
+  position: relative;
+  margin-right: 100px;
+}
+
+#team2Article {
+  position: relative;
+  margin-left: 100px;
+}
+
+button:nth-child(1) {
+  position: relative;
+  left: 0.25em;
+  bottom: 0.25em;
+}
+
+#passArticle {
+  position: relative;
+  bottom: 2em;
+}
+
+.green:hover {
+  background-color: green;
+}
+
+.red:hover {
+  background-color: red;
+}
+
+.scoreButton {
+  background-color: rgb(18,36,136);
+  color: gold;
+  font-size: 20pt;
+  padding: 12px;
+  margin: 10px;
+  border-radius: 40px;
+  outline: none;
+}
+
+.bigClue {
+  background-color: rgb(18,36,136);
+  height: 100%;
+  display: flex;
+  width: 98.5vw;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Merriweather', serif;
+  font-size: 15vh;
+  color: gold;
+  text-transform: uppercase;
+  text-align: center;
+  border: 0;
+}
+
+.bigQuestion {
+  background-color: rgb(18,36,136);
+  height: 100%; /* modify? */
+  display: flex;
+  width: 100%; /* vh was making the whole viewport scrollable? it still kind of is */
+  justify-content: center;
+  align-items: center;
+  font-family: 'Merriweather', serif;
+  font-size: 15vh;
+  color: gold;
+  text-transform: uppercase;
+  text-align: center;
+  border: 0;
+}
+
+table td:hover {
+  color: rgb(218, 197, 196)
+}
+
+.clue {
+  font-family: 'Public Sans', sans-serif;
+  color: gold;
+  text-decoration: none;
+  font-size: 5.5vw;
+}
+
 /* .intro-page {
 }
 .form-page {
@@ -57,4 +172,4 @@ td {
 }
 .game-over-page{
 }
-*/
+
