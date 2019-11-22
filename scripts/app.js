@@ -441,25 +441,29 @@ function renderForm(formInput, introContent) {
   form.append(team1Div);
   var team1Label = document.createElement('label');
   team1Div.append(team1Label);
-  team1Label.textContent = 'Team 1: ';
   var team1Input = document.createElement('input');
   team1Input.setAttribute('name', 'team1input');
+  team1Input.setAttribute('value', 'Team 1 Name:');
+  team1Input.setAttribute('id', 'teamForm');
   team1Div.append(team1Input);
 
   // team 2 elements
   var team2Div = document.createElement('div');
   form.append(team2Div);
   var team2Label = document.createElement('label');
-  team2Label.textContent = 'Team 2: ';
   team2Div.append(team2Label);
   var team2Input = document.createElement('input');
   team2Input.setAttribute('name', 'team2input');
+  team2Input.setAttribute('value', 'Team 2 Name:');
+  team2Input.setAttribute('id', 'teamForm');
   team2Div.append(team2Input);
 
   // submit element
   var submitNames = document.createElement('button');
   submitNames.setAttribute('type', 'submit');
-  submitNames.textContent = 'Let\'s go!';
+  submitNames.setAttribute('class', 'scoreButton');
+  submitNames.setAttribute('id', 'letsgoadjust');
+  submitNames.textContent = 'Let\'s play!';
   form.append(submitNames);
 
   formPage.append(form);
