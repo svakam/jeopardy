@@ -10,18 +10,18 @@ function Category(name, clues) {
 var cat0 = new Category('Computer Science', [
   [100, 'This javascript statement terminates the current loop or statement', 'What is \'break?\'', true],
   [200, 'This word is reserved in JS for removing a property from an object', 'What is \'delete\'?', true],
-  [300, 'This compiled language used for data processing has been in use for 60 years', 'What is COBOL?', true],
-  [400, 'This famous actress and inventor created an encryption system based on the principles behind player pianos', 'Who is Hedy Lamarr?', true],
-  [500, 'This type of callback function is executed immediately when its outer function is invoked', 'What is a \'synchronous callback\'?', true],
+  [300, 'This programming language was developed by Apple and introduced in 2014', 'What is Swift?', true],
+  [400, 'This word is used to describe the process of creating and initializing an object', 'What is construction (or instantiation?', true],
+  [500, 'This type of function is declared without any named identifier', 'What is an \'anonymous function\'?', true],
 ]);
 
 // eslint-disable-next-line no-unused-vars
 var cat1 = new Category('Pop Culture', [
-  [100, 'This former NBA player is perhaps best known for a brief marriage to Kim Kardashian', 'Who is Kris Humphries?', true],
-  [200, 'January Jones is a former model married to a Manhattan advertising executive in this AMC original show', 'What is Mad Men?', true],
-  [300, 'This actress got her big break in the Harry Potter film series and later became known for her work as a women’s rights activist.', 'Who is Emma Watson?', true],
-  [400, 'This fictional character also goes by the name Art Vandelay', 'Who is George Costanza?', true],
-  [500, 'This pop singer\'s given name is Ashley Nicolette Frangipane', 'Who is Halsey?', true]
+  [100, 'This former NBA player is perhaps best known for his brief marriage to Kim Kardashian', 'Who is Kris Humphries?', true],
+  [200, 'Don Draper is an advertising executive in this AMC original show', 'What is Mad Men?', true],
+  [300, 'This actress got her big break in the Harry Potter film series as Hermione Granger', 'Who is Emma Watson?', true],
+  [400, 'This fictional sitcom character also goes by the name Art Vandelay', 'Who is George Costanza?', true],
+  [500, 'This pop singer, known for hits like \'Bad At Love\' and \'Without Me\', is actually named Ashley Nicolette Frangipane', 'Who is Halsey?', true]
 ]);
 
 // eslint-disable-next-line no-unused-vars
@@ -29,25 +29,25 @@ var cat2 = new Category('Seattle', [
   [100, 'This Seattle icon was built in 1962 as part of the World\'s Fair', 'What is the Space Needle?', true],
   [200, 'One of the members of this band from Aberdeen is part of the ‘27 Club’; other members of that club include Janis Joplin, Jimi Hendrix, and Jim Morrison', 'What is Nirvana?', true],
   [300, 'You get a great view at the top of this 76-story building, the highest in the state of Washington', 'What is the Columbia Center?', true],
-  [400, 'These large glass domes are home to over 40,000 plants, as well as workspace for Amazon employees and retail stores', 'What are the Amazon spheres?', true],
-  [500, 'At the time of European settlers arriving, the area that is now Seattle was largely populated by these Native Americans', 'Who are the Duwamish tribe?', true]
+  [400, 'These large glass domes at the Amazon headquarters are home to over 40,000 plants, as well as workspace for employees and retail stores', 'What are the Amazon spheres?', true],
+  [500, 'At the time of European settlers arriving, the area that is now Seattle was populated by these Native Americans', 'Who are the Duwamish tribe?', true]
 ]);
 
 // eslint-disable-next-line no-unused-vars
 var cat3 = new Category('US Presidents', [
   [100, 'He has owned several beauty pageants, sleeps only  3-4 hours per night, and has called golf his \'primary form of exercise\'', 'Who is Donald Trump?', true],
-  [200, 'He initially tried to refuse a salary, but Congress insisted and he ended up receiving $25,000 per year during his term', 'Who is George Washington?', true],
-  [300, 'This former president now spends his time painting, poetry, fly-fishing, and volunteering with Habitat for Humanity', 'Who is Jimmy Carter?', true],
-  [400, 'This president served only 30 days in office', 'Who is William Harrison?', true],
+  [200, 'In addition to chopping down cherry trees, this president also tried to refuse a salary, but Congress insisted on him getting paid $25,000/year', 'Who is George Washington?', true],
+  [300, 'This former president is known for his work volunteering with Habitat for Humanity', 'Who is Jimmy Carter?', true],
+  [400, 'This president served four terms, guiding the country through the Great Depression', 'Who is FDR?', true],
   [500, 'The only person to serve two non-consecutive terms as president', 'Who is Grover Cleveland?', true]
 ]);
 
 // eslint-disable-next-line no-unused-vars
 var cat4 = new Category('Potpourri', [
   [100, 'This heavyweight champion is the only one to finish his career undefeated', 'Who is Rocky Marciano?', true],
-  [200, 'This sport involves a bat, a ball, and a wicket at each end of the pitch', 'What is cricket?', true],
-  [300, 'This monk with a recognizable name is credited with inventing champagne', 'Who is Dom Perignon?', true],
-  [400, 'This type of craftsman takes care of horse hooves, including trimming hooves and placing horseshoes.', 'What is a farrier?', true],
+  [200, 'This sport involves a bat, a ball, and a wooden wicket at each end of the pitch', 'What is cricket?', true],
+  [300, 'This famous golfer made the news in 2010 when his wife attacked his SUV with a golf club', 'Who is Tiger Woods?', true],
+  [400, 'The name of a person who makes or repairs shoes', 'What is a cobbler?', true],
   [500, 'This state, known for its libertarian leanings, has a motto of \'Live Free or Die\'', 'What is New Hampshire?', true]
 ]);
 
@@ -55,9 +55,9 @@ var cat4 = new Category('Potpourri', [
 var cat5 = new Category('Word Origins', [
   [100, '\'Vaccination\' comes from the Latin word vacca, the word for this animal', 'What is \'cow\'?', true],
   [200, 'The word \'buckaroo\' is a play on this Spanish word meaning cowboy', 'What is \'vaquero\'?', true],
-  [300, 'This medical term comes from a combination of Greek words meaning \'against\' and \'life\'', 'What is \'antibiotic\'?', true],
-  [400, 'This word describing confusion and uproar comes from the name \'Hospital of St Mary of Bethlehem\', a mental hospital in the 1300s', 'What is \'bedlam\'?', true],
-  [500, 'This clothing item was named for a coral reef in the Marshall Islands which was a site of nuclear testing', 'What is a bikini?', true]
+  [300, 'This medical term for drugs used to fight infections comes from a combination of Greek words meaning \'against\' and \'life\'', 'What is \'antibiotic\'?', true],
+  [400, 'This word describing confusion or uproar comes from the name \'Hospital of St Mary of Bethlehem\', a mental hospital in the 1300s', 'What is \'bedlam\'?', true],
+  [500, 'This alcoholic drink (Vinicio\'s favorite!) gets its name from a gaelic word that means \'water of life\'', 'What is whiskey?', true]
 ]);
 
 var localStorageData = 'localStorageData';
