@@ -4,13 +4,38 @@ html {
   color: gold;
 }
 
+#teamForm {
+  background-color: rgb(18,36,136);
+  color: gold;
+  width: 500px;
+  font-size: 5vh;
+  outline: none;
+  border-color: rgb(18,36,136);
+  text-align: center;
+  text-shadow: 5px 5px #000;
+}
+
+
+#letsplayadjust {
+  margin-left: 23%;
+  position: relative;
+  top: 2em;
+}
+
 table {
   height: 100vh;
   background-color: black;
 }
 
 table td:hover {
-  color: rgb(218, 197, 196)
+  animation:blinkingText 0.8s infinite;
+}
+@keyframes blinkingText{
+  0%{     color: gold;    }
+  25%{    color: gold; }
+  50%{    color: transparent; }
+  25%{    color: gold;  }
+  100%{   color: gold;    }
 }
 
 td {
@@ -20,6 +45,7 @@ td {
   background-color: rgb(18,36,136);
   color: gold;
   text-align: center;
+  text-shadow: 5px 5px #000;
 }
 
 .categoryTd {
@@ -43,17 +69,22 @@ td {
   background-color: rgb(18,36,136);
   text-align: center;
   text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 130%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: 'Merriweather', serif;
-  font-size: 10vh;
+  font-size: 9vh;
+  text-shadow: 5px 5px #000;
 }
 
 .intro-page {
   height: 100vh;
+  font-size: 20vh;
 }
+
 .form-page {
   height: 100vh;
 }
@@ -66,12 +97,19 @@ td {
 }
 .game-over-page{
   height: 100vh;
-  font-size: 5vh;
+  font-size: 3.5vh;
 }
 
-/* #leader-board {
-  text-align: left;
-} */
+#game-over{
+  animation:blinkingText 0.8s infinite;
+}
+@keyframes blinkingText{
+  0%{     color: gold;    }
+  49%{    color: transparent; }
+  50%{    color: transparent; }
+  99%{    color:transparent;  }
+  100%{   color: gold;    }
+}
 
 button {
   display: block;
@@ -108,7 +146,8 @@ button:nth-child(1) {
 
 #passArticle {
   position: relative;
-  bottom: 0.5em;
+  bottom: 0.9em;
+  right: 0.2em;
 }
 
 .green:hover {
@@ -122,9 +161,19 @@ button:nth-child(1) {
 .scoreButton {
   background-color: rgb(18,36,136);
   color: gold;
-  font-size: 20pt;
-  padding: 12px;
-  margin: 10px;
-  border-radius: 40px;
+  font-size: 30pt;
+  padding: 40px;
+  margin: 20px;
+  border-radius: 80px;
   outline: none;
+  text-shadow: 3px 3px #000;
+}
+
+.scoreText {
+  font-size: 6vh;
+}
+
+li {
+  list-style: inside;
+  list-style-type: upper-roman;
 }
