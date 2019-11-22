@@ -211,7 +211,7 @@ function renderBoard(domReference) {
   } else {
     gameOver();
   }
-  domReference.append(tableJeopardy);
+  // domReference.append(tableJeopardy);
 }
 
 function getCurrentScores() {
