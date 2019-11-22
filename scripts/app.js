@@ -6,7 +6,6 @@ function Category(name, clues) {
   categories.push(this);
 }
 
-// eslint-disable-next-line no-unused-vars
 var cat0 = new Category('Computer Science', [
   [100, 'This javascript statement terminates the current loop or statement', 'What is \'break?\'', true],
   [200, 'This word is reserved in JS for removing a property from an object', 'What is \'delete\'?', true],
@@ -15,7 +14,6 @@ var cat0 = new Category('Computer Science', [
   [500, 'This type of function is declared without any named identifier', 'What is an \'anonymous function\'?', true],
 ]);
 
-// eslint-disable-next-line no-unused-vars
 var cat1 = new Category('Pop Culture', [
   [100, 'This former NBA player is perhaps best known for his brief marriage to Kim Kardashian', 'Who is Kris Humphries?', true],
   [200, 'Don Draper is an advertising executive in this AMC original show', 'What is Mad Men?', true],
@@ -24,7 +22,6 @@ var cat1 = new Category('Pop Culture', [
   [500, 'This pop singer, known for hits like \'Bad At Love\' and \'Without Me\', is actually named Ashley Nicolette Frangipane', 'Who is Halsey?', true]
 ]);
 
-// eslint-disable-next-line no-unused-vars
 var cat2 = new Category('Seattle', [
   [100, 'This Seattle icon was built in 1962 as part of the World\'s Fair', 'What is the Space Needle?', true],
   [200, 'One of the members of this band from Aberdeen is part of the ‘27 Club’; other members of that club include Janis Joplin, Jimi Hendrix, and Jim Morrison', 'What is Nirvana?', true],
@@ -33,7 +30,6 @@ var cat2 = new Category('Seattle', [
   [500, 'At the time of European settlers arriving, the area that is now Seattle was populated by these Native Americans', 'Who are the Duwamish tribe?', true]
 ]);
 
-// eslint-disable-next-line no-unused-vars
 var cat3 = new Category('US Presidents', [
   [100, 'He has owned several beauty pageants, sleeps only  3-4 hours per night, and has called golf his \'primary form of exercise\'', 'Who is Donald Trump?', true],
   [200, 'In addition to chopping down cherry trees, this president also tried to refuse a salary, but Congress insisted on him getting paid $25,000/year', 'Who is George Washington?', true],
@@ -42,7 +38,6 @@ var cat3 = new Category('US Presidents', [
   [500, 'The only person to serve two non-consecutive terms as president', 'Who is Grover Cleveland?', true]
 ]);
 
-// eslint-disable-next-line no-unused-vars
 var cat4 = new Category('Potpourri', [
   [100, 'This heavyweight champion is the only one to finish his career undefeated', 'Who is Rocky Marciano?', true],
   [200, 'This sport involves a bat, a ball, and a wooden wicket at each end of the pitch', 'What is cricket?', true],
@@ -51,7 +46,6 @@ var cat4 = new Category('Potpourri', [
   [500, 'This state, known for its libertarian leanings, has a motto of \'Live Free or Die\'', 'What is New Hampshire?', true]
 ]);
 
-// eslint-disable-next-line no-unused-vars
 var cat5 = new Category('Word Origins', [
   [100, '\'Vaccination\' comes from the Latin word vacca, the word for this animal', 'What is \'cow\'?', true],
   [200, 'The word \'buckaroo\' is a play on this Spanish word meaning cowboy', 'What is \'vaquero\'?', true],
@@ -84,6 +78,7 @@ var teamB = new Team(name, 0);
 if (localStorage.getItem(localStorageData) !== null) {
   var jsonData = localStorage.getItem(localStorageData);
   var data = JSON.parse(jsonData);
+
   for (var i = 0; i < data.length; i++) {
     var newTeam = new Team('', '');
     newTeam.loadData(data[i]);
@@ -137,9 +132,15 @@ function gameOver() {
   gameOverPage.setAttribute('class', 'game-over-page');
 
   var gameOverDisplay = document.createElement('p');
-  gameOverDisplay.setAttribute('id', 'final-scores');
-  gameOverDisplay.textContent = `Game Over! Final Scores: ${teams[0].name}: ${teams[0].currentScore}, ${teams[1].name}: ${teams[1].currentScore} `;
+  gameOverDisplay.setAttribute('id', 'game-over');
+  gameOverDisplay.textContent = 'Game Over!';
   gameOverPage.append(gameOverDisplay);
+
+  var ScoresDisplay = document.createElement('p');
+  ScoresDisplay.setAttribute('id', 'final-scores');
+  ScoresDisplay.textContent =
+  `${teamA.name} : $${teamA.currentScore} --- vs --- $${teamB.currentScore} : ${teamB.name}`;
+  gameOverPage.append(ScoresDisplay);
 
   var leaderboard = document.createElement('ol');
   leaderboard.setAttribute('id', 'leader-board');
@@ -160,12 +161,12 @@ function gameOver() {
   saveTeamDataLocally();
   teams = [];
 
-  // vik - added refresh button. still need to test once local storage back up and running
   var refresh = document.createElement('button');
   refresh.setAttribute('type', 'submit');
   refresh.setAttribute('class', 'scoreButton');
   refresh.setAttribute('onClick', 'window.location.reload();');
   refresh.textContent = 'Play Again!';
+
   gameOverPage.append(refresh);
 }
 
@@ -177,9 +178,9 @@ function renderBoard(domReference) {
     var tableJeopardy = document.createElement('table');
     tableJeopardy.setAttribute('class', 'jeopardy-page');
     var trCategories = document.createElement('tr');
+
     for (var categoryTitleIndex = 0; categoryTitleIndex < categories.length; categoryTitleIndex++) {
       var tdCategory = document.createElement('td');
-
       tdCategory.textContent = categories[categoryTitleIndex].name;
 
       tdCategory.setAttribute('class', 'categoryTd');
@@ -211,11 +212,11 @@ function renderBoard(domReference) {
   } else {
     gameOver();
   }
-  // domReference.append(tableJeopardy);
 }
 
 function getCurrentScores() {
-  var currentScores = `${teamA.name}: $${teamA.currentScore} --- vs --- ${teamB.name}: $${teamB.currentScore}`;
+  var currentScores =
+  `${teamA.name} : $${teamA.currentScore} --- vs --- $${teamB.currentScore} : ${teamB.name}`;
   return currentScores;
 }
 
@@ -249,6 +250,7 @@ function setHidden(clueId) {
 
 function tdClickManager(event) {
   clickCounter++;
+
   var clueToDisplay = getAClue(event.target.id);
   setHidden(event.target.id);
   table.innerHTML = '';
@@ -275,29 +277,23 @@ function clueClickManager(event) {
   questionDisplayDiv.textContent = question;
   questionPage.append(questionDisplayDiv);
 
-  // div for both score display and buttons
   var bigScoreDiv = document.createElement('div');
   bigScoreDiv.setAttribute('id', 'bigScoreDiv');
 
-
-  // div for scores
   var scoresDiv = document.createElement('div');
   scoresDiv.setAttribute('class', 'scoreText');
   scoresDiv.textContent = getCurrentScores();
   bigScoreDiv.append(scoresDiv);
 
-  // div for buttons
   var buttonsDisplayDiv = document.createElement('div');
   buttonsDisplayDiv.setAttribute('class', 'scoreDiv');
 
-  // container for team 1
   var team1Article = document.createElement('article');
   team1Article.setAttribute('id', 'team1Article');
 
   var team1Correct = document.createElement('button');
   team1Correct.setAttribute('class', 'scoreButton green');
   team1Correct.setAttribute('id', `${event.target.id} team1correct`);
-  console.log(`team 1 correct ${team1Correct.getAttribute('id')}`);
   team1Correct.textContent = 'Correct';
   team1Correct.addEventListener('click', clickScoreManager);
   team1Article.append(team1Correct);
@@ -305,14 +301,10 @@ function clueClickManager(event) {
   var team1Incorrect = document.createElement('button');
   team1Incorrect.setAttribute('class', 'scoreButton red');
   team1Incorrect.setAttribute('id', `${event.target.id} team1incorrect`);
-
-  console.log(`team 1 incorrect ${team1Incorrect.getAttribute('id')}`);
-
   team1Incorrect.textContent = 'Incorrect';
   team1Incorrect.addEventListener('click', clickScoreManager);
   team1Article.append(team1Incorrect);
 
-  // container for pass
   var passArticle = document.createElement('article');
   passArticle.setAttribute('id', 'passArticle');
 
@@ -323,31 +315,23 @@ function clueClickManager(event) {
   pass.addEventListener('click', clickScoreManager);
   passArticle.append(pass);
 
-  // container for team 2
   var team2Article = document.createElement('article');
   team2Article.setAttribute('id', 'team2Article');
 
   var team2Correct = document.createElement('button');
   team2Correct.setAttribute('class', 'scoreButton green');
   team2Correct.setAttribute('id', `${event.target.id} team2correct`);
-
-  console.log(`team 2 correct ${team2Correct.getAttribute('id')}`);
-
   team2Correct.textContent = 'Correct';
   team2Correct.addEventListener('click', clickScoreManager);
   team2Article.append(team2Correct);
 
   var team2Incorrect = document.createElement('button');
-  team2Incorrect.setAttribute('class', 'scoreButton red'); // assigning multiple classes through JS like this! took me a long time to figure this out - va
+  team2Incorrect.setAttribute('class', 'scoreButton red');
   team2Incorrect.setAttribute('id', `${event.target.id} team2incorrect`);
-
-  console.log(`team 2 incorrect ${team2Incorrect.getAttribute('id')}`);
-
   team2Incorrect.textContent = 'Incorrect';
   team2Incorrect.addEventListener('click', clickScoreManager);
   team2Article.append(team2Incorrect);
 
-  // append question and button containers to table
   buttonsDisplayDiv.append(team1Article);
   buttonsDisplayDiv.append(passArticle);
   buttonsDisplayDiv.append(team2Article);
@@ -359,48 +343,32 @@ function clueClickManager(event) {
 
 function clickScoreManager(event) {
   var pointValue = getValue(event.target.id);
-  console.log(pointValue);
-  console.log(event.target.id);
-  console.log(event.target.id.includes('team1correct'));
-  // if a button clicked id = team1/2 correct/incorrect, change score by accessing the team constructor
+
   if (event.target.id.includes('team1correct')) {
-    // increment team 1 score by the cell's score
     updateScore(teamA, pointValue);
-    console.log(`team a current score is now ${teamA.currentScore}`);
   }
 
   if (event.target.id.includes('team1incorrect')) {
-    // decrement team 1 score by the cell's score
     updateScore(teamA, -pointValue);
-    console.log(`team a current score is now ${teamA.currentScore}`);
   }
 
   if (event.target.innerText === 'PASS') {
-    // do nothing
-    console.log('pass');
+    updateScore(teamA, 0);
+    updateScore(teamB, 0);
   }
 
   if (event.target.id.includes('team2correct')) {
-    // increment team 2 score by the cell's score
     updateScore(teamB, pointValue);
-    console.log(`team b current score is now ${teamB.currentScore}`);
   }
 
   if (event.target.id.includes('team2incorrect')) {
-    // decrement team 2 score by the cell's score
     updateScore(teamB, -pointValue);
-    console.log(event.target.id.includes('team1correct'));
-    console.log(event.target.id.includes('team2incorrect'));
-    console.log(`team b current score is now ${teamB.currentScore}`);
   }
 
-  // clear table of buttons
   table.innerHTML = '';
-
   renderBoard(table);
 }
 
-// render title screen and click on it to go to form
 function renderIntroScreen(table) {
   var title = document.createElement('div');
   title.setAttribute('class', 'intro-page');
@@ -409,19 +377,16 @@ function renderIntroScreen(table) {
   table.addEventListener('click', welcomeClickManager);
 }
 
-// transition from title to form
 function welcomeClickManager(event) {
-  event.target.innerHTML = ''; // set title to blank
-
+  event.target.innerHTML = '';
   renderForm(table, event.target);
 }
 
-// form appended to table to input team names
 function renderForm(formInput, introContent) {
-
   formInput.removeEventListener('click', welcomeClickManager);
+
   introContent.removeEventListener('click', welcomeClickManager);
-  introContent.parentNode.removeChild(introContent); // removes previous content
+  introContent.parentNode.removeChild(introContent);
 
   var formPage = document.createElement('div');
   formPage.setAttribute('class', 'form-page');
@@ -432,33 +397,32 @@ function renderForm(formInput, introContent) {
   formPage.append(inputStatement);
   formInput.append(formPage);
 
-
-
   var form = document.createElement('form');
 
-  // team 1 elements
   var team1Div = document.createElement('div');
   form.append(team1Div);
+
   var team1Label = document.createElement('label');
   team1Div.append(team1Label);
+
   var team1Input = document.createElement('input');
   team1Input.setAttribute('name', 'team1input');
   team1Input.setAttribute('placeholder', 'Team 1 Name:');
   team1Input.setAttribute('id', 'teamForm');
   team1Div.append(team1Input);
 
-  // team 2 elements
   var team2Div = document.createElement('div');
   form.append(team2Div);
+
   var team2Label = document.createElement('label');
   team2Div.append(team2Label);
+
   var team2Input = document.createElement('input');
   team2Input.setAttribute('name', 'team2input');
   team2Input.setAttribute('placeholder', 'Team 2 Name:');
   team2Input.setAttribute('id', 'teamForm');
   team2Div.append(team2Input);
 
-  // submit element
   var submitNames = document.createElement('button');
   submitNames.setAttribute('type', 'submit');
   submitNames.setAttribute('class', 'scoreButton');
@@ -473,17 +437,13 @@ function renderForm(formInput, introContent) {
 }
 
 function submitNamesAndPlayManager(event) {
-  // prevent page reload
   event.preventDefault();
 
-  // input team names to objects
   var teamAinput = event.target[0];
   var teamBinput = event.target[1];
   teamA.name = teamAinput.value;
   teamB.name = teamBinput.value;
-  console.log(`After: Team A ${teamA.name}, Team B ${teamB.name}`);
 
-  // render board
   table.innerHTML = '';
   renderBoard(table);
 }

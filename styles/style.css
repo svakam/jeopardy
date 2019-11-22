@@ -4,16 +4,17 @@ html {
   color: gold;
 }
 
-#teamForm {
+#teamForm, #teamForm:focus {
   background-color: rgb(18,36,136);
   color: gold;
   width: 500px;
   font-size: 5vh;
-  outline: none; 
+  outline: none;
   border-color: rgb(18,36,136);
   text-align: center;
   text-shadow: 5px 5px #000;
 }
+
 
 #letsplayadjust {
   margin-left: 23%;
@@ -87,12 +88,19 @@ td {
 }
 .game-over-page{
   height: 100vh;
-  font-size: 5vh;
+  font-size: 3.5vh;
 }
 
-/* #leader-board {
-  text-align: left;
-} */
+#game-over{
+  animation:blinkingText 0.8s infinite;
+}
+@keyframes blinkingText{
+  0%{     color: gold;    }
+  49%{    color: transparent; }
+  50%{    color: transparent; }
+  99%{    color:transparent;  }
+  100%{   color: gold;    }
+}
 
 button {
   display: block;
