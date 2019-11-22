@@ -4,6 +4,12 @@ html {
   color: gold;
 }
 
+#letsgoadjust {
+  margin-left: 35%;
+  position: relative;
+  top: 2em;
+}
+
 table {
   height: 100vh;
   background-color: black;
@@ -75,6 +81,11 @@ td {
 
 button {
   display: block;
+}
+
+#teamForm {
+  background-color: 
+  color: gold;
 }
 
 article {
