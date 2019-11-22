@@ -4,7 +4,7 @@ html {
   color: gold;
 }
 
-#teamForm, #teamForm:focus {
+#teamForm {
   background-color: rgb(18,36,136);
   color: gold;
   width: 500px;
@@ -83,14 +83,6 @@ td {
 .intro-page {
   height: 100vh;
   font-size: 20vh;
-  animation:blinkingText 0.8s infinite;
-}
-@keyframes blinkingText{
-  0%{     color: gold;    }
-  25%{    color: gold; }
-  50%{    color: transparent; }
-  25%{    color: gold;  }
-  100%{   color: gold;    }
 }
 
 .form-page {

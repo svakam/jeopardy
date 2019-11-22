@@ -174,7 +174,7 @@ var clickCounter = 0;
 
 
 function renderBoard(domReference) {
-  if (clickCounter < 2) {
+  if (clickCounter < 7) {
     var tableJeopardy = document.createElement('table');
     tableJeopardy.setAttribute('class', 'jeopardy-page');
     var trCategories = document.createElement('tr');
