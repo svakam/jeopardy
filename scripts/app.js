@@ -81,15 +81,10 @@ var teamA = new Team(name, 0);
 var teamB = new Team(name, 0);
 
 
-if (localStorage.getItem(localStorageData) === null) {
-  allTeamsEver.push(teamA);
-  allTeamsEver.push(teamB);
-} else {
+if (localStorage.getItem(localStorageData) !== null) {
   var jsonData = localStorage.getItem(localStorageData);
   var data = JSON.parse(jsonData);
-  // load them into the array (load current teams at end of game)
   for (var i = 0; i < data.length; i++) {
-    // load in the names and currentScores (which should be the final scores):
     var newTeam = new Team('', '');
     newTeam.loadData(data[i]);
     allTeamsEver.push(newTeam);
@@ -102,6 +97,8 @@ function saveTeamDataLocally() {
 }
 
 function makeLeadersArray() {
+  allTeamsEver.push(teamA);
+  allTeamsEver.push(teamB);
 
   var tempArray = [];
 
@@ -176,7 +173,7 @@ var clickCounter = 0;
 
 
 function renderBoard(domReference) {
-  if (clickCounter < 10) {
+  if (clickCounter < 2) {
     var tableJeopardy = document.createElement('table');
     tableJeopardy.setAttribute('class', 'jeopardy-page');
     var trCategories = document.createElement('tr');
