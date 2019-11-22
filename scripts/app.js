@@ -215,7 +215,7 @@ function renderBoard(domReference) {
 }
 
 function getCurrentScores() {
-  var currentScores = `${teamA.name}: $${teamA.currentScore} | ${teamB.name}: $${teamB.currentScore}`;
+  var currentScores = `${teamA.name}: $${teamA.currentScore} --- vs --- ${teamB.name}: $${teamB.currentScore}`;
   return currentScores;
 }
 
@@ -443,7 +443,7 @@ function renderForm(formInput, introContent) {
   team1Div.append(team1Label);
   var team1Input = document.createElement('input');
   team1Input.setAttribute('name', 'team1input');
-  team1Input.setAttribute('value', 'Team 1 Name:');
+  team1Input.setAttribute('placeholder', 'Team 1 Name:');
   team1Input.setAttribute('id', 'teamForm');
   team1Div.append(team1Input);
 
@@ -454,7 +454,7 @@ function renderForm(formInput, introContent) {
   team2Div.append(team2Label);
   var team2Input = document.createElement('input');
   team2Input.setAttribute('name', 'team2input');
-  team2Input.setAttribute('value', 'Team 2 Name:');
+  team2Input.setAttribute('placeholder', 'Team 2 Name:');
   team2Input.setAttribute('id', 'teamForm');
   team2Div.append(team2Input);
 
@@ -462,7 +462,7 @@ function renderForm(formInput, introContent) {
   var submitNames = document.createElement('button');
   submitNames.setAttribute('type', 'submit');
   submitNames.setAttribute('class', 'scoreButton');
-  submitNames.setAttribute('id', 'letsgoadjust');
+  submitNames.setAttribute('id', 'letsplayadjust');
   submitNames.textContent = 'Let\'s play!';
   form.append(submitNames);
 
