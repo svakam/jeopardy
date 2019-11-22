@@ -28,7 +28,14 @@ table {
 }
 
 table td:hover {
-  color: rgb(218, 197, 196)
+  animation:blinkingText 0.8s infinite;
+}
+@keyframes blinkingText{
+  0%{     color: gold;    }
+  25%{    color: gold; }
+  50%{    color: transparent; }
+  25%{    color: gold;  }
+  100%{   color: gold;    }
 }
 
 td {
@@ -85,7 +92,7 @@ td {
   25%{    color: gold;  }
   100%{   color: gold;    }
 }
-}
+
 .form-page {
   height: 100vh;
 }
