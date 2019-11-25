@@ -1,5 +1,5 @@
 # Jeopardy
-A class project to recreate our take on the popular gameshow Jeopardy.
+A class project to recreate our take on the popular gameshow Jeopardy. Deployed at https://svakam.github.io/jeopardy/.
 
 # Team Members
 Vikram Akam
